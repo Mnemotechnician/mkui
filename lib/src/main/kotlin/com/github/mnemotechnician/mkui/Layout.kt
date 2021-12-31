@@ -80,14 +80,14 @@ inline fun Table.imageButton(crossinline provider: () -> Drawable, style: ImageB
 }
 
 /** Adds a constant image to the table and returns the created cell */
-inline fun Table.addImage(drawable: Drawable, style: Image.ImageStyle = Styles.defaulti) {
-	val i = Image(drawable, style)
+inline fun Table.addImage(drawable: Drawable): Cell<Image> {
+	val i = Image(drawable)
 	return add(i)
 }
 
 /** Adds a dynamic image to the table and returns the created cell */
-inline fun Table.addImage(crossinline provider: () -> Drawable, style: Image.ImageStyle = Styles.defaulti) {
-	val i = Image(provider(), style)
+inline fun Table.addImage(crossinline provider: () -> Drawable): Cell<Image> {
+	val i = Image(provider())
 	i.update { provider() }
 	return add(i)
 }
