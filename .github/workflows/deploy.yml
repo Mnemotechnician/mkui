@@ -1,0 +1,20 @@
+name: Deployment
+on: workflow_dispatch
+
+jobs:
+  buildAndUpload:
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        
+      - name: compile
+        run: |
+          chmod +x gradlew
+          ./gradlew test jar
+      
+      - name: create release
+        uses: svenstaro/upload-release-action@2.2.1
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: libs/MKUI.jar
+          tag: snapshot-${{ github.run_id }}
