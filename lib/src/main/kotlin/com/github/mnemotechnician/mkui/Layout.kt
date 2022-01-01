@@ -1,11 +1,18 @@
+/**
+ * Contains some utility layout construction functions
+ * Function names were made distinct in order to avoid ambiguity
+ */
 package com.github.mnemotechnician.mkui
 
 import arc.scene.*
 import arc.scene.ui.*
 import arc.scene.ui.layout.*
 import arc.scene.style.*
+import arc.struct.*
 import arc.graphics.*
 import mindustry.ui.*
+
+private val tmpButtons = Seq<Button>(10); //used by buttonGroup
 
 /** Adds a table to the group, passes it to the lamda and returns the created table. */
 inline fun Group.addTable(background: Drawable = Styles.none, constructor: Table.() -> Unit = {}): Table {
@@ -27,14 +34,14 @@ inline fun Table.addTable(background: Drawable = Styles.none, constructor: Table
 }
 
 /** Adds a constant label to the table and returns the created cell */
-inline fun Table.label(text: String, style: Label.LabelStyle = Styles.defaultLabel, wrap: Boolean = false): Cell<Label> {
+inline fun Table.addLabel(text: String, style: Label.LabelStyle = Styles.defaultLabel, wrap: Boolean = false): Cell<Label> {
 	val label = Label(text, style)
 	label.setWrap(wrap)
 	return add(label)
 }
 
 /** Adds a dynamic label to the table and returns the created cell */
-inline fun Table.label(crossinline provider: () -> String, style: Label.LabelStyle = Styles.defaultLabel, wrap: Boolean = true): Cell<Label> {
+inline fun Table.addLabel(crossinline provider: () -> String, style: Label.LabelStyle = Styles.defaultLabel, wrap: Boolean = true): Cell<Label> {
 	val label = Label("", style)
 	label.setWrap(wrap)
 	label.update { label.setText(provider()) }
@@ -42,7 +49,7 @@ inline fun Table.label(crossinline provider: () -> String, style: Label.LabelSty
 }
 
 /** Adds a custom button constructed by a lambda and returns the created cell */
-inline fun Table.customButton(style: Button.ButtonStyle = Styles.defaultb, crossinline onclick: Button.() -> Unit, constructor: Button.() -> Unit): Cell<Button> {
+inline fun Table.customButton(constructor: Button.() -> Unit, style: Button.ButtonStyle = Styles.defaultb, crossinline onclick: Button.() -> Unit): Cell<Button> {
 	val b = Button(style)
 	b.clicked { b.onclick() }
 	b.constructor()
@@ -90,4 +97,40 @@ inline fun Table.addImage(crossinline provider: () -> Drawable): Cell<Image> {
 	val i = Image(provider())
 	i.update { provider() }
 	return add(i)
+}
+
+/** Creates a toggle button constructed by a lambda and returns the created cell. The style MUST support checked state. Ontoggle is called whenever the button is toggled. */
+inline fun Table.toggleButton(constructor: Button.() -> Unit, toggleableStyle: Button.ButtonStyle = Styles.togglet, crossinline ontoggle: Button.(Boolean) -> Unit): Cell<Button> {
+	if (toggleableStyle.checked == null) throw IllegalArgumentException("This style does not support checked state!")
+	
+	var toggled = false //funny arc ui stuff
+	val cell = customButton(constructor, toggleableStyle) {
+		toggled = !toggled
+		ontoggle(toggled)
+	}
+	cell.update { it.setChecked(toggled) }
+	return cell;
+}
+
+/** Simmilar to toggleButton but adds a constant label */
+inline fun Table.textToggle(text: String, toggleableStyle: Button.ButtonStyle = Styles.togglet, crossinline onclick: Button.(Boolean) -> Unit): Cell<Button> {
+	return toggleButton({ addLabel(text) }, toggleableStyle, onclick)
+}
+
+/** Simmilar to toggleButton but adds a constant image */
+inline fun Table.imageToggle(text: Drawable, toggleableStyle: Button.ButtonStyle = Styles.clearTogglei, crossinline onclick: Button.(Boolean) -> Unit): Cell<Button> {
+	return toggleButton({ addImage(text) }, toggleableStyle, onclick)
+}
+
+/** Creates a table and a button group, calls the constructor and passes this table to it, adds all created buttons into the same group. Adds the table and returns the created cell. */
+inline fun Table.buttonGroup(background: Drawable = Styles.none, constructor: Table.(ButtonGroup<Button>) -> Unit): Cell<Table> {
+	val group = ButtonGroup<Button>()
+	val table = Table(background)
+	table.constructor(group)
+
+	//find all buttons and add them to the group
+	table.children.each {
+		if (it is Button) group.add(it)
+	}
+	return add(table)
 }
