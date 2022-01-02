@@ -59,13 +59,13 @@ object WindowManager {
 				addLabel({ window.name }, ellipsis = "...").growX()
 				
 				//collapse/show
-				textToggle("-", Styles.togglet) {
+				textToggle("[accent]-", Styles.togglet) {
 					childAs<Label>(0).setText(if (it) "[accent]=" else "[accent]-")
 					
-					collapser.setCollapsed(true, it)
+					collapser.setCollapsed(it, true)
 					window.isCollapsed = it
 					window.onToggle(it)
-				}
+				}.size(50f)
 				
 				//making it draggable
 				addListener(object : InputListener() {
