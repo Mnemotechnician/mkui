@@ -18,4 +18,4 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: lib/build/libs/MKUI.jar
-          tag: snapshot-${{ github.run_number }}
+          tag: snapshot-${{ 10 + github.run_number }}
