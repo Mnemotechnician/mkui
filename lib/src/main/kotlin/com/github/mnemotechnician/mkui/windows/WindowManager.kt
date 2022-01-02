@@ -40,7 +40,7 @@ object WindowManager {
 				);
 				
 				root.color.a = if (it.isDragging) 0.5f else 1f
-				it.table.setSize(it.table.prefWidth, it.table.prefHeight)
+				root.setSize(root.prefWidth, root.prefHeight)
 				
 				it.onUpdate()
 			}
