@@ -4,6 +4,7 @@ import arc.*
 import arc.math.*
 import arc.util.*
 import arc.struct.*
+import arc.input.*
 import arc.scene.event.*
 import arc.scene.ui.*
 import arc.scene.ui.layout.*
@@ -38,6 +39,9 @@ object WindowManager {
 					Mathf.clamp(pos.y, root.getPrefHeight() / 2, windowGroup.height - root.getPrefHeight() / 2)
 				);
 				
+				root.color.a = if (it.isDragging) 0.5f else 1f
+				it.table.setSize(it.table.prefWidth, it.table.prefHeight)
+				
 				it.onUpdate()
 			}
 		}
@@ -63,12 +67,28 @@ object WindowManager {
 					window.onToggle(it)
 				}
 				
-				dragged { x, y ->
-					val oldPos = window.rootTable.localToParentCoordinates(Tmp.v1.set(x, y))
-					window.rootTable.setPosition(oldPos.x, oldPos.y)
+				//making it draggable
+				addListener(object : InputListener() {
+					var dragx = 0f
+					var dragy = 0f;
 					
-					window.onDrag()
-				}
+					override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: KeyCode): Boolean {
+						dragx = x; dragy = y;
+						window.isDragging = true;
+						return true;
+					}
+					
+					override fun touchDragged(event: InputEvent, x: Float, y: Float, pointer: Int) {
+						val oldPos = window.rootTable.localToParentCoordinates(Tmp.v1.set(x, y))
+						window.rootTable.setPosition(oldPos.x, oldPos.y)
+						
+						window.onDrag()
+					}
+					
+					override fun touchUp(e: InputEvent, x: Float, y: Float, pointer: Int, button: KeyCode) {
+						window.isDragging = false;
+					}
+				})
 			}.fillX().marginBottom(5f)
 			
 			row()

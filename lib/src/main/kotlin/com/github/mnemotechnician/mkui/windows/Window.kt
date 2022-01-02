@@ -17,6 +17,10 @@ abstract class Window {
 	var isCollapsed = false
 		internal set
 	
+	/** Whether the window is being dragged by the user right now */
+	var isDragging = false
+		internal set
+	
 	/** Name of this window displayed in the top bar */
 	open var name = "unnamed window"
 	
