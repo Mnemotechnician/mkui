@@ -1,8 +1,7 @@
 # Mindustry Kotlin Ui Lib
-An utility library for mindustry mods.
+An ui library for mindustry mods.
 
-Provides a set of inline extension functions that allow you to build mindustry ui in an idiomatic & optimized way.
-Also provides some utility extension functions that arc lacks.
+Provides some useful stuff, such as inline ui construction functions, utility functions, new ui classes, etc.
 
 May not be compatible with other (non-mindustry) arc projects.
 
@@ -13,6 +12,8 @@ In your `build.gradle` file:
 * add `maven { url("https://jitpack.io") }` to the `repositories {}` block 
 (it should already be here if you're using the official mod template)
 * add `implementation "com.github.mnemotechnician:MKUI:TAG"` (replace `TAG` with the the latest tag in this repo) to the `dependencies {}` block
+
+Note: you can go to the releases tab and use the name of the latest release as the tag. These names usually start with `snapshot-`.
 
 example of a `build.gradle` file:
 ```groovy

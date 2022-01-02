@@ -34,16 +34,18 @@ inline fun Table.addTable(background: Drawable = Styles.none, constructor: Table
 }
 
 /** Adds a constant label to the table and returns the created cell */
-inline fun Table.addLabel(text: String, style: Label.LabelStyle = Styles.defaultLabel, wrap: Boolean = false): Cell<Label> {
+inline fun Table.addLabel(text: String, style: Label.LabelStyle = Styles.defaultLabel, wrap: Boolean = false, ellipsis: String? = null): Cell<Label> {
 	val label = Label(text, style)
 	label.setWrap(wrap)
+	label.setEllipsis(ellipsis)
 	return add(label)
 }
 
 /** Adds a dynamic label to the table and returns the created cell */
-inline fun Table.addLabel(crossinline provider: () -> String, style: Label.LabelStyle = Styles.defaultLabel, wrap: Boolean = true): Cell<Label> {
+inline fun Table.addLabel(crossinline provider: () -> String, style: Label.LabelStyle = Styles.defaultLabel, wrap: Boolean = true, ellipsis: String? = null): Cell<Label> {
 	val label = Label("", style)
 	label.setWrap(wrap)
+	label.setEllipsis(ellipsis)
 	label.update { label.setText(provider()) }
 	return add(label)
 }
