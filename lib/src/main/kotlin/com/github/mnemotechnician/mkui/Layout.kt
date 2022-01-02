@@ -34,7 +34,7 @@ inline fun Table.addTable(background: Drawable = Styles.none, constructor: Table
 }
 
 /** Adds a collapser constructed by a lambda to the existing table and returns the created cell */
-inline fun Table.addCollapser(background: Drawable = Styles.none, shown: Boolean = true, constructor: Table.() -> Unit = {}): Cell<Collapser> {
+inline fun Table.addCollapser(shown: Boolean = true, background: Drawable = Styles.none, constructor: Table.() -> Unit = {}): Cell<Collapser> {
 	val table = Table(background)
 	table.constructor()
 	
@@ -43,8 +43,8 @@ inline fun Table.addCollapser(background: Drawable = Styles.none, shown: Boolean
 }
 
 /** Adds a collapser constructed by a lambda to the existing table and returns the created cell. Whether it's shown is determined by the lambda. */
-inline fun Table.addCollapser(background: Drawable = Styles.none, crossinline shown: () -> Boolean = { true }, animate: Boolean = false, constructor: Table.() -> Unit = {}): Cell<Collapser> {
-	val cell = addCollapser(background, shown(), constructor)
+inline fun Table.addCollapser(crossinline shown: () -> Boolean = { true }, background: Drawable = Styles.none, animate: Boolean = false, constructor: Table.() -> Unit = {}): Cell<Collapser> {
+	val cell = addCollapser(shown(), background, constructor)
 	cell.get().setCollapsed(animate) { !shown() }
 	return cell;
 }

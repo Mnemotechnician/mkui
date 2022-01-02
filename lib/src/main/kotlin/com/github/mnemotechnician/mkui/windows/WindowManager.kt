@@ -17,7 +17,7 @@ import com.github.mnemotechnician.mkui.*
 object WindowManager {
 	
 	internal val windowGroup = WidgetGroup()
-	val windows = Seq<Window>()
+	internal val windows = Seq<Window>()
 	
 	init {
 		Events.run(EventType.ClientLoadEvent::class.java) {
@@ -56,13 +56,13 @@ object WindowManager {
 			
 			//top bar — name, buttons and also a way to drag the table
 			addTable(Styles.black3) {
-				addLabel({ window.name }, ellipsis = "...").fillX()
+				addLabel({ window.name }, ellipsis = "...").growX()
 				
 				//collapse/show
 				textToggle("-", Styles.togglet) {
 					childAs<Label>(0).setText(if (it) "[accent]=" else "[accent]-")
 					
-					collapser.toggle()
+					collapser.setCollapsed(true, it)
 					window.isCollapsed = it
 					window.onToggle(it)
 				}
@@ -79,8 +79,8 @@ object WindowManager {
 					}
 					
 					override fun touchDragged(event: InputEvent, x: Float, y: Float, pointer: Int) {
-						val oldPos = window.rootTable.localToParentCoordinates(Tmp.v1.set(x, y))
-						window.rootTable.setPosition(oldPos.x, oldPos.y)
+						val pos = window.rootTable.localToParentCoordinates(Tmp.v1.set(x, y))
+						window.rootTable.setPosition(pos.x, pos.y)
 						
 						window.onDrag()
 					}
@@ -94,12 +94,12 @@ object WindowManager {
 			row()
 			
 			//main container
-			collapser = addCollapser(animate = true) {
+			collapser = addCollapser(true) {
 				setClip(true)
 				
 				window.table = this
 				window.onCreate()
-			}.pad(5f).get()
+			}.grow().pad(5f).get()
 		}
 		
 		windowGroup.addChild(windowTable)
