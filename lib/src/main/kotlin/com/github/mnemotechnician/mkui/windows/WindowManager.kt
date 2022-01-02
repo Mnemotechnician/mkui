@@ -49,7 +49,7 @@ object WindowManager {
 	
 	/** Constructs & registers the window */
 	fun createWindow(window: Window) {
-		val windowTable = Table(Styles.black5).apply {
+		val windowTable = Table(Styles.black6).apply {
 			lateinit var collapser: Collapser
 			
 			window.rootTable = this

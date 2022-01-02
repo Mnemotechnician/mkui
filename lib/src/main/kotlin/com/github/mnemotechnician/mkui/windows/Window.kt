@@ -21,13 +21,13 @@ abstract class Window {
 	var isDragging = false
 		internal set
 	
-	/** Name of this window displayed in the top bar */
+	/** Name of this window, displayed in the top bar */
 	open var name = "unnamed window"
 	
 	/** Called when the window is being created. At this point the window has a Table assigned to it, which should be inflated by this function. */
 	abstract fun onCreate()
 	
-	/** The window has already been created, this function is called on every tick. It should avoid modifying the table: that can cause a performance loss.  */
+	/** The window has already been created, this function is called on every tick. You should avoid modifying the table from this function: that can cause a performance loss. */
 	fun onUpdate() {
 	}
 	
