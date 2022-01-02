@@ -13,7 +13,7 @@ In your `build.gradle` file:
 (it should already be here if you're using the official mod template)
 * add `implementation "com.github.mnemotechnician:MKUI:TAG"` (replace `TAG` with the the latest tag in this repo) to the `dependencies {}` block
 
-Note: you can go to the releases tab and use the name of the latest release as the tag. These names usually start with `snapshot-`.
+Note: you can go to the releases tab and use the name of the latest release as the tag. These tags are usually just plain numbers.
 
 example of a `build.gradle` file:
 ```groovy
