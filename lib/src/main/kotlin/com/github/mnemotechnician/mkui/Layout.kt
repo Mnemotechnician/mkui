@@ -14,7 +14,7 @@ import mindustry.ui.*
 
 private val tmpButtons = Seq<Button>(10); //used by buttonGroup
 
-/** Adds a table to the group, passes it to the lamda and returns the created table. */
+/** Adds a table constructed by a lambda to the group, passes it to the lamda and returns the created table. */
 inline fun Group.addTable(background: Drawable = Styles.none, constructor: Table.() -> Unit = {}): Table {
 	return if (this is Table) {
 		this.addTable(background, constructor).get() //tables work differently
@@ -26,11 +26,27 @@ inline fun Group.addTable(background: Drawable = Styles.none, constructor: Table
 	}
 }
 
-/** Adds a table to the existing table and returns the created table cell */
+/** Adds a table constructed by a lambda to the existing table and returns the created table cell */
 inline fun Table.addTable(background: Drawable = Styles.none, constructor: Table.() -> Unit = {}): Cell<Table> {
 	val t = Table(background)
 	t.constructor()
 	return add(t)
+}
+
+/** Adds a collapser constructed by a lambda to the existing table and returns the created cell */
+inline fun Table.addCollapser(background: Drawable = Styles.none, shown: Boolean = true, constructor: Table.() -> Unit = {}): Cell<Collapser> {
+	val table = Table(background)
+	table.constructor()
+	
+	val col = Collapser(table, !shown)
+	return add(col)
+}
+
+/** Adds a collapser constructed by a lambda to the existing table and returns the created cell. Whether it's shown is determined by the lambda. */
+inline fun Table.addCollapser(background: Drawable = Styles.none, crossinline shown: () -> Boolean = { true }, animate: Boolean = false, constructor: Table.() -> Unit = {}): Cell<Collapser> {
+	val cell = addCollapser(background, shown(), constructor)
+	cell.get().setCollapsed(animate) { !shown() }
+	return cell;
 }
 
 /** Adds a constant label to the table and returns the created cell */
@@ -101,7 +117,8 @@ inline fun Table.addImage(crossinline provider: () -> Drawable): Cell<Image> {
 	return add(i)
 }
 
-/** Creates a toggle button constructed by a lambda and returns the created cell. The style MUST support checked state. Ontoggle is called whenever the button is toggled. */
+/** Creates a toggle button constructed by a lambda and returns the created cell. Ontoggle is called whenever the button is toggled.
+ *  @throws IllegalArgumentException when the providen style doesn't support checked state */
 inline fun Table.toggleButton(constructor: Button.() -> Unit, toggleableStyle: Button.ButtonStyle = Styles.togglet, crossinline ontoggle: Button.(Boolean) -> Unit): Cell<Button> {
 	if (toggleableStyle.checked == null) throw IllegalArgumentException("This style does not support checked state!")
 	

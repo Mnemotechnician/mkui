@@ -6,6 +6,9 @@ import com.github.mnemotechnician.mkui.*
 /** A class that represents a floating on-screen window that the user can drag and interact with. */
 abstract class Window {
 	
+	/** The root of the window */
+	lateinit internal var rootTable: Table
+	
 	/** The table this window is assigned to. Initialized when the window is created. */
 	lateinit var table: Table
 		internal set

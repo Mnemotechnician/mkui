@@ -1,6 +1,7 @@
 package com.github.mnemotechnician.mkui.windows
 
 import arc.*
+import arc.math.*
 import arc.util.*
 import arc.struct.*
 import arc.scene.event.*
@@ -27,43 +28,62 @@ object WindowManager {
 		}
 		
 		Events.run(EventType.Trigger.update) {
-			windows.each { it.onUpdate() }
+			windows.each {
+				//keep in stage
+				val root = it.rootTable
+				val pos = root.localToParentCoordinates(Tmp.v1.set(0f, 0f));
+				
+				root.setPosition(
+					Mathf.clamp(pos.x, root.getPrefWidth() / 2, windowGroup.width - root.getPrefWidth() / 2),
+					Mathf.clamp(pos.y, root.getPrefHeight() / 2, windowGroup.height - root.getPrefHeight() / 2)
+				);
+				
+				it.onUpdate()
+			}
 		}
 	}
 	
 	/** Constructs & registers the window */
 	fun createWindow(window: Window) {
 		val windowTable = Table(Styles.black5).apply {
-			//tob bar — name, buttons and also a way to drag the table
+			lateinit var collapser: Collapser
+			
+			window.rootTable = this
+			
+			//top bar — name, buttons and also a way to drag the table
 			addTable(Styles.black3) {
 				addLabel({ window.name }, ellipsis = "...").fillX()
+				
 				//collapse/show
 				textToggle("-", Styles.togglet) {
 					childAs<Label>(0).setText(if (it) "[accent]=" else "[accent]-")
 					
+					collapser.toggle()
 					window.isCollapsed = it
 					window.onToggle(it)
-					
-					TODO("collapsing is not yet implemented")
 				}
 				
 				dragged { x, y ->
+					val oldPos = window.rootTable.localToParentCoordinates(Tmp.v1.set(x, y))
+					window.rootTable.setPosition(oldPos.x, oldPos.y)
+					
 					window.onDrag()
-					TODO("dragging is not yet implemented")
 				}
 			}.fillX().marginBottom(5f)
 			
 			row()
 			
 			//main container
-			addTable {
+			collapser = addCollapser(animate = true) {
+				setClip(true)
+				
 				window.table = this
 				window.onCreate()
-			}
+			}.pad(5f).get()
 		}
 		
 		windowGroup.addChild(windowTable)
-		windowTable.setPosition(windowGroup.width / 2, windowGroup.height / 2)
+		windowTable.setPosition(Core.scene.width / 2, Core.scene.height / 2)
 		
 		windows.add(window)
 	}
