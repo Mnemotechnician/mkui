@@ -75,13 +75,13 @@ object WindowManager {
 					collapser.setCollapsed(it, true)
 					window.isCollapsed = it
 					window.onToggle(it)
-				}.size(30f)
+				}.size(40f)
 				
 				//hide button
 				textButton("[red]X", Styles.togglet) {
 					this@apply.fadeRemove()
 					window.onDestroy()
-				}.size(30f).visible { window.closeable }
+				}.size(40f).visible { window.closeable }
 				
 				//making it draggable
 				addListener(object : InputListener() {
@@ -105,18 +105,20 @@ object WindowManager {
 						window.isDragging = false;
 					}
 				})
-			}.fillX().pad(5f)
+			}.fillX().padLeft(5f).padRight(5f)
 			
 			row()
 			
 			//main container
 			collapser = addCollapser(true) {
 				setClip(true)
+				setBackground(Styles.black3)
 				
 				window.table = this
-				window.onCreate()
 			}.grow().pad(5f).get()
 		}
+		
+		window.onCreate()
 		
 		windowGroup.addChild(windowTable)
 		windowTable.fadeIn()

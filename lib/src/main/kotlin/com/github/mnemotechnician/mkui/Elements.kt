@@ -1,3 +1,6 @@
+/**
+ * Contains utility element creation functions
+ */
 package com.github.mnemotechnician.mkui
 
 import arc.scene.ui.*
@@ -41,4 +44,16 @@ inline fun Table.addImage(crossinline provider: () -> TextureRegion): Cell<Image
 	val i = Image(provider())
 	i.update { provider() }
 	return add(i)
+}
+
+inline fun Table.textField(text: String = "", style: TextField.TextFieldStyle = Styles.defaultField, crossinline onchange: TextField.(String) -> Unit = {}): Cell<TextField> {
+	val field = TextField(text, style)
+	field.changed { field.onchange(field.getText()) }
+	return add(field)
+}
+
+inline fun Table.textArea(text: String = "", style: TextField.TextFieldStyle = Styles.areaField, crossinline onchange: TextArea.(String) -> Unit = {}): Cell<TextArea> {
+	val area = TextArea(text, style)
+	area.changed { area.onchange(area.getText()) }
+	return add(area)
 }
