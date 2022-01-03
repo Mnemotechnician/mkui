@@ -21,22 +21,29 @@ abstract class Window {
 	var isDragging = false
 		internal set
 	
-	/** Name of this window, displayed in the top bar */
-	open var name = "unnamed window"
+	/** Name of this window, displayed in the top bar. Should be overriden. */
+	abstract var name: String
+	
+	/** Whether this window can be closed by the user. Should be overriden. */
+	abstract var closeable: Boolean
 	
 	/** Called when the window is being created. At this point the window has a Table assigned to it, which should be inflated by this function. */
 	abstract fun onCreate()
 	
 	/** The window has already been created, this function is called on every tick. You should avoid modifying the table from this function: that can cause a performance loss. */
-	fun onUpdate() {
+	open fun onUpdate() {
 	}
 	
 	/** Called whenever the window is being dragged by the user */
-	fun onDrag() {
+	open fun onDrag() {
 	}
 	
 	/** Called whenever this window is being toggled by the user */
-	fun onToggle(collapsed: Boolean) {
+	open fun onToggle(collapsed: Boolean) {
+	}
+	
+	/** Called whenever the window is being destroyed */
+	open fun onDestroy() {
 	}
 	
 }
