@@ -75,12 +75,13 @@ object WindowManager {
 					collapser.setCollapsed(it, true)
 					window.isCollapsed = it
 					window.onToggle(it)
-				}.size(50f)
+				}.size(30f)
 				
 				//hide button
 				textButton("[red]X", Styles.togglet) {
 					this@apply.fadeRemove()
-				}.size(50f).visible { window.closeable }
+					window.onDestroy()
+				}.size(30f).visible { window.closeable }
 				
 				//making it draggable
 				addListener(object : InputListener() {
