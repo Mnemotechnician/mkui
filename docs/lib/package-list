@@ -1,0 +1,56 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:com.github.mnemotechnician.mkui.windows////PointingToDeclaration/lib/com.github.mnemotechnician.mkui.windows/index.html
+$dokka.location:com.github.mnemotechnician.mkui.windows/Window///PointingToDeclaration/lib/com.github.mnemotechnician.mkui.windows/-window/index.html
+$dokka.location:com.github.mnemotechnician.mkui.windows/Window/Window/#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.windows/-window/-window.html
+$dokka.location:com.github.mnemotechnician.mkui.windows/Window/closeable/#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.windows/-window/closeable.html
+$dokka.location:com.github.mnemotechnician.mkui.windows/Window/isCollapsed/#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.windows/-window/is-collapsed.html
+$dokka.location:com.github.mnemotechnician.mkui.windows/Window/isDragging/#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.windows/-window/is-dragging.html
+$dokka.location:com.github.mnemotechnician.mkui.windows/Window/name/#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.windows/-window/name.html
+$dokka.location:com.github.mnemotechnician.mkui.windows/Window/onCreate/#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.windows/-window/on-create.html
+$dokka.location:com.github.mnemotechnician.mkui.windows/Window/onDestroy/#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.windows/-window/on-destroy.html
+$dokka.location:com.github.mnemotechnician.mkui.windows/Window/onDrag/#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.windows/-window/on-drag.html
+$dokka.location:com.github.mnemotechnician.mkui.windows/Window/onToggle/#kotlin.Boolean/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.windows/-window/on-toggle.html
+$dokka.location:com.github.mnemotechnician.mkui.windows/Window/onUpdate/#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.windows/-window/on-update.html
+$dokka.location:com.github.mnemotechnician.mkui.windows/Window/table/#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.windows/-window/table.html
+$dokka.location:com.github.mnemotechnician.mkui.windows/WindowManager///PointingToDeclaration/lib/com.github.mnemotechnician.mkui.windows/-window-manager/index.html
+$dokka.location:com.github.mnemotechnician.mkui.windows/WindowManager/createWindow/#com.github.mnemotechnician.mkui.windows.Window/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.windows/-window-manager/create-window.html
+$dokka.location:com.github.mnemotechnician.mkui.windows/WindowManager/createWindow/#kotlin.String#kotlin.Function1[arc.scene.ui.layout.Table,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.windows/-window-manager/create-window.html
+$dokka.location:com.github.mnemotechnician.mkui////PointingToDeclaration/lib/com.github.mnemotechnician.mkui/index.html
+$dokka.location:com.github.mnemotechnician.mkui//addCollapser/arc.scene.ui.layout.Table#kotlin.Boolean#arc.scene.style.Drawable#kotlin.Function1[arc.scene.ui.layout.Table,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/add-collapser.html
+$dokka.location:com.github.mnemotechnician.mkui//addCollapser/arc.scene.ui.layout.Table#kotlin.Function0[kotlin.Boolean]#arc.scene.style.Drawable#kotlin.Boolean#kotlin.Function1[arc.scene.ui.layout.Table,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/add-collapser.html
+$dokka.location:com.github.mnemotechnician.mkui//addImage/arc.scene.ui.layout.Table#arc.graphics.g2d.TextureRegion/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/add-image.html
+$dokka.location:com.github.mnemotechnician.mkui//addImage/arc.scene.ui.layout.Table#arc.scene.style.Drawable/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/add-image.html
+$dokka.location:com.github.mnemotechnician.mkui//addImage/arc.scene.ui.layout.Table#kotlin.Function0[arc.graphics.g2d.TextureRegion]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/add-image.html
+$dokka.location:com.github.mnemotechnician.mkui//addLabel/arc.scene.ui.layout.Table#kotlin.Function0[kotlin.String]#arc.scene.ui.Label.LabelStyle#kotlin.Boolean#kotlin.String?/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/add-label.html
+$dokka.location:com.github.mnemotechnician.mkui//addLabel/arc.scene.ui.layout.Table#kotlin.String#arc.scene.ui.Label.LabelStyle#kotlin.Boolean#kotlin.String?/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/add-label.html
+$dokka.location:com.github.mnemotechnician.mkui//addTable/arc.scene.Group#arc.scene.style.Drawable#kotlin.Function1[arc.scene.ui.layout.Table,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/add-table.html
+$dokka.location:com.github.mnemotechnician.mkui//addTable/arc.scene.ui.layout.Table#arc.scene.style.Drawable#kotlin.Function1[arc.scene.ui.layout.Table,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/add-table.html
+$dokka.location:com.github.mnemotechnician.mkui//asOrNull/arc.scene.Element#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/as-or-null.html
+$dokka.location:com.github.mnemotechnician.mkui//buttonGroup/arc.scene.ui.layout.Table#arc.scene.style.Drawable#kotlin.Function2[arc.scene.ui.layout.Table,arc.scene.ui.ButtonGroup[arc.scene.ui.Button],kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/button-group.html
+$dokka.location:com.github.mnemotechnician.mkui//child/arc.scene.Group#kotlin.Int/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/child.html
+$dokka.location:com.github.mnemotechnician.mkui//childAs/arc.scene.Group#kotlin.Int/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/child-as.html
+$dokka.location:com.github.mnemotechnician.mkui//childAsOrNull/arc.scene.Group#kotlin.Int/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/child-as-or-null.html
+$dokka.location:com.github.mnemotechnician.mkui//childOrNull/arc.scene.Group#kotlin.Int/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/child-or-null.html
+$dokka.location:com.github.mnemotechnician.mkui//customButton/arc.scene.ui.layout.Table#kotlin.Function1[arc.scene.ui.Button,kotlin.Unit]#arc.scene.ui.Button.ButtonStyle#kotlin.Function1[arc.scene.ui.Button,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/custom-button.html
+$dokka.location:com.github.mnemotechnician.mkui//getAs/arc.scene.ui.layout.Cell[arc.scene.Element]#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/get-as.html
+$dokka.location:com.github.mnemotechnician.mkui//getAsOrNull/arc.scene.ui.layout.Cell[arc.scene.Element?]#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/get-as-or-null.html
+$dokka.location:com.github.mnemotechnician.mkui//imageButton/arc.scene.ui.layout.Table#arc.graphics.g2d.TextureRegion#arc.scene.ui.ImageButton.ImageButtonStyle#kotlin.Function1[arc.scene.ui.ImageButton,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/image-button.html
+$dokka.location:com.github.mnemotechnician.mkui//imageButton/arc.scene.ui.layout.Table#arc.scene.style.Drawable#arc.scene.ui.ImageButton.ImageButtonStyle#kotlin.Function1[arc.scene.ui.ImageButton,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/image-button.html
+$dokka.location:com.github.mnemotechnician.mkui//imageButton/arc.scene.ui.layout.Table#kotlin.Function0[arc.graphics.g2d.TextureRegion]#arc.scene.ui.ImageButton.ImageButtonStyle#kotlin.Function1[arc.scene.ui.ImageButton,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/image-button.html
+$dokka.location:com.github.mnemotechnician.mkui//imageToggle/arc.scene.ui.layout.Table#arc.scene.style.Drawable#arc.scene.ui.Button.ButtonStyle#kotlin.Function2[arc.scene.ui.Button,kotlin.Boolean,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/image-toggle.html
+$dokka.location:com.github.mnemotechnician.mkui//plusAssign/arc.scene.Group#TypeParam(bounds=[arc.scene.Element])/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/plus-assign.html
+$dokka.location:com.github.mnemotechnician.mkui//plusAssign/arc.scene.ui.layout.Table#TypeParam(bounds=[arc.scene.Element])/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/plus-assign.html
+$dokka.location:com.github.mnemotechnician.mkui//scaleButtonFont/arc.scene.ui.layout.Cell[arc.scene.ui.TextButton]#kotlin.Float/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/scale-button-font.html
+$dokka.location:com.github.mnemotechnician.mkui//scaleFont/arc.scene.ui.layout.Cell[arc.scene.ui.Label]#kotlin.Float/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/scale-font.html
+$dokka.location:com.github.mnemotechnician.mkui//scrollPane/arc.scene.ui.layout.Table#arc.scene.ui.ScrollPane.ScrollPaneStyle#arc.scene.Element/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/scroll-pane.html
+$dokka.location:com.github.mnemotechnician.mkui//scrollPane/arc.scene.ui.layout.Table#arc.scene.ui.ScrollPane.ScrollPaneStyle#kotlin.Function2[arc.scene.ui.layout.Table,arc.scene.ui.ScrollPane,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/scroll-pane.html
+$dokka.location:com.github.mnemotechnician.mkui//textArea/arc.scene.ui.layout.Table#kotlin.String#arc.scene.ui.TextField.TextFieldStyle#kotlin.Function2[arc.scene.ui.TextArea,kotlin.String,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/text-area.html
+$dokka.location:com.github.mnemotechnician.mkui//textButton/arc.scene.ui.layout.Table#kotlin.Function0[kotlin.String]#arc.scene.ui.TextButton.TextButtonStyle#kotlin.Boolean#kotlin.Function1[arc.scene.ui.TextButton,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/text-button.html
+$dokka.location:com.github.mnemotechnician.mkui//textButton/arc.scene.ui.layout.Table#kotlin.String#arc.scene.ui.TextButton.TextButtonStyle#kotlin.Boolean#kotlin.Function1[arc.scene.ui.TextButton,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/text-button.html
+$dokka.location:com.github.mnemotechnician.mkui//textField/arc.scene.ui.layout.Table#kotlin.String#arc.scene.ui.TextField.TextFieldStyle#kotlin.Function2[arc.scene.ui.TextField,kotlin.String,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/text-field.html
+$dokka.location:com.github.mnemotechnician.mkui//textToggle/arc.scene.ui.layout.Table#kotlin.String#arc.scene.ui.Button.ButtonStyle#kotlin.Boolean#kotlin.Function2[arc.scene.ui.Button,kotlin.Boolean,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/text-toggle.html
+$dokka.location:com.github.mnemotechnician.mkui//toggleButton/arc.scene.ui.layout.Table#kotlin.Function1[arc.scene.ui.Button,kotlin.Unit]#arc.scene.ui.Button.ButtonStyle#kotlin.Function2[arc.scene.ui.Button,kotlin.Boolean,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/toggle-button.html
+com.github.mnemotechnician.mkui
+com.github.mnemotechnician.mkui.windows
+
