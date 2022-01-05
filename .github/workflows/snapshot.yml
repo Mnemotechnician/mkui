@@ -29,6 +29,6 @@ jobs:
           mv lib/build/dokka/html/* docs/
           git config --global user.name 'Github Actions'
           git config --global user.email 'ci_activity@noreply.github.com'
-          git add -a
+          git add -A
           git commit -am "[auto] upload kotlin docs"
           git push
