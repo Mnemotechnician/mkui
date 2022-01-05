@@ -1,13 +1,16 @@
 # Mindustry Kotlin Ui Lib
-An ui library for mindustry mods.
+An ui library for mindustry kotlin mods.
 
 Provides some useful stuff, such as inline ui construction functions, utility functions, new ui classes, etc.
 
 May not be compatible with other (non-mindustry) arc projects.
 
-***Note: this library will only work with mods written in kotlin!***
-
 Messy documentation: [mnemotechnician.github.io/mkui](https://mnemotechnician.github.io/mkui/)
+
+# Note
+Most of features provided by this library are supposed to be used in kotlin mods, as they have little to no usage in java (it lacks many features providen by kotlin)
+
+If you (somewhy) want to use this library in a java mod, you will have to include the whole kotlin stdlib as an implementation dependency.
 
 # Adding this dependency
 In your `build.gradle` file:

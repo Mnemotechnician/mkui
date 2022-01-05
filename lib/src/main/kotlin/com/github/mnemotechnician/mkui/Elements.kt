@@ -6,6 +6,7 @@ import arc.scene.style.*
 import arc.graphics.*
 import arc.graphics.g2d.*
 import mindustry.ui.*
+import mindustry.gen.*
 
 /** Adds a constant label to the table and returns the created cell */
 inline fun Table.addLabel(text: String, style: Label.LabelStyle = Styles.defaultLabel, wrap: Boolean = false, ellipsis: String? = null): Cell<Label> {
@@ -53,4 +54,18 @@ inline fun Table.textArea(text: String = "", style: TextField.TextFieldStyle = S
 	val area = TextArea(text, style)
 	area.changed { area.onchange(area.getText()) }
 	return add(area)
+}
+
+/** Creates a horizontal splitter and returns the created cell. This method automatically creates two rows. */
+fun Table.hsplitter(color: Color = Color.white, padding: Float = 5f): Cell<Image> {
+	row()
+	val cell = addImage(Tex.whiteui)
+	row()
+	return cell.color(color).fillX().padTop(padding).padBottom(padding)
+}
+
+/** Creates a vertical splitter and returns the created cell. */
+fun Table.vsplitter(color: Color = Color.white, padding: Float = 5f): Cell<Image> {
+	val cell = addImage(Tex.whiteui)
+	return cell.color(color).fillY().padLeft(padding).padRight(padding)
 }

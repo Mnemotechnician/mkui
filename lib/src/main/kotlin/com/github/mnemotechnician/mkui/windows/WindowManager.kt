@@ -5,6 +5,7 @@ import arc.math.*
 import arc.util.*
 import arc.struct.*
 import arc.input.*
+import arc.graphics.*
 import arc.scene.*
 import arc.scene.actions.*
 import arc.scene.event.*
@@ -12,6 +13,7 @@ import arc.scene.ui.*
 import arc.scene.ui.layout.*
 import mindustry.*
 import mindustry.ui.*
+import mindustry.gen.*
 import mindustry.game.*
 import com.github.mnemotechnician.mkui.*
 
@@ -26,6 +28,7 @@ object WindowManager {
 	internal var initialized = false
 	
 	init {
+		//TODO: this will probably not be called if the mod hasn't accessed the manager before the game was loaded
 		Events.run(EventType.ClientLoadEvent::class.java) {
 			windowGroup.setFillParent(true)
 			windowGroup.touchable = Touchable.childrenOnly;
@@ -63,59 +66,77 @@ object WindowManager {
 			
 			window.rootTable = this
 			
-			//top bar — name, buttons and also a way to drag the table
-			addTable(Styles.black3) {
-				//window name
-				addLabel({ window.name }, ellipsis = "...").growX().get().setFontScale(0.6f)
-				
-				//collapse/show
-				textToggle("[accent]-", Styles.togglet) {
-					childAs<Label>(0).setText(if (it) "[accent]=" else "[accent]-")
+			//top border
+			addImage(Tex.whiteui).fillX().colspan(3).row()
+			
+			//left border
+			addImage(Tex.whiteui).fillY()
+			
+			//window
+			addTable {
+				//top bar — name, buttons and also a way to drag the table
+				addTable(Styles.black3) {
+					//window name
+					addLabel({ window.name }, ellipsis = "...").growX().get().setFontScale(0.6f)
 					
-					collapser.setCollapsed(it, true)
-					window.isCollapsed = it
-					window.onToggle(it)
-				}.size(40f)
-				
-				//hide button
-				textButton("[red]X", Styles.togglet) {
-					this@apply.fadeRemove()
-					window.onDestroy()
-				}.size(40f).visible { window.closeable }
-				
-				//making it draggable
-				addListener(object : InputListener() {
-					var dragx = 0f
-					var dragy = 0f;
+					vsplitter(Color.black)
 					
-					override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: KeyCode): Boolean {
-						dragx = x; dragy = y;
-						window.isDragging = true;
-							return true;
-					}
-					
-					override fun touchDragged(event: InputEvent, x: Float, y: Float, pointer: Int) {
-						val pos = window.rootTable.localToParentCoordinates(Tmp.v1.set(x - dragx, y - dragy))
-						window.rootTable.setPosition(pos.x, pos.y)
+					//collapse/show
+					textToggle("[accent]-", Styles.togglet) {
+						childAs<Label>(0).setText(if (it) "[accent]=" else "[accent]-")
 						
-						window.onDrag()
-					}
+						collapser.setCollapsed(it, true)
+						window.isCollapsed = it
+						window.onToggle(it)
+					}.size(40f)
 					
-					override fun touchUp(e: InputEvent, x: Float, y: Float, pointer: Int, button: KeyCode) {
-						window.isDragging = false;
-					}
-				})
-			}.fillX().padLeft(5f).padRight(5f)
-			
-			row()
-			
-			//main container
-			collapser = addCollapser(true) {
-				setClip(true)
-				setBackground(Styles.black3)
+					//hide button
+					textButton("[red]X", Styles.togglet) {
+						this@apply.fadeRemove()
+						window.onDestroy()
+					}.size(40f).visible { window.closeable }
+					
+					//making it draggable
+					addListener(object : InputListener() {
+						var dragx = 0f
+						var dragy = 0f;
+						
+						override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: KeyCode): Boolean {
+							dragx = x; dragy = y;
+							window.isDragging = true;
+								return true;
+						}
+						
+						override fun touchDragged(event: InputEvent, x: Float, y: Float, pointer: Int) {
+							val pos = window.rootTable.localToParentCoordinates(Tmp.v1.set(x - dragx, y - dragy))
+							window.rootTable.setPosition(pos.x, pos.y)
+							
+							window.onDrag()
+						}
+						
+						override fun touchUp(e: InputEvent, x: Float, y: Float, pointer: Int, button: KeyCode) {
+							window.isDragging = false;
+						}
+					})
+				}.fillX()
 				
-				window.table = this
-			}.grow().pad(5f).get()
+				hsplitter()
+				
+				//main container
+				collapser = addCollapser(true) {
+					setClip(true)
+					setBackground(Styles.black3)
+					
+					window.table = this
+				}.grow().pad(5f).get()
+			}
+			
+			//right border
+			image(Tex.whiteui).fillY()
+			
+			//bottom border
+			row()
+			image(Tex.whiteui).fillX().colspan(3)
 		}
 		
 		window.onCreate()
