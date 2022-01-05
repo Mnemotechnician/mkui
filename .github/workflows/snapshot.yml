@@ -25,6 +25,7 @@ jobs:
         
       - name: upload kotlin doc
         run: |
+          mkdir docs
           mv lib/build/dokka/html/* docs/
           git commit -am "[auto] upload kotlin docs"
           git push
