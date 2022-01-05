@@ -35,6 +35,7 @@ $dokka.location:com.github.mnemotechnician.mkui//childOrNull/arc.scene.Group#kot
 $dokka.location:com.github.mnemotechnician.mkui//customButton/arc.scene.ui.layout.Table#kotlin.Function1[arc.scene.ui.Button,kotlin.Unit]#arc.scene.ui.Button.ButtonStyle#kotlin.Function1[arc.scene.ui.Button,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/custom-button.html
 $dokka.location:com.github.mnemotechnician.mkui//getAs/arc.scene.ui.layout.Cell[arc.scene.Element]#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/get-as.html
 $dokka.location:com.github.mnemotechnician.mkui//getAsOrNull/arc.scene.ui.layout.Cell[arc.scene.Element?]#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/get-as-or-null.html
+$dokka.location:com.github.mnemotechnician.mkui//hsplitter/arc.scene.ui.layout.Table#arc.graphics.Color#kotlin.Float/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/hsplitter.html
 $dokka.location:com.github.mnemotechnician.mkui//imageButton/arc.scene.ui.layout.Table#arc.graphics.g2d.TextureRegion#arc.scene.ui.ImageButton.ImageButtonStyle#kotlin.Function1[arc.scene.ui.ImageButton,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/image-button.html
 $dokka.location:com.github.mnemotechnician.mkui//imageButton/arc.scene.ui.layout.Table#arc.scene.style.Drawable#arc.scene.ui.ImageButton.ImageButtonStyle#kotlin.Function1[arc.scene.ui.ImageButton,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/image-button.html
 $dokka.location:com.github.mnemotechnician.mkui//imageButton/arc.scene.ui.layout.Table#kotlin.Function0[arc.graphics.g2d.TextureRegion]#arc.scene.ui.ImageButton.ImageButtonStyle#kotlin.Function1[arc.scene.ui.ImageButton,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/image-button.html
@@ -51,6 +52,7 @@ $dokka.location:com.github.mnemotechnician.mkui//textButton/arc.scene.ui.layout.
 $dokka.location:com.github.mnemotechnician.mkui//textField/arc.scene.ui.layout.Table#kotlin.String#arc.scene.ui.TextField.TextFieldStyle#kotlin.Function2[arc.scene.ui.TextField,kotlin.String,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/text-field.html
 $dokka.location:com.github.mnemotechnician.mkui//textToggle/arc.scene.ui.layout.Table#kotlin.String#arc.scene.ui.Button.ButtonStyle#kotlin.Boolean#kotlin.Function2[arc.scene.ui.Button,kotlin.Boolean,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/text-toggle.html
 $dokka.location:com.github.mnemotechnician.mkui//toggleButton/arc.scene.ui.layout.Table#kotlin.Function1[arc.scene.ui.Button,kotlin.Unit]#arc.scene.ui.Button.ButtonStyle#kotlin.Function2[arc.scene.ui.Button,kotlin.Boolean,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/toggle-button.html
+$dokka.location:com.github.mnemotechnician.mkui//vsplitter/arc.scene.ui.layout.Table#arc.graphics.Color#kotlin.Float/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/vsplitter.html
 com.github.mnemotechnician.mkui
 com.github.mnemotechnician.mkui.windows
 
