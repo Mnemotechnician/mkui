@@ -61,3 +61,15 @@ inline fun Table.buttonGroup(background: Drawable = Styles.none, constructor: Ta
 	}
 	return add(table)
 }
+
+inline fun Table.scrollPane(style: ScrollPane.ScrollPaneStyle = Styles.defaultPane, element: Element): Cell<ScrollPane> {
+	return add(ScrollPane(element, style))
+}
+
+/** Creates a scroll pane containing a table constructed by a lambda and returns the created cell */
+inline fun Table.scrollPane(style: ScrollPane.ScrollPaneStyle = Styles.defaultPane, constructor: Table.(ScrollPane) -> Unit): Cell<ScrollPane> {
+	val table = Table()
+	val pane = ScrollPane(table, style)
+	table.constructor(pane)
+	return add(pane)
+}

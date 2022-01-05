@@ -19,3 +19,12 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: lib/build/libs/MKUI.jar
           tag: ${{ github.run_number }}
+        
+      - name: generate kotlin doc
+        run: ./gradlew dokkaHtml
+        
+      - name: upload kotlin doc
+        run: |
+          mv lib/build/dokka/html/* docs/
+          git commit -am "[auto] upload kotlin docs"
+          git push

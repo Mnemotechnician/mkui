@@ -4,6 +4,12 @@ import arc.scene.*
 import arc.scene.ui.*
 import arc.scene.ui.layout.*
 
+/** Adds an element to the Group */
+inline operator fun <T: Element> Group.plusAssign(other: T) { addChild(other) };
+
+/** Adds an element to the Table and returns the created cell */
+inline operator fun <T: Element> Table.plusAssign(other: T) { add(other) };
+
 /** Returns the n-th child of a group */
 inline fun Group.child(index: Int): Element = getChildren()[index];
 
