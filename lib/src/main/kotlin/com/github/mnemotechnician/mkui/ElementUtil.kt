@@ -1,4 +1,3 @@
-/** A package containg utility functions for Elements and Cells */
 package com.github.mnemotechnician.mkui
 
 import arc.scene.*

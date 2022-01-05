@@ -136,7 +136,7 @@ object WindowManager {
 		}
 	}
 	
-	/** Creates an anonymous window. Such a window won't be able to receive onUpdate, onToggle, onDrag events. */
+	/** Creates an anonymous window. Such a window won't be able to receive any events other than onCreate */
 	inline fun createWindow(name: String, crossinline constructor: Table.() -> Unit) {
 		createWindow(object : Window() {
 			override var name = name

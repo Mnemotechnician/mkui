@@ -1,7 +1,3 @@
-/**
- * Contains some utility layout construction functions
- * Function names were made distinct in order to avoid ambiguity
- */
 package com.github.mnemotechnician.mkui
 
 import arc.scene.*

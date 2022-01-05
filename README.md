@@ -7,6 +7,8 @@ May not be compatible with other (non-mindustry) arc projects.
 
 ***Note: this library will only work with mods written in kotlin!***
 
+Messy documentation: [mnemotechnician.github.io/mkui](https://mnemotechnician.github.io/mkui/)
+
 # Adding this dependency
 In your `build.gradle` file:
 * add `maven { url("https://jitpack.io") }` to the `repositories {}` block 

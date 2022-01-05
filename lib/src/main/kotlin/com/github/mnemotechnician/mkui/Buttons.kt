@@ -1,6 +1,3 @@
-/**
- * Contains utility button creation functions
- */
 package com.github.mnemotechnician.mkui
 
 import arc.scene.*
