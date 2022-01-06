@@ -118,7 +118,7 @@ object WindowManager {
 							window.isDragging = false;
 						}
 					})
-				}.fillX()
+				}.margin(5f).marginBottom(0f).fillX()
 				
 				hsplitter()
 				
@@ -128,7 +128,7 @@ object WindowManager {
 					setBackground(Styles.black3)
 					
 					window.table = this
-				}.grow().pad(5f).get()
+				}.grow().margin(5f).get()
 			}
 			
 			//right border
