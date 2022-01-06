@@ -77,7 +77,7 @@ object WindowManager {
 				//top bar — name, buttons and also a way to drag the table
 				addTable(Styles.black3) {
 					//window name
-					addLabel({ window.name }, ellipsis = "...").growX().get().setFontScale(0.6f)
+					addLabel({ window.name }, ellipsis = "...").fillY().growX().get().setFontScale(0.6f)
 					
 					vsplitter(Color.black)
 					
