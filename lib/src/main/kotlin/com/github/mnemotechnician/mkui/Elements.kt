@@ -9,7 +9,7 @@ import mindustry.ui.*
 import mindustry.gen.*
 
 /** Adds a constant label to the table and returns the created cell */
-inline fun Table.addLabel(text: String, style: Label.LabelStyle = Styles.defaultLabel, wrap: Boolean = false, ellipsis: String? = null): Cell<Label> {
+inline fun Table.addLabel(text: CharSequence, style: Label.LabelStyle = Styles.defaultLabel, wrap: Boolean = false, ellipsis: String? = null): Cell<Label> {
 	val label = Label(text, style)
 	label.setWrap(wrap)
 	label.setEllipsis(ellipsis)
@@ -17,7 +17,7 @@ inline fun Table.addLabel(text: String, style: Label.LabelStyle = Styles.default
 }
 
 /** Adds a dynamic label to the table and returns the created cell */
-inline fun Table.addLabel(crossinline provider: () -> String, style: Label.LabelStyle = Styles.defaultLabel, wrap: Boolean = true, ellipsis: String? = null): Cell<Label> {
+inline fun Table.addLabel(crossinline provider: () -> CharSequence, style: Label.LabelStyle = Styles.defaultLabel, wrap: Boolean = true, ellipsis: String? = null): Cell<Label> {
 	val label = Label("", style)
 	label.setWrap(wrap)
 	label.setEllipsis(ellipsis)
