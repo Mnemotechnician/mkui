@@ -1,5 +1,13 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
+$dokka.location:com.github.mnemotechnician.mkui.ui////PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/index.html
+$dokka.location:com.github.mnemotechnician.mkui.ui/TablePager///PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/-table-pager/index.html
+$dokka.location:com.github.mnemotechnician.mkui.ui/TablePager/TablePager/#kotlin.Boolean/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/-table-pager/-table-pager.html
+$dokka.location:com.github.mnemotechnician.mkui.ui/TablePager/addPage/#kotlin.String#arc.scene.ui.layout.Table/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/-table-pager/add-page.html
+$dokka.location:com.github.mnemotechnician.mkui.ui/TablePager/addPage/#kotlin.String#kotlin.Function1[arc.scene.ui.layout.Table,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/-table-pager/add-page.html
+$dokka.location:com.github.mnemotechnician.mkui.ui/TablePager/buttonsTable/#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/-table-pager/buttons-table.html
+$dokka.location:com.github.mnemotechnician.mkui.ui/TablePager/pageContainer/#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/-table-pager/page-container.html
+$dokka.location:com.github.mnemotechnician.mkui.ui/TablePager/vertical/#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/-table-pager/vertical.html
 $dokka.location:com.github.mnemotechnician.mkui.windows////PointingToDeclaration/lib/com.github.mnemotechnician.mkui.windows/index.html
 $dokka.location:com.github.mnemotechnician.mkui.windows/Window///PointingToDeclaration/lib/com.github.mnemotechnician.mkui.windows/-window/index.html
 $dokka.location:com.github.mnemotechnician.mkui.windows/Window/Window/#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.windows/-window/-window.html
@@ -40,6 +48,7 @@ $dokka.location:com.github.mnemotechnician.mkui//imageButton/arc.scene.ui.layout
 $dokka.location:com.github.mnemotechnician.mkui//imageButton/arc.scene.ui.layout.Table#arc.scene.style.Drawable#arc.scene.ui.ImageButton.ImageButtonStyle#kotlin.Function1[arc.scene.ui.ImageButton,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/image-button.html
 $dokka.location:com.github.mnemotechnician.mkui//imageButton/arc.scene.ui.layout.Table#kotlin.Function0[arc.graphics.g2d.TextureRegion]#arc.scene.ui.ImageButton.ImageButtonStyle#kotlin.Function1[arc.scene.ui.ImageButton,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/image-button.html
 $dokka.location:com.github.mnemotechnician.mkui//imageToggle/arc.scene.ui.layout.Table#arc.scene.style.Drawable#arc.scene.ui.Button.ButtonStyle#kotlin.Function2[arc.scene.ui.Button,kotlin.Boolean,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/image-toggle.html
+$dokka.location:com.github.mnemotechnician.mkui//pager/arc.scene.ui.layout.Table#kotlin.Boolean#kotlin.Function1[com.github.mnemotechnician.mkui.ui.TablePager,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/pager.html
 $dokka.location:com.github.mnemotechnician.mkui//plusAssign/arc.scene.Group#TypeParam(bounds=[arc.scene.Element])/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/plus-assign.html
 $dokka.location:com.github.mnemotechnician.mkui//plusAssign/arc.scene.ui.layout.Table#TypeParam(bounds=[arc.scene.Element])/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/plus-assign.html
 $dokka.location:com.github.mnemotechnician.mkui//scaleButtonFont/arc.scene.ui.layout.Cell[arc.scene.ui.TextButton]#kotlin.Float/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/scale-button-font.html
@@ -54,5 +63,6 @@ $dokka.location:com.github.mnemotechnician.mkui//textToggle/arc.scene.ui.layout.
 $dokka.location:com.github.mnemotechnician.mkui//toggleButton/arc.scene.ui.layout.Table#kotlin.Function1[arc.scene.ui.Button,kotlin.Unit]#arc.scene.ui.Button.ButtonStyle#kotlin.Function2[arc.scene.ui.Button,kotlin.Boolean,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/toggle-button.html
 $dokka.location:com.github.mnemotechnician.mkui//vsplitter/arc.scene.ui.layout.Table#arc.graphics.Color#kotlin.Float/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/vsplitter.html
 com.github.mnemotechnician.mkui
+com.github.mnemotechnician.mkui.ui
 com.github.mnemotechnician.mkui.windows
 
