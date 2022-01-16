@@ -11,6 +11,7 @@ import arc.scene.actions.*
 import arc.scene.event.*
 import arc.scene.ui.*
 import arc.scene.ui.layout.*
+import arc.scene.style.*
 import mindustry.*
 import mindustry.ui.*
 import mindustry.gen.*
@@ -34,7 +35,7 @@ open class TablePager(val vertical: Boolean = false) : Table() {
 	
 	init {
 		scrollPane {
-			margin(5f).setBackground(Styles.black3)
+			margin(5f)
 			it.setScrollBarPositions(!vertical, vertical)
 			
 			buttonsTable = this
@@ -51,6 +52,14 @@ open class TablePager(val vertical: Boolean = false) : Table() {
 			
 			pageContainer = this
 		}.grow()
+		
+		setBackground(Styles.black3)
+	}
+	
+	/** Sets the background of the two inner tables */
+	override fun setBackground(drawable: Drawable) {
+		buttonsTable.setBackground(drawable)
+		pageContainer.setBackground(drawable)
 	}
 	
 	/** Adds a page and a respective button. @return the cell of the button */

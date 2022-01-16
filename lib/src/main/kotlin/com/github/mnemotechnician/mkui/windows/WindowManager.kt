@@ -6,6 +6,7 @@ import arc.util.*
 import arc.struct.*
 import arc.input.*
 import arc.graphics.*
+import arc.graphics.g2d.*
 import arc.scene.*
 import arc.scene.actions.*
 import arc.scene.event.*
@@ -51,10 +52,10 @@ object WindowManager {
 					Mathf.clamp(pos.y, 0f, windowGroup.height - root.getPrefHeight())
 				);
 				
-				//limit it's size to the size of the group
-				root.setSize(
-					Mathf.clamp(root.prefWidth, 10f, windowGroup.width),
-					Mathf.clamp(root.prefHeight, 10f, windowGroup.height)
+				//limit size of the viewport to the size of the group * 0.9
+				it.table.cell()?.size(
+					Mathf.clamp(it.table.prefWidth, 10f, windowGroup.width * 0.9f),
+					Mathf.clamp(it.table.prefHeight, 10f, windowGroup.height * 0.9f)
 				)
 				
 				root.color.a = if (it.isDragging) 0.5f else 1f
@@ -70,6 +71,8 @@ object WindowManager {
 			lateinit var collapser: Collapser
 			
 			window.rootTable = this
+			
+			setClip(true)
 			
 			//top border
 			addImage(Tex.whiteui).fillX().colspan(3).row()
@@ -137,11 +140,11 @@ object WindowManager {
 			}
 			
 			//right border
-			image(Tex.whiteui).fillY()
+			addImage(Tex.whiteui).fillY()
 			
 			//bottom border
 			row()
-			image(Tex.whiteui).fillX().colspan(3)
+			addImage(Tex.whiteui).fillX().colspan(3)
 		}
 		
 		window.onCreate()
