@@ -52,11 +52,12 @@ object WindowManager {
 					Mathf.clamp(pos.y, 0f, windowGroup.height - root.getPrefHeight())
 				);
 				
+				/*FUCK MINDUSTRY UI
 				//limit size of the viewport to the size of the group * 0.9
 				it.table.cell()?.size(
 					Mathf.clamp(it.table.prefWidth, 10f, windowGroup.width * 0.9f),
 					Mathf.clamp(it.table.prefHeight, 10f, windowGroup.height * 0.9f)
-				)
+				)*/
 				
 				root.color.a = if (it.isDragging) 0.5f else 1f
 				
