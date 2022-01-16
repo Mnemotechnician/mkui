@@ -32,7 +32,7 @@ repositories {
 dependencies {
 	compileOnly "com.github.Anuken.Arc:arc-core:$mindustryVersion"   //these two lines should
 	compileOnly "com.github.Anuken.Mindustry:core:$mindustryVersion" //already be here
-	implementation "com.github.mnemotechnician:mkui:snapshot-3"
+	implementation "com.github.mnemotechnician:mkui:15"
 }
 
 //... other code

@@ -7,6 +7,7 @@ import arc.scene.style.*
 import arc.struct.*
 import arc.graphics.*
 import mindustry.ui.*
+import com.github.mnemotechnician.mkui.ui.*
 
 private val tmpButtons = Seq<Button>(10); //used by buttonGroup
 
@@ -68,4 +69,11 @@ inline fun Table.scrollPane(style: ScrollPane.ScrollPaneStyle = Styles.defaultPa
 	val pane = ScrollPane(table, style)
 	table.constructor(pane)
 	return add(pane)
+}
+
+/** Adds a table pager constructed by a lambda and returns the created cell */
+inline fun Table.pager(vertical: Boolean = false, constructor: TablePager.() -> Unit): Cell<TablePager> {
+	val pager = TablePager()
+	pager.constructor()
+	return add(pager)
 }

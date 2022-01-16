@@ -25,7 +25,7 @@ object WindowManager {
 	
 	/** Windows that were requested to be created before the window manager was initialized are placed into this queue */
 	internal val windowQueue = Queue<Window>(10)
-	internal var initialized = false
+	private var initialized = false
 	
 	init {
 		//TODO: this will probably not be called if the mod hasn't accessed the manager before the game was loaded
@@ -47,12 +47,17 @@ object WindowManager {
 				val pos = root.localToParentCoordinates(Tmp.v1.set(0f, 0f));
 				
 				root.setPosition(
-					Mathf.clamp(pos.x, 0f/*root.getPrefWidth() / 2*/, windowGroup.width - root.getPrefWidth() /*/ 2*/),
-					Mathf.clamp(pos.y, 0f/*root.getPrefHeight() / 2*/, windowGroup.height - root.getPrefHeight() /*/ 2*/)
+					Mathf.clamp(pos.x, 0f, windowGroup.width - root.getPrefWidth()),
+					Mathf.clamp(pos.y, 0f, windowGroup.height - root.getPrefHeight())
 				);
 				
+				//limit it's size to the size of the group
+				root.setSize(
+					Mathf.clamp(root.prefWidth, 10f, windowGroup.width),
+					Mathf.clamp(root.prefHeight, 10f, windowGroup.height)
+				)
+				
 				root.color.a = if (it.isDragging) 0.5f else 1f
-				root.setSize(root.prefWidth, root.prefHeight)
 				
 				it.onUpdate()
 			}
