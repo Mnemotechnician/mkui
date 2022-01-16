@@ -71,9 +71,9 @@ inline fun Table.scrollPane(style: ScrollPane.ScrollPaneStyle = Styles.defaultPa
 	return add(pane)
 }
 
-/** Adds a table pager constructed by a lambda and returns the created cell */
+/** Adds a table pager constructed by a lambda and returns the created cell. The constructor should add new pages via TablePager#addPage. */
 inline fun Table.pager(vertical: Boolean = false, constructor: TablePager.() -> Unit): Cell<TablePager> {
-	val pager = TablePager()
+	val pager = TablePager(vertical)
 	pager.constructor()
 	return add(pager)
 }
