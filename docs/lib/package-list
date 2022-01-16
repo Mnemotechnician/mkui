@@ -7,6 +7,7 @@ $dokka.location:com.github.mnemotechnician.mkui.ui/TablePager/addPage/#kotlin.St
 $dokka.location:com.github.mnemotechnician.mkui.ui/TablePager/addPage/#kotlin.String#kotlin.Function1[arc.scene.ui.layout.Table,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/-table-pager/add-page.html
 $dokka.location:com.github.mnemotechnician.mkui.ui/TablePager/buttonsTable/#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/-table-pager/buttons-table.html
 $dokka.location:com.github.mnemotechnician.mkui.ui/TablePager/pageContainer/#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/-table-pager/page-container.html
+$dokka.location:com.github.mnemotechnician.mkui.ui/TablePager/setBackground/#arc.scene.style.Drawable/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/-table-pager/set-background.html
 $dokka.location:com.github.mnemotechnician.mkui.ui/TablePager/vertical/#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/-table-pager/vertical.html
 $dokka.location:com.github.mnemotechnician.mkui.windows////PointingToDeclaration/lib/com.github.mnemotechnician.mkui.windows/index.html
 $dokka.location:com.github.mnemotechnician.mkui.windows/Window///PointingToDeclaration/lib/com.github.mnemotechnician.mkui.windows/-window/index.html
@@ -36,6 +37,7 @@ $dokka.location:com.github.mnemotechnician.mkui//addTable/arc.scene.Group#arc.sc
 $dokka.location:com.github.mnemotechnician.mkui//addTable/arc.scene.ui.layout.Table#arc.scene.style.Drawable#kotlin.Function1[arc.scene.ui.layout.Table,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/add-table.html
 $dokka.location:com.github.mnemotechnician.mkui//asOrNull/arc.scene.Element#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/as-or-null.html
 $dokka.location:com.github.mnemotechnician.mkui//buttonGroup/arc.scene.ui.layout.Table#arc.scene.style.Drawable#kotlin.Function2[arc.scene.ui.layout.Table,arc.scene.ui.ButtonGroup[arc.scene.ui.Button],kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/button-group.html
+$dokka.location:com.github.mnemotechnician.mkui//cell/TypeParam(bounds=[arc.scene.Element])#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/cell.html
 $dokka.location:com.github.mnemotechnician.mkui//child/arc.scene.Group#kotlin.Int/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/child.html
 $dokka.location:com.github.mnemotechnician.mkui//childAs/arc.scene.Group#kotlin.Int/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/child-as.html
 $dokka.location:com.github.mnemotechnician.mkui//childAsOrNull/arc.scene.Group#kotlin.Int/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/child-as-or-null.html
