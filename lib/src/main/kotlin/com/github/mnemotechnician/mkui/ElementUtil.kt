@@ -1,5 +1,6 @@
 package com.github.mnemotechnician.mkui
 
+import arc.util.*
 import arc.scene.*
 import arc.scene.ui.*
 import arc.scene.ui.layout.*
@@ -23,7 +24,17 @@ fun Cell<Label>.scaleFont(scale: Float) = this.apply {
 	get().setFontScale(scale)
 };
 
-/** Changes the font size of the wrapped text button and returns the created cell */
+/** Changes the font size of the wrapped text button and returns the cell */
 fun Cell<TextButton>.scaleButtonFont(scale: Float) = this.apply {
 	get().label.setFontScale(scale)
+};
+
+/** Changes Scaling of the wrapped image and returns the cell */
+fun Cell<Image>.scaleImage(scaling: Scaling) = this.apply {
+	get().setScaling(scaling)
+};
+
+/** Sets scaling of the image inside the image button and returns the cell */
+fun Cell<ImageButton>.scaleButtonImage(scaling: Scaling) = this.apply {
+	get().image.setScaling(scaling)
 }
