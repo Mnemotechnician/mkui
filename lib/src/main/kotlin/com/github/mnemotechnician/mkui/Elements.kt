@@ -27,21 +27,21 @@ inline fun Table.addLabel(crossinline provider: () -> CharSequence, style: Label
 }
 
 /** Adds a constant image to the table and returns the created cell */
-inline fun Table.addImage(drawable: Drawable, scaling: Scaling = Scaling.bounded): Cell<Image> {
+inline fun Table.addImage(drawable: Drawable, scaling: Scaling = Scaling.fit): Cell<Image> {
 	val i = Image(drawable)
 	i.setScaling(scaling)
 	return add(i)
 }
 
 /** Adds a constant image to the table and returns the created cell */
-inline fun Table.addImage(drawable: TextureRegion, scaling: Scaling = Scaling.bounded): Cell<Image> {
+inline fun Table.addImage(drawable: TextureRegion, scaling: Scaling = Scaling.fit): Cell<Image> {
 	val i = Image(drawable)
 	i.setScaling(scaling)
 	return add(i)
 }
 
 /** Adds a dynamic image to the table and returns the created cell */
-inline fun Table.addImage(crossinline provider: () -> TextureRegion, scaling: Scaling = Scaling.bounded): Cell<Image> {
+inline fun Table.addImage(crossinline provider: () -> TextureRegion, scaling: Scaling = Scaling.fit): Cell<Image> {
 	val i = Image(provider())
 	i.setScaling(scaling)
 	i.update { provider() }
