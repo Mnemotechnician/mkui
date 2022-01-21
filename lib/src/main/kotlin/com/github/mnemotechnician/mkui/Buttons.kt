@@ -46,7 +46,6 @@ inline fun Table.imageButton(image: Drawable, style: ImageButton.ImageButtonStyl
 /** Adds an image button with an optional onclick listener, returns the created cell */
 inline fun Table.imageButton(image: TextureRegion, style: ImageButton.ImageButtonStyle = Styles.defaulti, crossinline onclick: ImageButton.() -> Unit = {}): Cell<ImageButton> {
 	val b = ImageButton(image, style)
-	b.image.setScaling(Scaling.bounded)
 	b.clicked { b.onclick() }
 	return add(b)
 }
@@ -54,7 +53,6 @@ inline fun Table.imageButton(image: TextureRegion, style: ImageButton.ImageButto
 /** Adds an image button with a dynamic image and an optional onclick listener, returns the created cell */
 inline fun Table.imageButton(crossinline provider: () -> TextureRegion, style: ImageButton.ImageButtonStyle = Styles.defaulti, crossinline onclick: ImageButton.() -> Unit = {}): Cell<ImageButton> {
 	val b = ImageButton(provider(), style)
-	b.image.setScaling(Scaling.bounded)
 	b.clicked { b.onclick() }
 	b.update { b.image.setDrawable(provider()) }
 	return add(b)
