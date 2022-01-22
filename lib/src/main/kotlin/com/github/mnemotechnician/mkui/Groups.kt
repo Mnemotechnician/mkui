@@ -9,8 +9,6 @@ import arc.graphics.*
 import mindustry.ui.*
 import com.github.mnemotechnician.mkui.ui.*
 
-private val tmpButtons = Seq<Button>(10); //used by buttonGroup
-
 /** Adds a table constructed by a lambda to the group, passes it to the lamda and returns the created table. */
 inline fun Group.addTable(background: Drawable = Styles.none, constructor: Table.() -> Unit = {}): Table {
 	return if (this is Table) {
@@ -59,6 +57,7 @@ inline fun Table.buttonGroup(background: Drawable = Styles.none, constructor: Ta
 	return add(table)
 }
 
+/** Creates a scroll pane containing the providen element and returns the created cell */
 inline fun Table.scrollPane(style: ScrollPane.ScrollPaneStyle = Styles.defaultPane, element: Element): Cell<ScrollPane> {
 	return add(ScrollPane(element, style))
 }
@@ -67,6 +66,23 @@ inline fun Table.scrollPane(style: ScrollPane.ScrollPaneStyle = Styles.defaultPa
 inline fun Table.scrollPane(style: ScrollPane.ScrollPaneStyle = Styles.defaultPane, constructor: Table.(ScrollPane) -> Unit): Cell<ScrollPane> {
 	val table = Table()
 	val pane = ScrollPane(table, style)
+	table.constructor(pane)
+	return add(pane)
+}
+
+/** 
+ * Creates a limited scroll pane constructed by a lambda and returns the created cell.
+ * Such a scroll pane will not expand at all unless it's explicitly told to. 
+ * This allows to limit it's size without hardcoding it.
+ */
+inline fun Table.limitedScrollPane(style: ScrollPane.ScrollPaneStyle = Styles.defaultPane, constructor: Table.(ScrollPane) -> Unit): Cell<ScrollPane> {
+	val table = Table()
+	
+	val pane = object : ScrollPane(table, style) {
+		override fun getPrefWidth() = width
+		override fun getPrefHeight() = height
+	}
+	
 	table.constructor(pane)
 	return add(pane)
 }

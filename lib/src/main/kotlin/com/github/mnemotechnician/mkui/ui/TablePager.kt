@@ -34,16 +34,16 @@ open class TablePager(val vertical: Boolean = false) : Table() {
 	protected val group = ButtonGroup<TextButton>()
 	
 	init {
-		scrollPane {
+		limitedScrollPane {
 			margin(5f)
 			it.setScrollBarPositions(!vertical, vertical)
 			
 			buttonsTable = this
 		}.also {
 			if (vertical) {
-				it.fillY().marginBottom(5f)
+				it.growY().marginBottom(5f)
 			} else {
-				it.fillX().marginRight(5f).row()
+				it.growX().marginRight(5f).row()
 			}
 		}
 		
@@ -80,7 +80,7 @@ open class TablePager(val vertical: Boolean = false) : Table() {
 		}
 	}
 	
-	/** Adds a page constructed by a lambda and a respective button. @return the cell of the button */
+	/** Adds a page constructed by a lambda and a respective button. Note that this method only constructs the page once. @return the cell of the button */
 	inline fun addPage(name: String, constructor: Table.() -> Unit): Cell<TextButton> {
 		val table = Table()
 		table.constructor()
