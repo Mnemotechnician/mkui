@@ -44,7 +44,7 @@ inline fun Table.addImage(drawable: TextureRegion, scaling: Scaling = Scaling.st
 inline fun Table.addImage(crossinline provider: () -> TextureRegion, scaling: Scaling = Scaling.stretch): Cell<Image> {
 	val i = Image(provider())
 	i.setScaling(scaling)
-	i.update { provider() }
+	i.update { i.setDrawable(provider()) }
 	return add(i)
 }
 
