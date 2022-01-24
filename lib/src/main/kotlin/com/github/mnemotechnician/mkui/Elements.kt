@@ -10,18 +10,20 @@ import mindustry.ui.*
 import mindustry.gen.*
 
 /** Adds a constant label to the table and returns the created cell */
-inline fun Table.addLabel(text: CharSequence, style: Label.LabelStyle = Styles.defaultLabel, wrap: Boolean = false, ellipsis: String? = null): Cell<Label> {
+inline fun Table.addLabel(text: CharSequence, style: Label.LabelStyle = Styles.defaultLabel, wrap: Boolean = false, ellipsis: String? = null, alignment: Int = Align.center): Cell<Label> {
 	val label = Label(text, style)
 	label.setWrap(wrap)
 	label.setEllipsis(ellipsis)
+	label.setAlignment(alignment)
 	return add(label)
 }
 
 /** Adds a dynamic label to the table and returns the created cell */
-inline fun Table.addLabel(crossinline provider: () -> CharSequence, style: Label.LabelStyle = Styles.defaultLabel, wrap: Boolean = true, ellipsis: String? = null): Cell<Label> {
+inline fun Table.addLabel(crossinline provider: () -> CharSequence, style: Label.LabelStyle = Styles.defaultLabel, wrap: Boolean = true, ellipsis: String? = null, alignment: Int = Align.center): Cell<Label> {
 	val label = Label("", style)
 	label.setWrap(wrap)
 	label.setEllipsis(ellipsis)
+	label.setAlignment(alignment)
 	label.update { label.setText(provider()) }
 	return add(label)
 }

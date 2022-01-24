@@ -42,3 +42,28 @@ dependencies {
 Ignore this paragraph if you're using the official kotlin mod template
 * use `maven("https://jitpack.io")` in the first step
 * use `implementation("com.github.mnemotechnician:MKUI:TAG")` in the second step
+
+# Features
+
+## Simplier and more readable tree-styled ui construction
+
+```kotlin
+cont.addTable {
+	addLabel("hello world!")
+	
+	addTable {
+		textButton("Clean and readable!", wrap = false) { Vars.ui.showInfo("Yay!") }
+	}
+}
+```
+
+## New ui classes
+* Abstract class Window and a WindowManager
+* TablePager
+* More coming soon
+
+## More optimized
+The original ui construction functions use literal lambdas. That approach is slow and inefficient.
+
+MKUI, on the other hand, uses inline functions with lambda arguments.
+Unlike normal functions, they don't cause any performance impact as they and their arguments are inlined at the call place.
