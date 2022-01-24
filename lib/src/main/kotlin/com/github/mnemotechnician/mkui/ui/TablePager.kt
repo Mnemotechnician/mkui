@@ -65,6 +65,7 @@ open class TablePager(val vertical: Boolean = false) : Table() {
 	/** Adds a page and a respective button. @return the cell of the button */
 	open fun addPage(name: String, page: Table): Cell<TextButton> {
 		return buttonsTable.textButton(name, Styles.togglet) {
+			buttonsTable.invalidateHierarchy()
 			pageContainer.clearChildren()
 			pageContainer += page
 		}.also {
