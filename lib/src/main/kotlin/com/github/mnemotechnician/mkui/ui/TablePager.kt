@@ -51,7 +51,7 @@ open class TablePager(val vertical: Boolean = false) : Table() {
 			margin(5f).defaults().grow()
 			
 			pageContainer = this
-		}.grow()
+		}.padLeft(5f).grow()
 		
 		setBackground(Styles.black3)
 	}
@@ -66,6 +66,8 @@ open class TablePager(val vertical: Boolean = false) : Table() {
 	open fun addPage(name: String, page: Table): Cell<TextButton> {
 		return buttonsTable.textButton(name, Styles.togglet) {
 			buttonsTable.invalidateHierarchy()
+			pageContainer.invalidateHierarchy()
+			
 			pageContainer.clearChildren()
 			pageContainer += page
 		}.also {
