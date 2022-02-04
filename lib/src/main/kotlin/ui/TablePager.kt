@@ -41,7 +41,7 @@ open class TablePager(val vertical: Boolean = false) : Table() {
 			buttonsTable = this
 		}.also {
 			if (vertical) {
-				it.growY().marginBottom(5f)
+				it.grow().marginBottom(5f)
 			} else {
 				it.growX().marginRight(5f).row()
 			}
