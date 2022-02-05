@@ -72,15 +72,15 @@ inline fun Table.scrollPane(style: ScrollPane.ScrollPaneStyle = Styles.defaultPa
 
 /** 
  * Creates a limited scroll pane constructed by a lambda and returns the created cell.
- * Such a scroll pane will not expand at all unless it's explicitly told to. 
+ * Such a scroll pane will not expand in the specified directions unless it's explicitly told to. 
  * This allows to limit the viewport without hardcoding the size.
  */
-inline fun Table.limitedScrollPane(style: ScrollPane.ScrollPaneStyle = Styles.defaultPane, constructor: Table.(ScrollPane) -> Unit): Cell<ScrollPane> {
+inline fun Table.limitedScrollPane(limitW: Boolean = true, limitH: Boolean = true, style: ScrollPane.ScrollPaneStyle = Styles.defaultPane, constructor: Table.(ScrollPane) -> Unit): Cell<ScrollPane> {
 	val table = Table()
 	
 	val pane = object : ScrollPane(table, style) {
-		override fun getPrefWidth() = width;
-		override fun getPrefHeight() = height;
+		override fun getPrefWidth() = if (limitW) width else super.getPrefWidth();
+		override fun getPrefHeight() = if (limitH) height else super.getPrefHeight();
 	}
 	
 	table.constructor(pane)

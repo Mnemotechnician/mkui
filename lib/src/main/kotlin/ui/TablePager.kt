@@ -34,14 +34,14 @@ open class TablePager(val vertical: Boolean = false) : Table() {
 	protected val group = ButtonGroup<TextButton>()
 	
 	init {
-		limitedScrollPane {
+		limitedScrollPane(limitH = vertical) {
 			margin(5f)
 			it.setScrollBarPositions(!vertical, vertical)
 			
 			buttonsTable = this
 		}.also {
 			if (vertical) {
-				it.grow().marginBottom(5f)
+				it.growY().marginBottom(5f)
 			} else {
 				it.growX().marginRight(5f).row()
 			}
