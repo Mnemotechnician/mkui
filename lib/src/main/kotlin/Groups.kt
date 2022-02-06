@@ -9,6 +9,11 @@ import arc.graphics.*
 import mindustry.ui.*
 import com.github.mnemotechnician.mkui.ui.*
 
+/** Creates a table constructed by a lambda */
+inline fun createTable(background: Drawable = Styles.none, constructor: Table.() -> Unit = {}): Table {
+	return Table(background).apply { constructor() }
+}
+
 /** Adds a table constructed by a lambda to the group, passes it to the lamda and returns the created table. */
 inline fun Group.addTable(background: Drawable = Styles.none, constructor: Table.() -> Unit = {}): Table {
 	return if (this is Table) {
@@ -92,4 +97,18 @@ inline fun Table.pager(vertical: Boolean = false, constructor: TablePager.() -> 
 	val pager = TablePager(vertical)
 	pager.constructor()
 	return add(pager)
+}
+
+/** Adds an element stack that contains the specified elements and returns the created cell */
+inline fun Table.addStack(vararg elements: Element): Cell<Stack> {
+	val stack = Stack()
+	elements.forEach { stack += it }
+	return add(stack)
+}
+
+/** Adds a stack constructed by a lambda and returns the created cell */
+inline fun Table.addStack(constructor: Stack.() -> Unit): Cell<Stack> {
+	val stack = Stack()
+	stack.constructor()
+	return add(stack)
 }
