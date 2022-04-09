@@ -93,7 +93,7 @@ object WindowManager {
 					
 					//collapse/show
 					textToggle("[accent]-", Styles.togglet) {
-						childAs<Label>(0).setText(if (it) "[accent]=" else "[accent]-")
+						child<Label>(0).setText(if (it) "[accent]=" else "[accent]-")
 						
 						collapser.setCollapsed(it, true)
 						window.isCollapsed = it

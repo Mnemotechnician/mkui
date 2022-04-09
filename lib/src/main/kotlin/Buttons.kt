@@ -76,7 +76,7 @@ inline fun Table.toggleButton(constructor: Button.() -> Unit, toggleableStyle: B
 inline fun Table.textToggle(text: String, toggleableStyle: Button.ButtonStyle = Styles.togglet, wrap: Boolean = false, crossinline ontoggle: Button.(Boolean) -> Unit = {}): Cell<Button> {
 	val cell = toggleButton({ addLabel(text) }, toggleableStyle, ontoggle)
 	
-	cell.get().childAs<Label>(0).setWrap(wrap)
+	cell.get().child<Label>(0).setWrap(wrap)
 	return cell
 }
 

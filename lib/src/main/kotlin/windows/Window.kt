@@ -8,7 +8,7 @@ import com.github.mnemotechnician.mkui.*
  */
 abstract class Window {
 	
-	/** The root of the window. Should not be modified nor accessed. */
+	/** The root of the window. Should not be modified nor accessed outside of WindowManager. */
 	lateinit internal var rootTable: Table
 	
 	/** The table this window is assigned to. Initialized when the window is created. */

@@ -5,27 +5,34 @@ import arc.scene.ui.*
 import arc.scene.ui.layout.*
 
 /** Adds an element to the Group */
-inline operator fun <T: Element> Group.plusAssign(other: T) { addChild(other) };
+inline operator fun Group.plusAssign(other: Element) { addChild(other) };
 
 /** Adds an element to the Table and returns the created cell */
-inline operator fun <T: Element> Table.plusAssign(other: T) { add(other) };
+inline operator fun Table.plusAssign(other: Element) { add(other) }
 
-/** Returns the n-th child of a group */
-inline fun Group.child(index: Int): Element = getChildren()[index];
+/** Adds a child to the Group */
+inline operator fun Group.plus(other: Element) { this += other }
+
+/** Adds a child to the Table */
+inline operator fun Table.plus(other: Element) { this += other }
 
 /** Returns the n-th element of a group or null if it doesn't exist */
-inline fun Group.childOrNull(index: Int): Element? {
+inline fun <reified T: Element> Group.childOrNull(index: Int): T? {
 	val children = getChildren()
 	if (index < 0 || index >= children.size) return null
-	return children[index]
+	return children[index] as? T
 }
+
+/** 
+ * Returns the n-th child of a group
+ * @throws IllegalArgumentException if the element is not an instance of the specified class or doesn't exist
+ */
+inline fun <reified T: Element> Group.child(index: Int): T = childOrNull<T>(index) ?: throw IllegalArgumentException()
 
 /** Returns the n-th element of a group and automatically casts it to the type parameter */
-inline fun <reified T> Group.childAs(index: Int): T = child(index) as T
+@Deprecated("Use [child()] instead", level = DeprecationLevel.ERROR)
+inline fun <reified T: Element> Group.childAs(index: Int): T = child<T>(index)
 
 /** Returns the n-th element of a group casted to the providen type or null if it doesn't exist / is not an instance of the providen class */
-inline fun <reified T> Group.childAsOrNull(index: Int): T? {
-	val element = childOrNull(index)
-	if (element == null || element !is T) return null
-	return element
-}
+@Deprecated("Use [childOrNull()] instead", level = DeprecationLevel.ERROR)
+inline fun <reified T: Element> Group.childAsOrNull(index: Int): T = child<T>(index)
