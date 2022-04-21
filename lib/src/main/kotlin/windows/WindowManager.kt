@@ -1,5 +1,6 @@
 package com.github.mnemotechnician.mkui.windows
 
+import kotlin.math.*
 import arc.*
 import arc.math.*
 import arc.util.*
@@ -18,7 +19,7 @@ import mindustry.gen.*
 import mindustry.game.*
 import com.github.mnemotechnician.mkui.*
 
-/** Manages all windows displayed on the screen. Lazily initialized. */
+/** Manages windows displayed on the screen. A mod should access this object before the ClientLoadEvent gets fired. */
 object WindowManager {
 	
 	internal val windowGroup = WidgetGroup()
@@ -29,7 +30,7 @@ object WindowManager {
 	private var initialized = false
 	
 	init {
-		//TODO: this will probably not be called if the mod hasn't accessed the manager before the game was loaded
+		// TODO: this will probably not be called if the mod hasn't accessed the manager before the game was loaded
 		Events.run(EventType.ClientLoadEvent::class.java) {
 			windowGroup.setFillParent(true)
 			windowGroup.touchable = Touchable.childrenOnly;
@@ -43,21 +44,14 @@ object WindowManager {
 		
 		Events.run(EventType.Trigger.update) {
 			windows.each {
-				//keep in stage
+				// keep in stage
 				val root = it.rootTable
 				val pos = root.localToParentCoordinates(Tmp.v1.set(0f, 0f));
 				
 				root.setPosition(
 					Mathf.clamp(pos.x, 0f, windowGroup.width - root.getPrefWidth()),
-					Mathf.clamp(pos.y, 0f, windowGroup.height - root.getPrefHeight())
+					Mathf.clamp(pos.y, 0f, windowGroup.height - root.getPrefHeight()),
 				);
-				
-				/*FUCK MINDUSTRY UI
-				//limit size of the viewport to the size of the group * 0.9
-				it.table.cell()?.size(
-					Mathf.clamp(it.table.prefWidth, 10f, windowGroup.width * 0.9f),
-					Mathf.clamp(it.table.prefHeight, 10f, windowGroup.height * 0.9f)
-				)*/
 				
 				root.color.a = if (it.isDragging) 0.5f else 1f
 				root.setSize(root.prefWidth, root.prefHeight)
@@ -69,84 +63,117 @@ object WindowManager {
 	
 	/** Actually creates the window without any delays. Must be called after the initialization. */
 	internal fun constructWindow(window: Window) {
-		val windowTable = Table(Styles.black6).apply {
+		val windowTable = createWrapper(
+			width = { if (window.fullScreen) windowGroup.width else it },
+			height = { if (window.fullScreen) windowGroup.height else it }
+		) {
+			setBackground(Styles.black6)
+
 			lateinit var collapser: Collapser
 			
 			window.rootTable = this
 			
 			setClip(true)
 			
-			//top border
-			addImage(Tex.whiteui).fillX().colspan(3).row()
+			// top border
+			hsplitter(Color.white, 0f).colspan(3)
 			
-			//left border
-			addImage(Tex.whiteui).fillY()
+			// left border
+			vsplitter(Color.white, 0f)
 			
-			//window
-			addTable {
-				//top bar — name, buttons and also a way to drag the table
-				addTable(Styles.black3) {
-					//window name
-					addLabel({ window.name }, ellipsis = "...").fillY().growX().get().setFontScale(0.6f)
-					
-					vsplitter(Color.black)
-					
-					//collapse/show
-					textToggle("[accent]-", Styles.togglet) {
-						child<Label>(0).setText(if (it) "[accent]=" else "[accent]-")
-						
+			// the inner part of the window
+			wrapper(
+				{ min(it, windowGroup.width) },
+				{ min(it, windowGroup.height) }
+			) {
+				setBackground(Styles.black3)
+
+				// top bar — name, buttons and also a dragger that allows to drag the window
+				addTable {
+					center().left()
+
+					defaults().height(40f)
+
+					addTable {
+						center().left()
+
+						// window name
+						addLabel({ window.name }, ellipsis = "...").fillY().growX().get().setFontScale(0.6f)
+							
+						// adding a drag listener
+						addListener(object : InputListener() {
+							var dragx = 0f
+							var dragy = 0f;
+							
+							override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: KeyCode): Boolean {
+								dragx = x; dragy = y;
+								window.isDragging = true;
+								return true;
+							}
+							
+							override fun touchDragged(event: InputEvent, x: Float, y: Float, pointer: Int) {
+								val pos = window.rootTable.localToParentCoordinates(Tmp.v1.set(x - dragx, y - dragy))
+								window.rootTable.setPosition(pos.x, pos.y)
+								
+								window.onDrag()
+
+								//the window's been dragged, exit from full screen mode
+								if (window.fullScreen) {
+									window.fullScreen = false
+									window.onFullScreen(false)
+								}
+							}
+							
+							override fun touchUp(e: InputEvent, x: Float, y: Float, pointer: Int, button: KeyCode) {
+								window.isDragging = false;
+							}
+						})
+					}.growX().fillY()
+
+					// collapse/show button
+					textToggle({ if (it) "[accent]=" else "[accent]-" }, Styles.togglet) {
 						collapser.setCollapsed(it, true)
 						window.isCollapsed = it
 						window.onToggle(it)
-					}.size(40f)
+					}
+
+					// fullscreen button
+					hider(hideHorizontal = { !window.supportsFullScreen }) {
+						textButton({ if (window.fullScreen) "[accent]•" else "[accent]O" }, Styles.togglet) {
+							window.fullScreen = !window.fullScreen
+							window.onFullScreen(window.fullScreen)
+						}.size(40f).update {
+							it.setChecked(window.fullScreen)
+						}
+					}
 					
-					//hide button
-					textButton("[red]X", Styles.togglet) {
-						this@apply.fadeRemove()
-						window.onDestroy()
-					}.size(40f).visible { window.closeable }
+					// close button
+					hider(hideHorizontal = { !window.closeable }) {
+						textButton("[red]X", Styles.togglet) {
+							this@createWrapper.fadeRemove()
+							window.onDestroy()
+						}.size(40f)
+					}
+				}.pad(5f).growX().row()
 					
-					//making it draggable
-					addListener(object : InputListener() {
-						var dragx = 0f
-						var dragy = 0f;
-						
-						override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: KeyCode): Boolean {
-							dragx = x; dragy = y;
-							window.isDragging = true;
-								return true;
-						}
-						
-						override fun touchDragged(event: InputEvent, x: Float, y: Float, pointer: Int) {
-							val pos = window.rootTable.localToParentCoordinates(Tmp.v1.set(x - dragx, y - dragy))
-							window.rootTable.setPosition(pos.x, pos.y)
-							
-							window.onDrag()
-						}
-						
-						override fun touchUp(e: InputEvent, x: Float, y: Float, pointer: Int, button: KeyCode) {
-							window.isDragging = false;
-						}
-					})
-				}.margin(5f).marginBottom(0f).fillX()
-				
-				hsplitter()
-				
-				//main container
+				// main container.
 				collapser = addCollapser(true) {
-					setClip(true)
-					setBackground(Styles.black3)
+					hsplitter(Color.white, 0f, 5f)
 					
-					window.table = this
+					addTable {
+						setClip(true)
+						setBackground(Styles.black3)
+						
+						window.table = this
+					}.grow()
 				}.grow().margin(5f).get()
-			}
+			}.grow()
 			
-			//right border
-			addImage(Tex.whiteui).fillY()
+			// right border
+			vsplitter(Color.white, 0f)
 			
-			//bottom border
-			row()
-			addImage(Tex.whiteui).fillX().colspan(3)
+			// bottom border
+			hsplitter(Color.white, 0f).colspan(3)
 		}
 		
 		window.onCreate()

@@ -3,6 +3,7 @@ package com.github.mnemotechnician.mkui
 import arc.scene.*
 import arc.scene.ui.*
 import arc.scene.ui.layout.*
+import arc.scene.event.*
 import arc.scene.style.*
 import arc.struct.*
 import arc.graphics.*
@@ -19,18 +20,18 @@ inline fun Group.addTable(background: Drawable = Styles.none, constructor: Table
 	return if (this is Table) {
 		this.addTable(background, constructor).get() //tables work differently
 	} else {
-		val t = Table(background)
-		t.constructor()
-		addChild(t)
-		t
+		Table(background).also {
+			it.constructor()
+			addChild(it)
+		}
 	}
 }
 
 /** Adds a table constructed by a lambda to the existing table and returns the created table cell */
 inline fun Table.addTable(background: Drawable = Styles.none, constructor: Table.() -> Unit = {}): Cell<Table> {
-	val t = Table(background)
-	t.constructor()
-	return add(t)
+	return add(Table(background).also {
+		it.constructor()
+	})
 }
 
 /** Adds a collapser constructed by a lambda to the existing table and returns the created cell */
@@ -112,3 +113,58 @@ inline fun Table.addStack(constructor: Stack.() -> Unit): Cell<Stack> {
 	stack.constructor()
 	return add(stack)
 }
+
+/** Creates a wrapper table with dynamic size and returns it. */
+inline fun createWrapper(
+	crossinline width: Table.(originalWidth: Float) -> Float = { it },
+	crossinline height: Table.(originalHeight: Float) -> Float = { it },
+	crossinline builder: Table.() -> Unit
+): Table = object : Table() {
+	var lastW = 0f
+	var lastH = 0f
+
+	init {
+		builder()
+		setClip(true)
+	}
+
+	override fun act(delta: Float) {
+		super.act(delta)
+
+		val newW = getPrefWidth()
+		val newH = getPrefHeight()
+		if (lastW != newW || lastH != newH) {
+			lastW = newW
+			lastH = newH
+			invalidateHierarchy()
+		}
+
+		touchable = if (newW <= 0f || newH <= 0f) Touchable.disabled else Touchable.enabled
+	}
+
+	override fun getMinWidth(): Float = getPrefWidth()
+
+	override fun getMinHeight(): Float = getPrefHeight()
+
+	override fun getPrefWidth() = width(super.getPrefWidth())
+
+	override fun getPrefHeight() = height(super.getPrefHeight())
+}
+
+/** Adds a wrapper table with dynamic preferred size and returns the created cell. */
+inline fun Table.wrapper(
+	crossinline width: Table.(originalWidth: Float) -> Float = { it },
+	crossinline height: Table.(originalHeight: Float) -> Float = { it },
+	crossinline builder: Table.() -> Unit
+): Cell<Table> = add(createWrapper(width, height, builder))
+
+/** Adds a table that returns 0 if its preferred width / height if the respective lambda returns true, or it's real preferred width / height otherwise. */
+inline fun Table.hider(
+	crossinline hideHorizontal: Table.() -> Boolean = { false },
+	crossinline hideVertical: Table.() -> Boolean = { false },
+	crossinline builder: Table.() -> Unit
+) = wrapper(
+	width = { if (hideHorizontal()) 0f else it },
+	height = { if (hideVertical()) 0f else it },
+	builder
+)

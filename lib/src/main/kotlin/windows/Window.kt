@@ -8,6 +8,19 @@ import com.github.mnemotechnician.mkui.*
  */
 abstract class Window {
 	
+	/** Name of this window, displayed in the top bar. Should be overriden. */
+	abstract val name: String
+	
+	/** Whether this window can be closed by the user. Should be overriden. */
+	abstract val closeable: Boolean
+
+	/** 
+	 * Whether this window supports full screen mode. Can be overriden.
+	 * Currently broken, should not be used.
+	 */
+	open val supportsFullScreen: Boolean
+		get() = false
+	
 	/** The root of the window. Should not be modified nor accessed outside of WindowManager. */
 	lateinit internal var rootTable: Table
 	
@@ -23,11 +36,8 @@ abstract class Window {
 	var isDragging = false
 		internal set
 	
-	/** Name of this window, displayed in the top bar. Should be overriden. */
-	abstract var name: String
-	
-	/** Whether this window can be closed by the user. Should be overriden. */
-	abstract var closeable: Boolean
+	/** Whether the window is in the full screen mode */
+	var fullScreen = false
 	
 	/**
 	 * Called when the window is being created.
@@ -55,8 +65,12 @@ abstract class Window {
 	/** Called whenever this window is being toggled by the user */
 	open fun onToggle(collapsed: Boolean) {
 	}
+
+	/** Called whenever the user switches between full screen and normal mode */
+	open fun onFullScreen(fullscreen: Boolean) {
+	}
 	
-	/** Called when the window is being destroyed. Usually this means that the user closed the window. */
+	/** Called when the window is being destroyed. Usually this means that the user has closed the window. */
 	open fun onDestroy() {
 	}
 	

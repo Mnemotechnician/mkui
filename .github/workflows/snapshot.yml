@@ -1,5 +1,11 @@
 name: Deployment
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      description:
+        description: 'release description'
+        required: true
+        default: '— no description providen'
 
 jobs:
   buildAndUpload:
@@ -19,6 +25,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: lib/build/libs/MKUI.jar
           tag: ${{ github.run_number }}
+          body: ${{ github.event.inputs.description }}
         
       - name: generate kotlin doc
         run: ./gradlew dokkaHtml

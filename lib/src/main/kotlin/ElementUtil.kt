@@ -41,8 +41,8 @@ inline fun <reified T> Cell<Element?>.getAsOrNull(): T? = get()?.let { this as? 
  * Changes the font size of the wrapped label or text button and returns the cell 
  * @throws UnsupportedOperationException if the element is not a Label nor a TextButton
  */
-fun Cell<*>.scaleFont(scale: Float) = get().let {
-	when (it) {
+fun Cell<*>.scaleFont(scale: Float) = this.also { cell ->
+	when (val it = cell.get()) {
 		is Label -> it.setFontScale(scale)
 		is TextButton -> it.label?.setFontScale(scale)
 		else -> throw UnsupportedOperationException("this class is not supported")
@@ -57,10 +57,12 @@ fun Cell<TextButton>.scaleButtonFont(scale: Float) = scaleFont(scale)
  * Changes Scaling of the wrapped image and returns the cell
  * @throws UnsupportedOperationException if the element is not an Image nor an ImageButton
  */
-fun Cell<*>.scaleImage(scaling: Scaling) = when (val elem = get()) {
-	is Image -> elem.setScaling(scaling)
-	is ImageButton -> elem.image?.setScaling(scaling)
-	else -> throw UnsupportedOperationException("this class is not supported")
+fun Cell<*>.scaleImage(scaling: Scaling) = this.also { cell ->
+	when (val it = cell.get()) {
+		is Image -> it.setScaling(scaling)
+		is ImageButton -> it.image?.setScaling(scaling)
+		else -> throw UnsupportedOperationException("this class is not supported")
+	}
 }
 
 /** Sets scaling of the image inside the image button and returns the cell */

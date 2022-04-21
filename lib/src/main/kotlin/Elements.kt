@@ -63,15 +63,15 @@ inline fun Table.textArea(text: String = "", style: TextField.TextFieldStyle = S
 }
 
 /** Creates a horizontal splitter and returns the created cell. This method automatically creates two rows. */
-fun Table.hsplitter(color: Color = Color.white, padding: Float = 5f): Cell<Image> {
+fun Table.hsplitter(color: Color = Color.white, padTop: Float = 5f, padBottom: Float = padTop): Cell<Image> {
 	row()
 	val cell = addImage(Tex.whiteui)
 	row()
-	return cell.color(color).fillX().padTop(padding).padBottom(padding)
+	return cell.color(color).fillX().padTop(padTop).padBottom(padBottom)
 }
 
 /** Creates a vertical splitter and returns the created cell. */
-fun Table.vsplitter(color: Color = Color.white, padding: Float = 5f): Cell<Image> {
+fun Table.vsplitter(color: Color = Color.white, padLeft: Float = 5f, padRight: Float = padLeft): Cell<Image> {
 	val cell = addImage(Tex.whiteui)
-	return cell.color(color).fillY().padLeft(padding).padRight(padding)
+	return cell.color(color).fillY().padLeft(padLeft).padRight(padRight)
 }

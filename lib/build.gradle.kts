@@ -31,7 +31,7 @@ publishing {
 		create<MavenPublication>("maven") {
 			groupId = "com.github.mnemotechnician"
 			artifactId = "mkui"
-			version = "0.1"
+			version = "1.0"
 
 			from(components["java"])
 		}
