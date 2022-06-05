@@ -30,8 +30,8 @@ object WindowManager {
 	private var initialized = false
 	
 	init {
-		// TODO: this will probably not be called if the mod hasn't accessed the manager before the game was loaded
-		Events.run(EventType.ClientLoadEvent::class.java) {
+		// If client has loaded, this is executed immediately. Otherwise, it is delayed untill CLI
+		{
 			windowGroup.setFillParent(true)
 			windowGroup.touchable = Touchable.childrenOnly;
 			Core.scene.add(windowGroup)
@@ -40,6 +40,12 @@ object WindowManager {
 			repeat(windowQueue.size) { constructWindow(windowQueue.removeFirst()) }
 			
 			Log.info("[blue]Initialized the window manager")
+		}.let {
+			if (Vars.clientLoaded) {
+				it()
+			} else {
+				Events.run(EventType.ClientLoadEvent::class.java, it)
+			}
 		}
 		
 		Events.run(EventType.Trigger.update) {
@@ -68,8 +74,6 @@ object WindowManager {
 			height = { if (window.fullScreen) windowGroup.height else it }
 		) {
 			setBackground(Styles.black6)
-
-			lateinit var collapser: Collapser
 			
 			window.rootTable = this
 			
@@ -80,6 +84,8 @@ object WindowManager {
 			
 			// left border
 			vsplitter(Color.white, 0f)
+
+			lateinit var collapser: Collapser
 			
 			// the inner part of the window
 			wrapper(
