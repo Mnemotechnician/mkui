@@ -1,27 +1,25 @@
 package com.github.mnemotechnician.mkui.windows
 
-import kotlin.math.*
 import arc.*
+import arc.graphics.Color
+import arc.input.KeyCode
 import arc.math.*
-import arc.util.*
-import arc.struct.*
-import arc.input.*
-import arc.graphics.*
-import arc.graphics.g2d.*
-import arc.scene.*
-import arc.scene.actions.*
+import arc.scene.Element
+import arc.scene.actions.Actions
 import arc.scene.event.*
-import arc.scene.ui.*
 import arc.scene.ui.layout.*
-import mindustry.*
-import mindustry.ui.*
-import mindustry.gen.*
-import mindustry.game.*
+import arc.struct.*
+import arc.util.*
 import com.github.mnemotechnician.mkui.*
+import mindustry.Vars
+import mindustry.game.EventType
+import mindustry.ui.Styles
+import kotlin.math.min
 
-/** Manages windows displayed on the screen. A mod should access this object before the ClientLoadEvent gets fired. */
+/**
+ * Manages windows displayed on the screen.
+ */
 object WindowManager {
-	
 	internal val windowGroup = WidgetGroup()
 	internal val windows = Seq<Window>()
 	
@@ -30,10 +28,10 @@ object WindowManager {
 	private var initialized = false
 	
 	init {
-		// If client has loaded, this is executed immediately. Otherwise, it is delayed untill CLI
+		// If client has loaded, this is executed immediately. Otherwise, it is delayed until CLI
 		{
 			windowGroup.setFillParent(true)
-			windowGroup.touchable = Touchable.childrenOnly;
+			windowGroup.touchable = Touchable.childrenOnly
 			Core.scene.add(windowGroup)
 			
 			initialized = true
@@ -52,13 +50,13 @@ object WindowManager {
 			windows.each {
 				// keep in stage
 				val root = it.rootTable
-				val pos = root.localToParentCoordinates(Tmp.v1.set(0f, 0f));
-				
+				val pos = root.localToParentCoordinates(Tmp.v1.set(0f, 0f))
+
 				root.setPosition(
-					Mathf.clamp(pos.x, 0f, windowGroup.width - root.getPrefWidth()),
-					Mathf.clamp(pos.y, 0f, windowGroup.height - root.getPrefHeight()),
-				);
-				
+					Mathf.clamp(pos.x, 0f, windowGroup.width - root.prefWidth),
+					Mathf.clamp(pos.y, 0f, windowGroup.height - root.prefHeight),
+				)
+
 				root.color.a = if (it.isDragging) 0.5f else 1f
 				root.setSize(root.prefWidth, root.prefHeight)
 				
@@ -73,11 +71,10 @@ object WindowManager {
 			width = { if (window.fullScreen) windowGroup.width else it },
 			height = { if (window.fullScreen) windowGroup.height else it }
 		) {
-			setBackground(Styles.black6)
+			background = Styles.black6
+			clip = true
 			
 			window.rootTable = this
-			
-			setClip(true)
 			
 			// top border
 			hsplitter(Color.white, 0f).colspan(3)
@@ -92,9 +89,9 @@ object WindowManager {
 				{ min(it, windowGroup.width) },
 				{ min(it, windowGroup.height) }
 			) {
-				setBackground(Styles.black3)
+				background = Styles.black3
 
-				// top bar — name, buttons and also a dragger that allows to drag the window
+				// top bar — name, action buttons. Double as a dragger that enables the user to drag the window
 				addTable {
 					center().left()
 
@@ -109,12 +106,12 @@ object WindowManager {
 						// adding a drag listener
 						addListener(object : InputListener() {
 							var dragx = 0f
-							var dragy = 0f;
-							
+							var dragy = 0f
+
 							override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: KeyCode): Boolean {
-								dragx = x; dragy = y;
-								window.isDragging = true;
-								return true;
+								dragx = x; dragy = y
+								window.isDragging = true
+								return true
 							}
 							
 							override fun touchDragged(event: InputEvent, x: Float, y: Float, pointer: Int) {
@@ -131,7 +128,7 @@ object WindowManager {
 							}
 							
 							override fun touchUp(e: InputEvent, x: Float, y: Float, pointer: Int, button: KeyCode) {
-								window.isDragging = false;
+								window.isDragging = false
 							}
 						})
 					}.growX().fillY()
@@ -149,7 +146,7 @@ object WindowManager {
 							window.fullScreen = !window.fullScreen
 							window.onFullScreen(window.fullScreen)
 						}.size(40f).update {
-							it.setChecked(window.fullScreen)
+							it.isChecked = window.fullScreen
 						}
 					}
 					
@@ -167,8 +164,8 @@ object WindowManager {
 					hsplitter(Color.white, 0f, 5f)
 					
 					addTable {
-						setClip(true)
-						setBackground(Styles.black3)
+						clip = true
+						background = Styles.black3
 						
 						window.table = this
 					}.grow()
@@ -200,7 +197,12 @@ object WindowManager {
 		}
 	}
 	
-	/** Creates an anonymous window. Such a window won't be able to receive any events other than onCreate */
+	/**
+	 * Creates an anonymous window. Such a window won't be able to receive any events other than onCreate.
+	 *
+	 * @param name the name of the window, displayed on the top bar.
+	 * @param constructor constructs the inner layout of the window.
+	 */
 	inline fun createWindow(name: String, crossinline constructor: Table.() -> Unit) {
 		createWindow(object : Window() {
 			override var name = name
@@ -226,5 +228,4 @@ object WindowManager {
 			Actions.run { if (parent != null) parent.removeChild(this) }
 		))
 	}
-	
 }

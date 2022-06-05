@@ -1,14 +1,11 @@
 package com.github.mnemotechnician.mkui
 
-import arc.util.*
-import arc.scene.*
+import arc.graphics.g2d.TextureRegion
+import arc.scene.style.Drawable
 import arc.scene.ui.*
 import arc.scene.ui.layout.*
-import arc.scene.style.*
-import arc.struct.*
-import arc.graphics.*
-import arc.graphics.g2d.*
-import mindustry.ui.*
+import arc.util.Scaling
+import mindustry.ui.Styles
 
 /** Adds a custom button constructed by a lambda and returns the created cell */
 inline fun Table.customButton(

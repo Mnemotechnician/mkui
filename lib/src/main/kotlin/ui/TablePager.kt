@@ -1,22 +1,10 @@
 package com.github.mnemotechnician.mkui.ui
 
-import arc.*
-import arc.math.*
-import arc.util.*
-import arc.struct.*
-import arc.input.*
-import arc.graphics.*
-import arc.scene.*
-import arc.scene.actions.*
-import arc.scene.event.*
+import arc.scene.style.Drawable
 import arc.scene.ui.*
 import arc.scene.ui.layout.*
-import arc.scene.style.*
-import mindustry.*
-import mindustry.ui.*
-import mindustry.gen.*
-import mindustry.game.*
 import com.github.mnemotechnician.mkui.*
+import mindustry.ui.Styles
 
 /**
  * A ui group that displays elements in the form of pages.
@@ -52,14 +40,14 @@ open class TablePager(val vertical: Boolean = false) : Table() {
 			
 			pageContainer = this
 		}.padLeft(5f).grow()
-		
-		setBackground(Styles.black3)
+
+		background = Styles.black3
 	}
 	
 	/** Sets the background of the two inner tables */
 	override fun setBackground(drawable: Drawable) {
-		buttonsTable.setBackground(drawable)
-		pageContainer.setBackground(drawable)
+		buttonsTable.background = drawable
+		pageContainer.background = drawable
 	}
 	
 	/** Adds a page and a respective button. @return the cell of the button */
@@ -83,11 +71,16 @@ open class TablePager(val vertical: Boolean = false) : Table() {
 		}
 	}
 	
-	/** Adds a page constructed by a lambda and a respective button. Note that this method only constructs the page once. @return the cell of the button */
+	/**
+	 * Adds a page constructed by a lambda and a respective button.
+	 * Note that this method only constructs the page during the function invocation and then reuses it.
+	 *
+	 * @return the cell of the created button that opens this page.
+	 */
 	inline fun addPage(name: String, constructor: Table.() -> Unit): Cell<TextButton> {
-		val table = Table()
-		table.constructor()
-		return addPage(name, table)
+		return addPage(name, Table().also {
+			it.constructor()
+		})
 	}
 	
 }

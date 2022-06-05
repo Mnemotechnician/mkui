@@ -1,7 +1,6 @@
 package com.github.mnemotechnician.mkui.windows
 
-import arc.scene.ui.layout.*
-import com.github.mnemotechnician.mkui.*
+import arc.scene.ui.layout.Table
 
 /**
  * A class that represents a floating on-screen window that the user can drag and interact with.
@@ -22,7 +21,7 @@ abstract class Window {
 		get() = false
 	
 	/** The root of the window. Should not be modified nor accessed outside of WindowManager. */
-	lateinit internal var rootTable: Table
+	internal lateinit var rootTable: Table
 	
 	/** The table this window is assigned to. Initialized when the window is created. */
 	lateinit var table: Table

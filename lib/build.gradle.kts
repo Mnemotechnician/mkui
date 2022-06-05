@@ -11,7 +11,7 @@ repositories {
 	maven("https://www.jitpack.io")
 }
 
-val mindustryVersion = "v135"
+val mindustryVersion = "master-SNAPSHOT"
 
 dependencies {
 	compileOnly("com.github.Anuken.Arc:arc-core:$mindustryVersion")
@@ -22,8 +22,6 @@ dependencies {
 
 tasks.withType<Jar> {
 	archiveFileName.set("MKUI.jar")
-	
-	//from(configurations.runtimeClasspath.map { if (it.isDirectory) it else zipTree(it) })
 }
 
 publishing {
