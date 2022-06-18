@@ -7,15 +7,18 @@ import com.github.mnemotechnician.mkui.*
 import mindustry.ui.Styles
 
 /**
- * A ui group that displays elements in the form of pages.
+ * An ui group that displays elements in the form of pages.
  *
- * Consists of a button row that allows the user to switch pages and a page container in which the current page is displayed
+ * Consists of a button row that allows the user to switch pages
+ * and a page container in which the current page is displayed.
  * New pages can be added via TablePager#addPage.
  *
  * @param vertical if true, the pager will use vertical layout instead of horizontal
  */
-open class TablePager(val vertical: Boolean = false) : Table() {
-	
+open class TablePager(
+	val vertical: Boolean = false,
+	background: Drawable = Styles.black3
+) : Table(background) {
 	lateinit var buttonsTable: Table
 	lateinit var pageContainer: Table
 	
@@ -24,7 +27,8 @@ open class TablePager(val vertical: Boolean = false) : Table() {
 	init {
 		limitedScrollPane(limitH = vertical) {
 			margin(5f)
-			it.setScrollBarPositions(!vertical, vertical)
+			it.isScrollingDisabledX = vertical
+			it.isScrollingDisabledY = !vertical
 			
 			buttonsTable = this
 		}.also {
@@ -40,9 +44,11 @@ open class TablePager(val vertical: Boolean = false) : Table() {
 			
 			pageContainer = this
 		}.padLeft(5f).grow()
-
-		background = Styles.black3
 	}
+
+	// preserving binary compatibility just in case
+	@Deprecated("Use the primary constructor instead.", level = DeprecationLevel.HIDDEN)
+	constructor(vertical: Boolean = false) : this(vertical, Styles.black3)
 	
 	/** Sets the background of the two inner tables */
 	override fun setBackground(drawable: Drawable) {
@@ -82,5 +88,4 @@ open class TablePager(val vertical: Boolean = false) : Table() {
 			it.constructor()
 		})
 	}
-	
 }
