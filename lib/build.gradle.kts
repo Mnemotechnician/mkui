@@ -11,7 +11,7 @@ repositories {
 	maven("https://www.jitpack.io")
 }
 
-val mindustryVersion = "master-SNAPSHOT"
+val mindustryVersion = "v135.2"
 
 dependencies {
 	compileOnly("com.github.Anuken.Arc:arc-core:$mindustryVersion")
