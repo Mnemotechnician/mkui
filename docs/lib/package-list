@@ -2,6 +2,7 @@ $dokka.format:html-v1
 $dokka.linkExtension:html
 $dokka.location:com.github.mnemotechnician.mkui.ui////PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/index.html
 $dokka.location:com.github.mnemotechnician.mkui.ui/TablePager///PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/-table-pager/index.html
+$dokka.location:com.github.mnemotechnician.mkui.ui/TablePager/TablePager/#kotlin.Boolean#arc.scene.style.Drawable/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/-table-pager/-table-pager.html
 $dokka.location:com.github.mnemotechnician.mkui.ui/TablePager/TablePager/#kotlin.Boolean/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/-table-pager/-table-pager.html
 $dokka.location:com.github.mnemotechnician.mkui.ui/TablePager/addPage/#kotlin.String#arc.scene.ui.layout.Table/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/-table-pager/add-page.html
 $dokka.location:com.github.mnemotechnician.mkui.ui/TablePager/addPage/#kotlin.String#kotlin.Function1[arc.scene.ui.layout.Table,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/-table-pager/add-page.html
@@ -48,6 +49,8 @@ $dokka.location:com.github.mnemotechnician.mkui//childOrNull/arc.scene.Group#kot
 $dokka.location:com.github.mnemotechnician.mkui//content/arc.scene.ui.Label#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/content.html
 $dokka.location:com.github.mnemotechnician.mkui//content/arc.scene.ui.TextButton#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/content.html
 $dokka.location:com.github.mnemotechnician.mkui//content/arc.scene.ui.TextField#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/content.html
+$dokka.location:com.github.mnemotechnician.mkui//createBaseDialog/#kotlin.String#arc.scene.ui.Dialog.DialogStyle#kotlin.Boolean#kotlin.Boolean#kotlin.Function1[mindustry.ui.dialogs.BaseDialog,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/create-base-dialog.html
+$dokka.location:com.github.mnemotechnician.mkui//createDialog/#kotlin.String#arc.scene.ui.Dialog.DialogStyle#kotlin.Boolean#kotlin.Boolean#kotlin.Function2[kotlin.String,arc.scene.ui.Dialog.DialogStyle,arc.scene.ui.Dialog]#kotlin.Function1[arc.scene.ui.Dialog,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/create-dialog.html
 $dokka.location:com.github.mnemotechnician.mkui//createTable/#arc.scene.style.Drawable#kotlin.Function1[arc.scene.ui.layout.Table,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/create-table.html
 $dokka.location:com.github.mnemotechnician.mkui//createWrapper/#kotlin.Function2[arc.scene.ui.layout.Table,kotlin.Float,kotlin.Float]#kotlin.Function2[arc.scene.ui.layout.Table,kotlin.Float,kotlin.Float]#kotlin.Function1[arc.scene.ui.layout.Table,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/create-wrapper.html
 $dokka.location:com.github.mnemotechnician.mkui//customButton/arc.scene.ui.layout.Table#kotlin.Function1[arc.scene.ui.Button,kotlin.Unit]#arc.scene.ui.Button.ButtonStyle#kotlin.Function1[arc.scene.ui.Button,kotlin.Unit]/PointingToDeclaration/lib/com.github.mnemotechnician.mkui/custom-button.html
