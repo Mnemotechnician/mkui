@@ -21,7 +21,7 @@ import kotlin.math.min
  */
 object WindowManager {
 	internal val windowGroup = WidgetGroup()
-	internal val windows = Seq<Window>()
+	internal val windows = ArrayList<Window>() // not using Seq because it's unstable garbage.
 	
 	/** Windows that were requested to be created before the window manager was initialized are placed into this queue */
 	internal val windowQueue = Queue<Window>(10)
@@ -47,7 +47,7 @@ object WindowManager {
 		}
 		
 		Events.run(EventType.Trigger.update) {
-			windows.each {
+			windows.forEach {
 				// keep in stage
 				val root = it.rootTable
 				val pos = root.localToParentCoordinates(Tmp.v1.set(0f, 0f))
