@@ -18,7 +18,7 @@ import mindustry.ui.Styles
 open class TablePager(
 	val vertical: Boolean = false,
 	background: Drawable = Styles.black3
-) : Table(background) {
+) : Table() {
 	lateinit var buttonsTable: Table
 	lateinit var pageContainer: Table
 	
@@ -44,6 +44,8 @@ open class TablePager(
 			
 			pageContainer = this
 		}.padLeft(5f).grow()
+
+		setBackground(background)
 	}
 
 	// preserving binary compatibility just in case
