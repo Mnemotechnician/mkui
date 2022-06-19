@@ -38,5 +38,5 @@ jobs:
           git config --global user.name 'Github Actions'
           git config --global user.email 'actions@github.com'
           git add -A
-          git commit -am "[auto] upload kotlin docs"
-          git push
+          git commit -am "[auto] upload kotlin docs" || true
+          git push || true
