@@ -4,7 +4,6 @@ $dokka.location:com.github.mnemotechnician.mkui.ui////PointingToDeclaration/lib
 $dokka.location:com.github.mnemotechnician.mkui.ui/TablePager.Page///PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/-table-pager/-page/index.html
 $dokka.location:com.github.mnemotechnician.mkui.ui/TablePager.Page/Page/#kotlin.String#arc.scene.style.Drawable/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/-table-pager/-page/-page.html
 $dokka.location:com.github.mnemotechnician.mkui.ui/TablePager.Page/button/#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/-table-pager/-page/button.html
-$dokka.location:com.github.mnemotechnician.mkui.ui/TablePager.Page/name/#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/-table-pager/-page/name.html
 $dokka.location:com.github.mnemotechnician.mkui.ui/TablePager.Page/parent/#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/-table-pager/-page/parent.html
 $dokka.location:com.github.mnemotechnician.mkui.ui/TablePager.Page/remove/#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/-table-pager/-page/remove.html
 $dokka.location:com.github.mnemotechnician.mkui.ui/TablePager.Page/show/#/PointingToDeclaration/lib/com.github.mnemotechnician.mkui.ui/-table-pager/-page/show.html
