@@ -15,7 +15,10 @@ jobs:
         uses: actions/checkout@v2
         
       - name: compile
+        env:
+          version: ${{ github.run_number }}
         run: |
+          sed -i "s/version = 1\.0/version = $version/g" lib/build.gradle.kts
           chmod +x gradlew
           ./gradlew test jar
       

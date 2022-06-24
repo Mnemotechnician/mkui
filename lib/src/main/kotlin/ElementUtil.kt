@@ -29,7 +29,7 @@ inline var TextField.hint: String?
 inline fun <reified T: Element> Element.asOrNull() = this as? T
 
 /** Returns the Cell of this element or null if it's not added to a table */
-inline fun <reified T: Element> T.cell(): Cell<Element>? = this.parent?.asOrNull<Table>()?.getCell(this);
+inline fun <reified T: Element> T.cell(): Cell<T>? = this.parent?.asOrNull<Table>()?.getCell(this) as? Cell<T>?;
 
 /** Returns the element inside a type-erased cell, casted to the providen class */
 inline fun <reified T> Cell<Element>.getAs() = get() as T;

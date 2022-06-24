@@ -1,5 +1,6 @@
 package com.github.mnemotechnician.mkui.ui
 
+import arc.scene.Element
 import arc.scene.style.Drawable
 import arc.scene.ui.*
 import arc.scene.ui.layout.*
@@ -19,6 +20,12 @@ open class TablePager(
 	val vertical: Boolean = false,
 	background: Drawable = Styles.black3
 ) : Table() {
+	/**
+	 * All pages added to this pager.
+	 * Do not modify manually, as that may break everything.
+	 */
+	val pages = HashSet<Page>()
+
 	lateinit var buttonsTable: Table
 	lateinit var pageContainer: Table
 	
@@ -47,47 +54,99 @@ open class TablePager(
 
 		setBackground(background)
 	}
-
-	// preserving binary compatibility just in case
-	@Deprecated("Use the primary constructor instead.", level = DeprecationLevel.HIDDEN)
-	constructor(vertical: Boolean = false) : this(vertical, Styles.black3)
 	
 	/** Sets the background of the two inner tables */
 	override fun setBackground(drawable: Drawable) {
 		buttonsTable.background = drawable
 		pageContainer.background = drawable
 	}
+
+	@Deprecated("Backward compatibility method", ReplaceWith("addPage(name, Page())"), DeprecationLevel.ERROR)
+	open fun addPage(name: String, page: Table): Cell<TextButton> = addPage(name) { add(page) }.button.cell()!!
 	
-	/** Adds a page and a respective button. @return the cell of the button */
-	open fun addPage(name: String, page: Table): Cell<TextButton> {
-		return buttonsTable.textButton(name, Styles.togglet) {
+	/**
+	 * Adds a page wrapping the providen element, which fills the table.
+	 *
+	 * @return the created [Page].
+	 */
+	fun addPage(pageName: String, element: Element) = addPage(pageName) {
+		add(element).grow()
+	}
+
+	/**
+	 * Adds a page constructed by a lambda.
+	 * Note that this method only constructs the page during the function invocation and then reuses it.
+	 *
+	 * @return the created page.
+	 */
+	inline fun addPage(pageName: String, constructor: Page.() -> Unit): Page {
+		return Page(pageName).apply(constructor)
+	}
+
+	/**
+	 * Finds a page by name.
+	 */
+	fun findPage(pageName: String) = pages.find { it.name == pageName }
+
+	/**
+	 * Removes a page by name.
+	 */
+	fun removePage(pageName: String) = findPage(pageName)?.remove() != null
+
+	/**
+	 * Removes the providen page. Does nothing if the page doesn't belong to this pager.
+	 */
+	fun removePage(page: Page) = page in pages && page.remove()
+
+	/**
+	 * Represents a page of [TablePager].
+	 * Upon the creation, adds a button to [buttonsTable].
+	 *
+	 * Note that [Page]s of one [TablePager] are incompatible with other.
+	 * Moving a page from one pager to another might cause bizarre errors.
+	 */
+	inner class Page(
+		var name: String,
+		background: Drawable = Styles.none
+	) : Table(background) {
+		/** The button that allows the user to switch to this page. */
+		val button: TextButton
+		val parent get() = this@TablePager
+
+		init {
+			button = buttonsTable.textButton({ name }, Styles.togglet) { show() }.also {
+				it.group(group)
+
+				if (vertical) {
+					it.fillX().row()
+				} else {
+					it.fillY()
+				}
+			}.get()
+
+			if (buttonsTable.children.size == 1) button.fireClick()
+		}
+
+		/**
+		 * Forcibly switches the parent [TablePager] to this page.
+		 */
+		fun show() {
 			pageContainer.clearChildren()
-			pageContainer += page
+			pageContainer += this
 
 			buttonsTable.invalidateHierarchy()
 			pageContainer.invalidateHierarchy()
-		}.also {
-			it.group(group)
-			
-			if (vertical) {
-				it.fillX().row()
-			} else {
-				it.fillY()
-			}
-			
-			if (buttonsTable.children.size <= 1) it.get().fireClick() //the first added button should be clicked automatically
+			pageContainer.pack()
 		}
-	}
-	
-	/**
-	 * Adds a page constructed by a lambda and a respective button.
-	 * Note that this method only constructs the page during the function invocation and then reuses it.
-	 *
-	 * @return the cell of the created button that opens this page.
-	 */
-	inline fun addPage(name: String, constructor: Table.() -> Unit): Cell<TextButton> {
-		return addPage(name, Table().also {
-			it.constructor()
-		})
+
+		/**
+		 * Removes this page from it's [TablePager].
+		 *
+		 * @return true if both the button and the page were removed from the parent.
+		 */
+		override fun remove(): Boolean {
+			pages.remove(this)
+			return button.remove() && super.remove()
+		}
 	}
 }

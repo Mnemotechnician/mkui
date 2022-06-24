@@ -4,7 +4,6 @@ import arc.*
 import arc.graphics.Color
 import arc.input.KeyCode
 import arc.math.*
-import arc.scene.Element
 import arc.scene.actions.Actions
 import arc.scene.event.*
 import arc.scene.ui.layout.*
@@ -22,21 +21,21 @@ import kotlin.math.min
 object WindowManager {
 	internal val windowGroup = WidgetGroup()
 	internal val windows = ArrayList<Window>() // not using Seq because it's unstable garbage.
-	
+
 	/** Windows that were requested to be created before the window manager was initialized are placed into this queue */
 	internal val windowQueue = Queue<Window>(10)
 	private var initialized = false
-	
+
 	init {
 		// If client has loaded, this is executed immediately. Otherwise, it is delayed until CLI
 		{
 			windowGroup.setFillParent(true)
 			windowGroup.touchable = Touchable.childrenOnly
 			Core.scene.add(windowGroup)
-			
+
 			initialized = true
 			repeat(windowQueue.size) { constructWindow(windowQueue.removeFirst()) }
-			
+
 			Log.info("[blue]Initialized the window manager")
 		}.let {
 			if (Vars.clientLoaded) {
@@ -45,7 +44,7 @@ object WindowManager {
 				Events.run(EventType.ClientLoadEvent::class.java, it)
 			}
 		}
-		
+
 		Events.run(EventType.Trigger.update) {
 			windows.forEach {
 				// keep in stage
@@ -57,14 +56,14 @@ object WindowManager {
 					Mathf.clamp(pos.y, 0f, windowGroup.height - root.prefHeight),
 				)
 
-				root.color.a = if (it.isDragging) 0.5f else 1f
+				root.color.a = if (it.isDragged) 0.5f else 1f
 				root.setSize(root.prefWidth, root.prefHeight)
-				
+
 				it.onUpdate()
 			}
 		}
 	}
-	
+
 	/** Actually creates the window without any delays. Must be called after the initialization. */
 	internal fun constructWindow(window: Window) {
 		val windowTable = createWrapper(
@@ -73,17 +72,15 @@ object WindowManager {
 		) {
 			background = Styles.black6
 			clip = true
-			
+
 			window.rootTable = this
-			
+
 			// top border
 			hsplitter(Color.white, 0f).colspan(3)
-			
+
 			// left border
 			vsplitter(Color.white, 0f)
 
-			lateinit var collapser: Collapser
-			
 			// the inner part of the window
 			wrapper(
 				{ min(it, windowGroup.width) },
@@ -101,23 +98,41 @@ object WindowManager {
 						center().left()
 
 						// window name
-						addLabel({ window.name }, ellipsis = "...").fillY().growX().get().setFontScale(0.6f)
-							
+						addLabel({ window.name }, ellipsis = "...").fillY().growX().get()
+							.setFontScale(0.6f)
+
 						// adding a drag listener
 						addListener(object : InputListener() {
 							var dragx = 0f
 							var dragy = 0f
 
-							override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: KeyCode): Boolean {
+							override fun touchDown(
+								event: InputEvent,
+								x: Float,
+								y: Float,
+								pointer: Int,
+								button: KeyCode
+							): Boolean {
 								dragx = x; dragy = y
-								window.isDragging = true
+								window.isDragged = true
 								return true
 							}
-							
-							override fun touchDragged(event: InputEvent, x: Float, y: Float, pointer: Int) {
-								val pos = window.rootTable.localToParentCoordinates(Tmp.v1.set(x - dragx, y - dragy))
+
+							override fun touchDragged(
+								event: InputEvent,
+								x: Float,
+								y: Float,
+								pointer: Int
+							) {
+								val pos =
+									window.rootTable.localToParentCoordinates(
+										Tmp.v1.set(
+											x - dragx,
+											y - dragy
+										)
+									)
 								window.rootTable.setPosition(pos.x, pos.y)
-								
+
 								window.onDrag()
 
 								//the window's been dragged, exit from full screen mode
@@ -126,68 +141,76 @@ object WindowManager {
 									window.onFullScreen(false)
 								}
 							}
-							
-							override fun touchUp(e: InputEvent, x: Float, y: Float, pointer: Int, button: KeyCode) {
-								window.isDragging = false
+
+							override fun touchUp(
+								e: InputEvent,
+								x: Float,
+								y: Float,
+								pointer: Int,
+								button: KeyCode
+							) {
+								window.isDragged = false
 							}
 						})
 					}.growX().fillY()
 
 					// collapse/show button
 					textToggle({ if (it) "[accent]=" else "[accent]-" }, Styles.togglet) {
-						collapser.setCollapsed(it, true)
 						window.isCollapsed = it
-						window.onToggle(it)
 					}
 
 					// fullscreen button
 					hider(hideHorizontal = { !window.supportsFullScreen }) {
-						textButton({ if (window.fullScreen) "[accent]•" else "[accent]O" }, Styles.togglet) {
+						textButton(
+							{ if (window.fullScreen) "[accent]•" else "[accent]O" },
+							Styles.togglet
+						) {
 							window.fullScreen = !window.fullScreen
-							window.onFullScreen(window.fullScreen)
 						}.size(40f).update {
 							it.isChecked = window.fullScreen
 						}
 					}
-					
+
 					// close button
 					hider(hideHorizontal = { !window.closeable }) {
 						textButton("[red]X", Styles.togglet) {
-							this@createWrapper.fadeRemove()
-							window.onDestroy()
+							window.destroy()
 						}.size(40f)
 					}
 				}.pad(5f).growX().row()
-					
+
 				// main container.
-				collapser = addCollapser(true) {
+				window.collapser = addCollapser(true) {
 					hsplitter(Color.white, 0f, 5f)
-					
+
 					addTable {
 						clip = true
 						background = Styles.black3
-						
+
 						window.table = this
 					}.grow()
 				}.grow().margin(5f).get()
 			}.grow()
-			
+
 			// right border
 			vsplitter(Color.white, 0f)
-			
+
 			// bottom border
 			hsplitter(Color.white, 0f).colspan(3)
 		}
-		
+
 		window.onCreate()
-		
+
 		windowGroup.addChild(windowTable)
-		windowTable.fadeIn()
+		windowTable.actions(
+			Actions.alpha(0f),
+			Actions.fadeIn(0.5f, Interp.pow3)
+		)
 		windowTable.setPosition(Core.scene.width / 2, Core.scene.height / 2)
-		
+
 		windows.add(window)
 	}
-	
+
 	/** Constructs & registers the window. If the game hasn't yet loaded, delays the creation */
 	fun createWindow(window: Window) {
 		if (initialized) {
@@ -196,7 +219,7 @@ object WindowManager {
 			windowQueue.add(window)
 		}
 	}
-	
+
 	/**
 	 * Creates an anonymous window. Such a window won't be able to receive any events other than onCreate.
 	 *
@@ -206,26 +229,12 @@ object WindowManager {
 	inline fun createWindow(name: String, crossinline constructor: Table.() -> Unit) {
 		createWindow(object : Window() {
 			override var name = name
-			
+
 			override var closeable = true
-			
+
 			override fun onCreate() {
 				table.constructor()
 			}
 		})
-	}
-	
-	internal fun Element.fadeIn() {
-		addAction(Actions.sequence(
-			Actions.alpha(0f),
-			Actions.fadeIn(0.5f, Interp.pow3)
-		))
-	}
-	
-	internal fun Element.fadeRemove() {
-		addAction(Actions.sequence(
-			Actions.fadeOut(0.5f, Interp.pow3),
-			Actions.run { if (parent != null) parent.removeChild(this) }
-		))
 	}
 }

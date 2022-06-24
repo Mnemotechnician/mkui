@@ -1,9 +1,15 @@
 package com.github.mnemotechnician.mkui.windows
 
+import arc.math.Interp
+import arc.scene.Action
+import arc.scene.actions.Actions
+import arc.scene.ui.layout.Collapser
 import arc.scene.ui.layout.Table
 
 /**
  * A class that represents a floating on-screen window that the user can drag and interact with.
+ *
+ * In most cases an instance of this class has to be passed to [WindowManager] before anything can be done with it.
  */
 abstract class Window {
 	
@@ -20,23 +26,40 @@ abstract class Window {
 	open val supportsFullScreen: Boolean
 		get() = false
 	
-	/** The root of the window. Should not be modified nor accessed outside of WindowManager. */
+	/** The root of the window. Should not be modified nor accessed outside WindowManager. */
 	internal lateinit var rootTable: Table
+
+	/** The collapser that wraps [table].*/
+	internal lateinit var collapser: Collapser
 	
 	/** The table this window is assigned to. Initialized when the window is created. */
 	lateinit var table: Table
 		internal set
-	
-	/** Whether this window is collapsed by the user */
-	var isCollapsed = false
-		internal set
-	
+
 	/** Whether the window is being dragged by the user right now */
-	var isDragging = false
+	var isDragged = false
 		internal set
-	
-	/** Whether the window is in the full screen mode */
+
+	/**
+	 * Whether this window is collapsed.
+	 * Modifying this property triggers [onToggle].
+	 */
+	var isCollapsed = false
+		set(value) {
+			collapser.setCollapsed(value, true)
+			field = value
+			onToggle(value)
+		}
+
+	/**
+	 * Whether the window is in the full screen mode.
+	 * Modifying this property triggers [onFullScreen].
+	 */
 	var fullScreen = false
+		set(value) {
+			field = value
+			onFullScreen(value)
+		}
 	
 	/**
 	 * Called when the window is being created.
@@ -72,5 +95,40 @@ abstract class Window {
 	/** Called when the window is being destroyed. Usually this means that the user has closed the window. */
 	open fun onDestroy() {
 	}
-	
+
+	/**
+	 * Destroys this window, removing it from the scene and triggering [onDestroy].
+	 */
+	fun destroy() {
+		WindowManager.windows.remove(this)
+		addAction(
+			Actions.sequence(
+				Actions.fadeOut(0.5f, Interp.pow3),
+				Actions.run { rootTable?.parent?.removeChild(rootTable) }
+			)
+		)
+		onDestroy()
+	}
+
+	/**
+	 * Packs the root table of this window, reducing it's size to the minimum required size.
+	 */
+	open fun pack() = rootTable.pack()
+
+	/**
+	 * Applies an action to the **root table**.
+	 */
+	open fun addAction(action: Action) = rootTable.addAction(action)
+
+	override fun equals(other: Any?): Boolean {
+		return this === other || (other is Window && name == other.name && closeable == other.closeable && rootTable == other.rootTable)
+	}
+
+	override fun hashCode(): Int {
+		var result = name.hashCode()
+		result = 31 * result + closeable.hashCode()
+		result = 31 * result + supportsFullScreen.hashCode()
+		result = 31 * result + rootTable.hashCode()
+		return result
+	}
 }
