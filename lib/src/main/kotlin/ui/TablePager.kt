@@ -91,12 +91,12 @@ open class TablePager(
 	/**
 	 * Removes a page by name.
 	 */
-	fun removePage(pageName: String) = findPage(pageName)?.remove() != null
+	fun removePage(pageName: String) = findPage(pageName)?.removePage() != null
 
 	/**
 	 * Removes the providen page. Does nothing if the page doesn't belong to this pager.
 	 */
-	fun removePage(page: Page) = page in pages && page.remove()
+	fun removePage(page: Page) = page in pages && page.removePage()
 
 	/**
 	 * Represents a page of [TablePager].
@@ -146,7 +146,7 @@ open class TablePager(
 		 *
 		 * @return true if both the button and the page were removed from the parent.
 		 */
-		override fun remove(): Boolean {
+		fun removePage(): Boolean {
 			pages.remove(this)
 			return button.remove() && super.remove()
 		}
