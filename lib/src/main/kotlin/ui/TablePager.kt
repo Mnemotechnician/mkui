@@ -106,7 +106,7 @@ open class TablePager(
 	 * Moving a page from one pager to another might cause bizarre errors.
 	 */
 	inner class Page(
-		var name: String,
+		name: String,
 		background: Drawable = Styles.none
 	) : Table(background) {
 		/** The button that allows the user to switch to this page. */
@@ -114,6 +114,8 @@ open class TablePager(
 		val parent get() = this@TablePager
 
 		init {
+			this.name = name
+
 			button = buttonsTable.textButton({ name }, Styles.togglet) { show() }.also {
 				it.group(group)
 
