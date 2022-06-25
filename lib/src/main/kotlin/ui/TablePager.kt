@@ -138,7 +138,10 @@ open class TablePager(
 
 			buttonsTable.invalidateHierarchy()
 			pageContainer.invalidateHierarchy()
-			pageContainer.pack()
+
+			buttonsTable.setSize(0f, 0f)
+			pageContainer.setSize(0f, 0f)
+			setSize(0f, 0f)
 		}
 
 		/**
