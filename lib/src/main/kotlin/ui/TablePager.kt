@@ -136,21 +136,21 @@ open class TablePager(
 			pageContainer.clearChildren()
 			pageContainer += this
 
-			buttonsTable.invalidateHierarchy()
-			pageContainer.invalidateHierarchy()
-
-			buttonsTable.setSize(0f, 0f)
-			pageContainer.setSize(0f, 0f)
-			setSize(0f, 0f)
+			this@TablePager.deepShrink()
+			button.isChecked = true
 		}
 
 		/**
 		 * Removes this page from it's [TablePager].
+		 * If there are some other pages left in the pager, the first page is shown instead.
 		 *
 		 * @return true if both the button and the page were removed from the parent.
 		 */
 		fun removePage(): Boolean {
 			pages.remove(this)
+			if (pages.isNotEmpty()) {
+				pages.first().show()
+			}
 			return button.remove() && super.remove()
 		}
 	}

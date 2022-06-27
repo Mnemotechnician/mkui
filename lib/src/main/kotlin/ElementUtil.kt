@@ -1,6 +1,8 @@
 package com.github.mnemotechnician.mkui
 
+import arc.Core
 import arc.scene.Element
+import arc.scene.Group
 import arc.scene.ui.*
 import arc.scene.ui.layout.*
 import arc.util.Scaling
@@ -65,3 +67,48 @@ fun Cell<*>.scaleImage(scaling: Scaling) = this.also { cell ->
 	}
 }
 
+/**
+ * Reduces the size of the element to (0, 0) and invalidates it,
+ * effectively reducing its size to the minimum.
+ * 
+ * For groups, see [Element.deepShrink].
+ * 
+ * @param invalidateParents whether to invalidate hierarchy
+ */
+fun Element.shrink(invalidateParents: Boolean = false) {
+	setSize(0f, 0f)
+	if (invalidateParents) invalidateHierarchy() else invalidate()
+}
+
+/**
+ * Reduces the whole of the element to (0, 0) and invalidates hierarchy,
+ * effectively reducing the size of this group to the minimum.
+ * 
+ * This method recursively shrinks all children of the group except for [Stack]s.
+ * That can cause custom [WidgetGroup]s to break if their elements are
+ * arranged manually.
+ *
+ * @param invalidateParents whether to invalidate hierarchy. Has no special effect if [shrinkParents] is true.
+ * @param shrinkParents whether to shrink all parents except the scene root. Use with caution.
+ */
+fun Group.deepShrink(shrinkParents: Boolean = false, invalidateParents: Boolean = true) {
+	shrink(false)
+
+	for (child in children) {
+		if (child is Group && child !is Stack) {
+			child.deepShrink(false, false)
+		} else {
+			child.shrink(false)
+		}
+	}
+
+	if (shrinkParents) {
+		var group = parent
+		while (group != null && group != Core.scene.root) {
+			group.shrink()
+			group = group.parent
+		}
+	} else if (invalidateParents) {
+		invalidateHierarchy()
+	}
+}

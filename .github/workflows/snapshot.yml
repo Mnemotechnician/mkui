@@ -21,6 +21,8 @@ jobs:
           sed -i "s/version = 1\.0/version = $version/g" lib/build.gradle.kts
           chmod +x gradlew
           ./gradlew test jar
+          
+          echo "DESCRIPTION=$( echo '${{ github.event.inputs.description }}' | sed "s/%20/\n/g" )" >> $GITHUB_ENV 
       
       - name: create release
         uses: svenstaro/upload-release-action@2.2.1
@@ -28,7 +30,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: lib/build/libs/MKUI.jar
           tag: ${{ github.run_number }}
-          body: ${{ github.event.inputs.description }}
+          body: ${{ env.DESCRIPTION }}
         
       - name: generate kotlin doc
         run: ./gradlew dokkaHtml

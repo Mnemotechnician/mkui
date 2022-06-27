@@ -5,6 +5,7 @@ import arc.scene.Action
 import arc.scene.actions.Actions
 import arc.scene.ui.layout.Collapser
 import arc.scene.ui.layout.Table
+import com.github.mnemotechnician.mkui.deepShrink
 
 /**
  * A class that represents a floating on-screen window that the user can drag and interact with.
@@ -104,16 +105,16 @@ abstract class Window {
 		addAction(
 			Actions.sequence(
 				Actions.fadeOut(0.5f, Interp.pow3),
-				Actions.run { rootTable?.parent?.removeChild(rootTable) }
+				Actions.run { rootTable.parent?.removeChild(rootTable) }
 			)
 		)
 		onDestroy()
 	}
 
 	/**
-	 * Packs the root table of this window, reducing it's size to the minimum required size.
+	 * Shrinks the root table of this window, reducing it's size to the minimum preferred size.
 	 */
-	open fun pack() = rootTable.pack()
+	open fun shrink() = rootTable.deepShrink()
 
 	/**
 	 * Applies an action to the **root table**.
