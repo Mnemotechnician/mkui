@@ -22,7 +22,7 @@ jobs:
           chmod +x gradlew
           ./gradlew test jar
           
-          echo "DESCRIPTION=$( echo '${{ github.event.inputs.description }}' | sed "s/%20/\n/g" )" >> $GITHUB_ENV 
+          echo "DESCRIPTION='$( echo '${{ github.event.inputs.description }}' | sed "s/%20/\n/g" )'" >> $GITHUB_ENV 
       
       - name: create release
         uses: svenstaro/upload-release-action@2.2.1
