@@ -18,12 +18,12 @@ jobs:
         id: compile
         env:
           version: ${{ github.run_number }}
+          description: ${{ github.event.inputs.description }}
         run: |
           sed -i "s/version = 1\.0/version = $version/g" lib/build.gradle.kts
           chmod +x gradlew
           ./gradlew test jar
           
-          description='${{ github.event.inputs.description }}'
           echo "::set-output name=description::${description//\\n/%0A}"
       
       - name: create release
