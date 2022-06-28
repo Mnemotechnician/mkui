@@ -69,14 +69,20 @@ fun Cell<*>.scaleImage(scaling: Scaling) = this.also { cell ->
 
 /**
  * Reduces the size of the element to (0, 0) and invalidates it,
- * effectively reducing its size to the minimum.
+ * effectively reducing its size to the minimum. Label is an exception:
+ * itd width is set to its preferred width due to how labels work.
  * 
  * For groups, see [Element.deepShrink].
  * 
  * @param invalidateParents whether to invalidate hierarchy
  */
 fun Element.shrink(invalidateParents: Boolean = false) {
-	setSize(0f, 0f)
+	if (this !is Label) {
+		setSize(0f, 0f)
+	} else {
+		setSize(prefWidth, 0f)
+	}
+
 	if (invalidateParents) invalidateHierarchy() else invalidate()
 }
 
