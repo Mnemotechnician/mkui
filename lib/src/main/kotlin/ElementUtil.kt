@@ -149,7 +149,7 @@ inline fun <reified T: Element> Element.findOrNull(elementName: String? = null):
  * 
  * @throws IllegalArgumentException if there's no such element.
  */
-inline fun <reified T: Element> Element.find(elementName: String? = null): T {
+inline fun <reified T: Element> Element.findElement(elementName: String? = null): T {
 	return findOrNull(elementName)
 		?: throw IllegalArgumentException("Element with type ${T::class}${if (elementName == null) "" else " and name '$elementName'"} was not found")
 }
