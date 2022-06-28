@@ -15,6 +15,7 @@ jobs:
         uses: actions/checkout@v2
         
       - name: compile
+        id: compile
         env:
           version: ${{ github.run_number }}
         run: |
@@ -22,7 +23,8 @@ jobs:
           chmod +x gradlew
           ./gradlew test jar
           
-          echo "DESCRIPTION=$( echo '${{ github.event.inputs.description }}' | sed "s/\\\\n/%0A/g" )" >> $GITHUB_ENV 
+          description='${{ github.event.inputs.description }}'
+          echo "::set-output name=description::${description//\\n/%0A}"
       
       - name: create release
         uses: svenstaro/upload-release-action@2.2.1
@@ -30,7 +32,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: lib/build/libs/MKUI.jar
           tag: ${{ github.run_number }}
-          body: ${{ env.DESCRIPTION }}
+          body: ${{ steps.compile.outputs.description }}
         
       - name: generate kotlin doc
         run: ./gradlew dokkaHtml
