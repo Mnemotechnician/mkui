@@ -1,4 +1,4 @@
-package com.github.mnemotechnician.mkui.ui
+package com.github.mnemotechnician.mkui.ui.layout
 
 import arc.scene.Element
 import arc.scene.style.Drawable

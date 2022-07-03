@@ -2,6 +2,7 @@ package com.github.mnemotechnician.mkui.extensions.dsl
 
 import arc.graphics.Color
 import arc.graphics.g2d.TextureRegion
+import arc.scene.Element
 import arc.scene.style.Drawable
 import arc.scene.ui.*
 import arc.scene.ui.layout.*
@@ -56,13 +57,16 @@ fun Table.addImage(drawable: TextureRegion, scaling: Scaling = Scaling.stretch):
 }
 
 /** Adds a dynamic image to the table and returns the created cell */
-inline fun Table.addImage(crossinline provider: () -> TextureRegion, scaling: Scaling = Scaling.stretch): Cell<Image> {
+inline fun Table.addImage(crossinline provider: () -> Drawable, scaling: Scaling = Scaling.stretch): Cell<Image> {
 	return add(Image(provider()).also {
 		it.setScaling(scaling)
-		it.update { it.setDrawable(provider()) }
+		it.update { it.drawable = provider() }
 	})
 }
 
+/**
+ * Adds a single-line TextField to the table and returns the created cell.
+ */
 inline fun Table.textField(
 	text: String = "",
 	style: TextField.TextFieldStyle = Styles.defaultField,
@@ -73,6 +77,9 @@ inline fun Table.textField(
 	})
 }
 
+/**
+ * Adds a multi-line TextArea to the table and returns thencreated cell.
+ */
 inline fun Table.textArea(
 	text: String = "",
 	style: TextField.TextFieldStyle = Styles.areaField,
@@ -94,4 +101,15 @@ fun Table.hsplitter(color: Color = Color.white, padTop: Float = 5f, padBottom: F
 /** Creates a vertical splitter and returns the created cell. */
 fun Table.vsplitter(color: Color = Color.white, padLeft: Float = 5f, padRight: Float = padLeft): Cell<Image> {
 	return addImage(Tex.whiteui).color(color).fillY().padLeft(padLeft).padRight(padRight)
+}
+
+/**
+ * Adds a simple [Element] that returns the providen size as its preferred size.
+ */
+fun Table.addSpace(
+	spaceWidth: Float = 1f,
+	spaceHeight: Float = 1f
+) = object : Element() {
+	override fun getPrefWidth() = spaceWidth
+	override fun getPrefHeight() = spaceHeight
 }
