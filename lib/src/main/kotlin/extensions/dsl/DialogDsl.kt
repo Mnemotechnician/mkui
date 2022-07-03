@@ -1,4 +1,4 @@
-package com.github.mnemotechnician.mkui
+package com.github.mnemotechnician.mkui.extensions.dsl
 
 import arc.scene.ui.Dialog
 import arc.scene.ui.Dialog.DialogStyle
