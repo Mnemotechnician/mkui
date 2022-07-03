@@ -29,7 +29,7 @@ publishing {
 		create<MavenPublication>("maven") {
 			groupId = "com.github.mnemotechnician"
 			artifactId = "mkui"
-			version = "1.0"
+			version = "v1.0"
 
 			from(components["java"])
 		}

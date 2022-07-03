@@ -20,10 +20,10 @@ jobs:
       - name: compile
         id: compile
         env:
-          version: ${{ github.run_number }}
+          version: ${{ github.event.inputs.version }}
           description: ${{ github.event.inputs.description }}
         run: |
-          sed -i "s/version = 1\.0/version = $version/g" lib/build.gradle.kts
+          sed -i "s/version = v1\.0/version = $version/g" lib/build.gradle.kts
           chmod +x gradlew
           ./gradlew test jar
           
