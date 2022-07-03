@@ -1,4 +1,4 @@
-package ui.element
+package com.github.mnemotechnician.mkui.ui.element
 
 import arc.scene.ui.Button
 import arc.scene.ui.layout.Cell

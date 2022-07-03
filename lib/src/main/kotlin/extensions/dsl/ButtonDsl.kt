@@ -6,8 +6,8 @@ import arc.scene.ui.*
 import arc.scene.ui.layout.*
 import arc.util.Scaling
 import com.github.mnemotechnician.mkui.extensions.groups.child
+import com.github.mnemotechnician.mkui.ui.element.ToggleButton
 import mindustry.ui.Styles
-import ui.element.ToggleButton
 
 /** Adds a custom button constructed by a lambda and returns the created cell */
 inline fun Table.customButton(
