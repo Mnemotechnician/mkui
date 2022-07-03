@@ -6,7 +6,7 @@ import arc.scene.ui.*
 import arc.scene.ui.layout.*
 import com.github.mnemotechnician.mkui.extensions.dsl.*
 import com.github.mnemotechnician.mkui.extensions.elements.cell
-import com.github.mnemotechnician.mkui.extensions.elements.deepShrink
+import com.github.mnemotechnician.mkui.extensions.groups.deepShrink
 import com.github.mnemotechnician.mkui.extensions.groups.plus
 import mindustry.ui.Styles
 
@@ -33,6 +33,12 @@ open class TablePager(
 
 	lateinit var buttonsTable: Table
 	lateinit var pageContainer: Table
+
+	/**
+	 * If true, when the tab switches, this TablePager and the current page
+	 * will shrink to the minimum size. This can cause issues.
+	 */
+	var shrinkOnSwitch = true
 	
 	init {
 		limitedScrollPane(limitH = vertical) {
@@ -64,7 +70,7 @@ open class TablePager(
 		pageContainer.background = drawable
 	}
 
-	@Deprecated("Backward compatibility method", ReplaceWith("addPage(name, Page())"), DeprecationLevel.ERROR)
+	@Deprecated("Backward compatibility method", ReplaceWith("addPage(name, this as Element)"), DeprecationLevel.ERROR)
 	open fun addPage(name: String, page: Table): Cell<TextButton> = addPage(name) { add(page) }.button.cell()!!
 	
 	/**
@@ -83,23 +89,26 @@ open class TablePager(
 	 * @return the created page.
 	 */
 	inline fun addPage(pageName: String, constructor: Page.() -> Unit): Page {
-		return Page(pageName).apply(constructor)
+		return createPage(pageName).apply(constructor)
 	}
+
+	/** Creates a blank page and returns it. May be overridden by subclasses. */
+	open fun createPage(name: String): Page = Page(name)
 
 	/**
 	 * Finds a page by name.
 	 */
-	fun findPage(pageName: String) = pages.find { it.name == pageName }
+	open fun findPage(pageName: String) = pages.find { it.name == pageName }
 
 	/**
 	 * Removes a page by name.
 	 */
-	fun removePage(pageName: String) = findPage(pageName)?.removePage() != null
+	open fun removePage(pageName: String) = findPage(pageName)?.removePage() != null
 
 	/**
 	 * Removes the providen page. Does nothing if the page doesn't belong to this pager.
 	 */
-	fun removePage(page: Page) = page in pages && page.removePage()
+	open fun removePage(page: Page) = page in pages && page.removePage()
 
 	/**
 	 * Represents a page of [TablePager].
@@ -108,7 +117,7 @@ open class TablePager(
 	 * Note that [Page]s of one [TablePager] are incompatible with other.
 	 * Moving a page from one pager to another might cause bizarre errors.
 	 */
-	inner class Page(
+	open inner class Page(
 		name: String,
 		background: Drawable = Styles.none
 	) : Table(background) {
@@ -139,7 +148,7 @@ open class TablePager(
 			pageContainer.clearChildren()
 			pageContainer += this
 
-			this@TablePager.deepShrink()
+			if (shrinkOnSwitch) this@TablePager.deepShrink()
 			button.isChecked = true
 		}
 

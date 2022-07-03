@@ -87,39 +87,6 @@ fun Element.shrink(invalidateParents: Boolean = false) {
 }
 
 /**
- * Reduces the whole of the element to (0, 0) and invalidates hierarchy,
- * effectively reducing the size of this group to the minimum.
- * 
- * This method recursively shrinks all children of the group except for [Stack]s.
- * That can cause custom [WidgetGroup]s to break if their elements are
- * arranged manually.
- *
- * @param invalidateParents whether to invalidate hierarchy. Has no special effect if [shrinkParents] is true.
- * @param shrinkParents whether to shrink all parents except the scene root. Use with caution.
- */
-fun Group.deepShrink(shrinkParents: Boolean = false, invalidateParents: Boolean = true) {
-	shrink(false)
-
-	for (child in children) {
-		if (child is Group && child !is Stack) {
-			child.deepShrink(false, false)
-		} else {
-			child.shrink(false)
-		}
-	}
-
-	if (shrinkParents) {
-		var group = parent
-		while (group != null && group != Core.scene.root) {
-			group.shrink()
-			group = group.parent
-		}
-	} else if (invalidateParents) {
-		invalidateHierarchy()
-	}
-}
-
-/**
  * Finds an element by its type and name. Can return the current element.
  * If [elementName] is null, only the type is accounted for.
  */
@@ -147,7 +114,7 @@ inline fun <reified T: Element> Element.findOrNull(elementName: String? = null):
  * Finds an element by its name and type. Can return the current element.
  * If [elementName] is null, only the type is accounted for.
  * 
- * @throws IllegalArgumentException if there's no such element.
+ * @throws IllegalArgumentException if there's no such element in the hierarchy.
  */
 inline fun <reified T: Element> Element.findElement(elementName: String? = null): T {
 	return findOrNull(elementName)
