@@ -1,9 +1,9 @@
 package com.github.mnemotechnician.mkui
 
-import arc.scene.ui.*
+import arc.scene.ui.Dialog
 import arc.scene.ui.Dialog.DialogStyle
 import mindustry.ui.Styles
-import mindustry.ui.dialogs.*
+import mindustry.ui.dialogs.BaseDialog
 
 /**
  * Creates a dialog using [constructor] and passes it to the [configurator] lambda for it to configure the dialog.

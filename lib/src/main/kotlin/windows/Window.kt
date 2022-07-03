@@ -5,7 +5,7 @@ import arc.scene.Action
 import arc.scene.actions.Actions
 import arc.scene.ui.layout.Collapser
 import arc.scene.ui.layout.Table
-import com.github.mnemotechnician.mkui.deepShrink
+import com.github.mnemotechnician.mkui.extensions.elements.deepShrink
 
 /**
  * A class that represents a floating on-screen window that the user can drag and interact with.

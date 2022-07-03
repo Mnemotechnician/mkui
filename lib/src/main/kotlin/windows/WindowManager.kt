@@ -9,7 +9,7 @@ import arc.scene.event.*
 import arc.scene.ui.layout.*
 import arc.struct.*
 import arc.util.*
-import com.github.mnemotechnician.mkui.*
+import com.github.mnemotechnician.mkui.extensions.dsl.*
 import mindustry.Vars
 import mindustry.game.EventType
 import mindustry.ui.Styles

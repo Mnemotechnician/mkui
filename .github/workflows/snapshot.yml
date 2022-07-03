@@ -6,6 +6,9 @@ on:
         description: 'release description'
         required: true
         default: '— no description providen'
+      version:
+        description: 'release version'
+        required: true
 
 jobs:
   buildAndUpload:
@@ -31,7 +34,7 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: lib/build/libs/MKUI.jar
-          tag: ${{ github.run_number }}
+          tag:  ${{ github.event.inputs.version }}
           body: ${{ steps.compile.outputs.description }}
         
       - name: generate kotlin doc

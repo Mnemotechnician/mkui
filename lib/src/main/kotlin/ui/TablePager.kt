@@ -4,7 +4,10 @@ import arc.scene.Element
 import arc.scene.style.Drawable
 import arc.scene.ui.*
 import arc.scene.ui.layout.*
-import com.github.mnemotechnician.mkui.*
+import com.github.mnemotechnician.mkui.extensions.dsl.*
+import com.github.mnemotechnician.mkui.extensions.elements.cell
+import com.github.mnemotechnician.mkui.extensions.elements.deepShrink
+import com.github.mnemotechnician.mkui.extensions.groups.plus
 import mindustry.ui.Styles
 
 /**
@@ -20,6 +23,8 @@ open class TablePager(
 	val vertical: Boolean = false,
 	background: Drawable = Styles.black3
 ) : Table() {
+	protected val group = ButtonGroup<TextButton>()
+
 	/**
 	 * All pages added to this pager.
 	 * Do not modify manually, as that may break everything.
@@ -28,8 +33,6 @@ open class TablePager(
 
 	lateinit var buttonsTable: Table
 	lateinit var pageContainer: Table
-	
-	protected val group = ButtonGroup<TextButton>()
 	
 	init {
 		limitedScrollPane(limitH = vertical) {

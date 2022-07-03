@@ -1,10 +1,11 @@
-package com.github.mnemotechnician.mkui
+package com.github.mnemotechnician.mkui.extensions.dsl
 
 import arc.graphics.g2d.TextureRegion
 import arc.scene.style.Drawable
 import arc.scene.ui.*
 import arc.scene.ui.layout.*
 import arc.util.Scaling
+import com.github.mnemotechnician.mkui.extensions.groups.child
 import mindustry.ui.Styles
 
 /** Adds a custom button constructed by a lambda and returns the created cell */

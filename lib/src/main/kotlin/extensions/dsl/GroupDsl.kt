@@ -1,4 +1,4 @@
-package com.github.mnemotechnician.mkui
+package com.github.mnemotechnician.mkui.extensions.dsl
 
 import arc.scene.*
 import arc.scene.event.Touchable
@@ -6,6 +6,7 @@ import arc.scene.style.Drawable
 import arc.scene.ui.*
 import arc.scene.ui.layout.*
 import com.github.mnemotechnician.mkui.ui.TablePager
+import extensions.groups.plus
 import mindustry.ui.Styles
 
 /** Creates a table constructed by a lambda */

@@ -1,4 +1,4 @@
-package com.github.mnemotechnician.mkui
+package com.github.mnemotechnician.mkui.extensions.elements
 
 import arc.Core
 import arc.scene.Element

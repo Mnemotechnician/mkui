@@ -1,6 +1,7 @@
-package com.github.mnemotechnician.mkui
+package com.github.mnemotechnician.mkui.extensions.groups
 
-import arc.scene.*
+import arc.scene.Element
+import arc.scene.Group
 import arc.scene.ui.layout.Table
 
 /**
