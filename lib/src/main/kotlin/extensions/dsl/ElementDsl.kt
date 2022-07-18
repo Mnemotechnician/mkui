@@ -1,5 +1,6 @@
 package com.github.mnemotechnician.mkui.extensions.dsl
 
+import arc.func.Prov
 import arc.graphics.Color
 import arc.graphics.g2d.TextureRegion
 import arc.scene.Element
@@ -17,12 +18,12 @@ fun Table.addLabel(
 	style: Label.LabelStyle = Styles.defaultLabel,
 	wrap: Boolean = false,
 	ellipsis: String? = null,
-	alignment: Int = Align.center
+	align: Int = Align.center
 ): Cell<Label> {
 	return add(Label(text, style).also {
 		it.setWrap(wrap)
 		it.setEllipsis(ellipsis)
-		it.setAlignment(alignment)
+		it.setAlignment(align)
 	})
 }
 
@@ -32,14 +33,40 @@ inline fun Table.addLabel(
 	style: Label.LabelStyle = Styles.defaultLabel,
 	wrap: Boolean = true,
 	ellipsis: String? = null,
-	alignment: Int = Align.center
+	align: Int = Align.center
 ): Cell<Label> {
 	return add(Label("", style).also {
 		it.setWrap(wrap)
 		it.setEllipsis(ellipsis)
-		it.setAlignment(alignment)
+		it.setAlignment(align)
 		it.update { it.setText(provider()) }
 	})
+}
+
+/**
+ * Adds multiple labels, either static or dynamic ones.
+ *
+ * Each of the elements must be either an arbitrary object,
+ * which will be `toString()`ed, or a [() -> Any?] / [Prov].
+ * For the latter ones dynamic labels are made.
+ *
+ * The parameter [block] can be used to modify the created labels, e.g. apply color or padding.
+ */
+inline fun Table.addLabels(
+	style: Label.LabelStyle = Styles.defaultLabel,
+	wrap: Boolean = true,
+	ellipsis: String? = null,
+	align: Int = Align.center,
+	vararg elems: Any?
+) {
+	elems.forEach {
+		when (it) {
+			// union types are not yet supported in kotlin, so...
+			is () -> Any? -> addLabel({ it().toString() }, style, wrap, ellipsis, align)
+			is Prov<out Any?> -> addLabel({ it.get().toString() }, style, wrap, ellipsis, align)
+			else -> addLabel(it.toString(), style, wrap, ellipsis, align)
+		}
+	}
 }
 
 /** Adds a constant image to the table and returns the created cell */
