@@ -46,6 +46,18 @@ fun bundle(prefix: String = "") = BundleDelegate<Nothing>(prefix, null)
 fun dynamicBundle(prefix: String = "", vararg functions: () -> Any?) = DynamicBundleDelegate(prefix, functions)
 
 /**
+ * Creates a property delegates that delegates to a mindustry bundle entry.
+ *
+ * Unlike the delegate returned by [dynamicBundle], this one computes the prefix lazily -
+ * during the first access. If the value returned by [lazyPrefix] is null,
+ * the delegate remains uninitialised, returning the default value and ignoring assignments,
+ * but calling [lazyPrefix] during each of these operations until it actually returns a value.
+ *
+ * See the descriptions of [dynamicBundle()][dynamicBundle] and [bundle()][bundle] for more info.
+ */
+fun dynamicBundle(lazyPrefix: () -> String?, vararg functions: () -> Any?) = LazyDynamicBundleDelegate(lazyPrefix, functions)
+
+/**
  * Delegates to an I18n bundle entry and allows substitutions.
  * @see bundle
  */
@@ -56,10 +68,14 @@ open class BundleDelegate<T>(
 	protected open var cachedName: String? = null
 
 	open operator fun getValue(thisRef: Any?, property: KProperty<*>): String {
+		if (cachedName != null) return cachedName!!
+
 		return if (substitutions != null && substitutions.isNotEmpty()) {
 			Core.bundle.format(computeName(property), *substitutions)
 		} else {
 			Core.bundle.getOrNull(computeName(property)) ?: "<invalid: $cachedName>"
+		}.also {
+			cachedName = it
 		}
 	}
 
@@ -97,5 +113,23 @@ open class DynamicBundleDelegate(
 				cachedOutput = it
 			}
 		} else cachedOutput!!
+	}
+}
+
+/**
+ * Similar to [DynamicBundleDelegate] but the prefix is computed lazily.
+ * If [lazyPrefix] returns null, a placeholder value is returned, and [lazyPrefix] will be called again on next access.
+ * @see dynamicBundle
+ */
+open class LazyDynamicBundleDelegate(
+	val lazyPrefix: () -> String?,
+	functions: Array<out () -> Any?>
+) : DynamicBundleDelegate("", functions) {
+	override fun getValue(thisRef: Any?, property: KProperty<*>): String {
+		if (prefix.isEmpty()) lazyPrefix().let {
+			if (it == null) return "<uninitialised: ${property.name}>"
+			prefix = it
+		}
+		return super.getValue(thisRef, property)
 	}
 }

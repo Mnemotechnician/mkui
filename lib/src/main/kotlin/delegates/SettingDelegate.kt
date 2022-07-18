@@ -27,14 +27,14 @@ inline fun <reified T> setting(default: T, prefix: String = ""): SettingDelegate
 /**
  * Creates a property delegates that delegates to a mindustry setting.
  *
- * Unlike the delegate returned by [setting], this one computes the lazyPrefix lazily:
+ * Unlike the delegate returned by [setting], this one computes the prefix lazily -
  * during the first access. If the value returned by [lazyPrefix] is null,
- * the delegate remains uninitialised, returning the default value and ignoring assignments,
+ * the delegate remains uninitialised, returning a placeholder value and ignoring any assignments,
  * but calling [lazyPrefix] during each of these operations until it actually returns a value.
  *
  * See the description of [setting()][setting] for more info.
  */
-inline fun <reified T> lazyNameSetting(default: T, noinline lazyPrefix: () -> String?): SettingDelegate<T> {
+inline fun <reified T> setting(default: T, noinline lazyPrefix: () -> String?): SettingDelegate<T> {
 	return LazyNameSettingDelegate(lazyPrefix, default)
 }
 
@@ -63,7 +63,7 @@ open class SettingDelegate<T>(var prefix: String, val default: T) {
 /**
  * Same as [SettingDelegate], but the name is computed lazily (during the first access).
  * If [lazyPrefix] returns null, the default value is returned, and [lazyPrefix] will be called again on next access.
- * @see lazyNameSetting
+ * @see setting
  */
 open class LazyNameSettingDelegate<T>(
 	val lazyPrefix: () -> String?,
