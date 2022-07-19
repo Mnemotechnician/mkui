@@ -57,6 +57,7 @@ inline fun Table.addLabels(
 	wrap: Boolean = true,
 	ellipsis: String? = null,
 	align: Int = Align.center,
+	block: (Cell<Label>) -> Unit = {},
 	vararg elems: Any?
 ) {
 	elems.forEach {
@@ -65,6 +66,8 @@ inline fun Table.addLabels(
 			is () -> Any? -> addLabel({ it().toString() }, style, wrap, ellipsis, align)
 			is Prov<out Any?> -> addLabel({ it.get().toString() }, style, wrap, ellipsis, align)
 			else -> addLabel(it.toString(), style, wrap, ellipsis, align)
+		}.also {
+			block(it)
 		}
 	}
 }
