@@ -14,10 +14,13 @@ repositories {
 val mindustryVersion = "v135"
 
 dependencies {
+	compileOnly(kotlin("stdlib-jdk8"))
 	compileOnly("com.github.Anuken.Arc:arc-core:$mindustryVersion")
 	compileOnly("com.github.Anuken.Mindustry:core:$mindustryVersion")
 
-	compileOnly(kotlin("stdlib-jdk8"))
+	testImplementation(kotlin("test"))
+	testImplementation("com.github.Anuken.Arc:arc-core:$mindustryVersion")
+	testImplementation("com.github.Anuken.Mindustry:core:$mindustryVersion")
 }
 
 tasks.withType<Jar> {
@@ -36,3 +39,6 @@ publishing {
 	}
 }
 
+tasks.test {
+	useJUnitPlatform()
+}
