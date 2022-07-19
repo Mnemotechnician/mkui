@@ -68,14 +68,10 @@ open class BundleDelegate<T>(
 	protected open var cachedName: String? = null
 
 	open operator fun getValue(thisRef: Any?, property: KProperty<*>): String {
-		if (cachedName != null) return cachedName!!
-
 		return if (substitutions != null && substitutions.isNotEmpty()) {
 			Core.bundle.format(computeName(property), *substitutions)
 		} else {
 			Core.bundle.getOrNull(computeName(property)) ?: "<invalid: $cachedName>"
-		}.also {
-			cachedName = it
 		}
 	}
 
