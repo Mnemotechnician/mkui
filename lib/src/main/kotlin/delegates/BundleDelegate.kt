@@ -105,7 +105,7 @@ open class DynamicBundleDelegate(
 		}
 
 		return if (changed || cachedOutput == null) {
-			Core.bundle.format(computeName(property), substitutions).also {
+			Core.bundle.format(computeName(property), *substitutions!!).also {
 				cachedOutput = it
 			}
 		} else cachedOutput!!
