@@ -27,6 +27,7 @@ open class ToggleButton(
 
 	init {
 		if (toggleableStyle.checked == null) throw IllegalArgumentException("This style does not support checked state!")
+		setStyle(toggleableStyle)
 		clicked { toggle() }
 	}
 
