@@ -25,7 +25,7 @@ jobs:
         run: |
           sed -i "s/version = v1\.0/version = $version/g" lib/build.gradle.kts
           chmod +x gradlew
-          ./gradlew test jar
+          ./gradlew jar
           
           echo "::set-output name=description::${description//\\n/%0A}"
       
