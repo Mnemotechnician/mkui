@@ -31,7 +31,7 @@ fun Table.addLabel(
 inline fun Table.addLabel(
 	crossinline provider: () -> CharSequence,
 	style: Label.LabelStyle = Styles.defaultLabel,
-	wrap: Boolean = true,
+	wrap: Boolean = false,
 	ellipsis: String? = null,
 	align: Int = Align.center
 ): Cell<Label> {
@@ -54,7 +54,7 @@ inline fun Table.addLabel(
  */
 inline fun Table.addLabels(
 	style: Label.LabelStyle = Styles.defaultLabel,
-	wrap: Boolean = true,
+	wrap: Boolean = false,
 	ellipsis: String? = null,
 	align: Int = Align.center,
 	block: (Cell<Label>) -> Unit = {},
