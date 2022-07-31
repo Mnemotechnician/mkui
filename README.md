@@ -1,4 +1,4 @@
-# Mindustry Kotlin Ui Lib
+# MaKe UI - A mindustry ui library.
 A ui library for mindustry mods written in kotlin.
 
 Provides some useful stuff, such as inline ui construction functions, utility functions, new ui classes, etc.
@@ -36,7 +36,7 @@ repositories {
 dependencies {
 	compileOnly "com.github.Anuken.Arc:arc-core:$mindustryVersion"   //these two lines should
 	compileOnly "com.github.Anuken.Mindustry:core:$mindustryVersion" //already be here
-	implementation "com.github.mnemotechnician:mkui:v1.0"
+	implementation "com.github.mnemotechnician:mkui:v1.1"
 }
 
 //... other code
