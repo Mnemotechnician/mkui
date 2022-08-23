@@ -3,6 +3,7 @@ package com.github.mnemotechnician.mkui.extensions.elements
 import arc.scene.Element
 import arc.scene.ui.layout.Cell
 import arc.scene.ui.layout.Table
+import com.github.mnemotechnician.mkui.extensions.groups.rowPer
 
 // private val cellColumnField = Cell::class.java.getDeclaredField("column").also { it.isAccessible = true }
 // private val cellRowField = Cell::class.java.getDeclaredField("column").also { it.isAccessible = true }
@@ -33,6 +34,11 @@ inline fun <reified T : Element> Cell<Element>.getAs() = get() as T;
  * or null if it's not an instance of this class or if the cell is empty
  */
 inline fun <reified T : Element> Cell<Element?>.getAsOrNull(): T? = get()?.let { this as? T }
+
+/** See [Table.rowPer]. */
+fun <T : Element> Cell<T>.rowPer(number: Int) = apply {
+	table.rowPer(number)
+}
 
 // /**
 //  * Moves the cell of the table by [n] positions and returns it.

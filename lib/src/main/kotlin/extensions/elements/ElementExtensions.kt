@@ -1,6 +1,7 @@
 package com.github.mnemotechnician.mkui.extensions.elements
 
 import arc.Core
+import arc.graphics.g2d.Font
 import arc.scene.Element
 import arc.scene.Group
 import arc.scene.ui.*
@@ -104,4 +105,24 @@ inline fun <reified T: Element> Element.findOrNull(elementName: String? = null):
 inline fun <reified T: Element> Element.findElement(elementName: String? = null): T {
 	return findOrNull(elementName)
 		?: throw IllegalArgumentException("Element with type ${T::class}${if (elementName == null) "" else " and name '$elementName'"} was not found")
+}
+
+/** Creates a copy of this label's style and changes its font. */
+fun Label.setFont(font: Font) {
+	style = Label.LabelStyle(style).also {
+		it.font = font
+	}
+}
+
+/** Creates a copy of this field's style and changes its font. */
+fun TextField.setFont(font: Font) {
+	style = TextField.TextFieldStyle(style).also {
+		it.font = font
+		it.messageFont = font
+	}
+}
+
+/** Creates a copy of this button's label's style and changes its font. */
+fun TextButton.setFont(font: Font) {
+	label.setFont(font)
 }

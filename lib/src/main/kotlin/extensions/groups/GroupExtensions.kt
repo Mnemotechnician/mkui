@@ -65,3 +65,11 @@ fun Group.deepShrink(shrinkParents: Boolean = false, invalidateParents: Boolean 
 		invalidateHierarchy()
 	}
 }
+
+/**
+ * Creates a row if the current amount of children is dividable by [number].
+ * This is intended to be called when a grid of elements has to be generated.
+ */
+fun Table.rowPer(number: Int) = apply {
+	if (children.size % number == 0) row()
+}
