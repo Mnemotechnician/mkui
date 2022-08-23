@@ -19,15 +19,15 @@ import kotlin.math.min
  * Manages windows displayed on the screen.
  */
 object WindowManager {
-	internal val windowGroup = WidgetGroup()
-	internal val windows = ArrayList<Window>() // not using Seq because it's unstable garbage.
+	val windowGroup = WidgetGroup()
+	val windows = ArrayList<Window>() // not using Seq because it's unstable garbage.
 
 	/** Windows that were requested to be created before the window manager was initialized are placed into this queue */
 	internal val windowQueue = Queue<Window>(10)
 	private var initialized = false
 
 	init {
-		// If client has loaded, this is executed immediately. Otherwise, it is delayed until CLI
+		// If client is loaded, this is executed immediately. Otherwise, it is delayed until CLI
 		{
 			windowGroup.setFillParent(true)
 			windowGroup.touchable = Touchable.childrenOnly
@@ -46,6 +46,7 @@ object WindowManager {
 		}
 
 		Events.run(EventType.Trigger.update) {
+			windowGroup.toFront()
 			windows.forEach {
 				// keep in stage
 				val root = it.rootTable
