@@ -132,4 +132,12 @@ abstract class Window {
 		result = 31 * result + rootTable.hashCode()
 		return result
 	}
+
+	override fun toString() = buildString {
+		append("Window(name = $name")
+		if (closeable) append(", closable")
+		if (supportsFullScreen) append(", supports fullscreen")
+		if (isCollapsed) append(", collapsed")
+		append(")")
+	}
 }

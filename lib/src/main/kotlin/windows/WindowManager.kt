@@ -96,7 +96,7 @@ object WindowManager {
 					defaults().height(40f)
 
 					addTable {
-						center().left()
+						center().left().touchable = Touchable.enabled
 
 						// window name
 						addLabel({ window.name }, ellipsis = "...").fillY().growX().get()
@@ -153,7 +153,7 @@ object WindowManager {
 								window.isDragged = false
 							}
 						})
-					}.growX().fillY()
+					}.growX().growY()
 
 					// collapse/show button
 					textToggle({ if (it) "[accent]=" else "[accent]-" }, Styles.togglet) {
@@ -239,17 +239,17 @@ object WindowManager {
 		})
 	}
 
-	/** Shows an info dialog and runs [onHide] when it's closed. */
+	/** Shows an info dialog and optionally runs [onHide] when it's closed. */
 	fun showInfo(
 		text: String,
-		maxWidth: Float = 300f,
+		minWidth: Float = 200f,
 		onHide: (() -> Unit)? = null
 	) = createWindow(object : Window() {
 		override val name = "@info"
 		override val closeable = true
 
 		override fun onCreate() {
-			table.addLabel(text, wrap = true).maxWidth(maxWidth).growX()
+			table.addLabel(text, wrap = true).minWidth(minWidth).growX()
 		}
 
 		override fun onDestroy() {
@@ -263,9 +263,9 @@ object WindowManager {
 	})
 
 	/** Shows a confirmation dialog and runs [yes] or [no] when an option is selected. */
-	fun showInfo(
+	fun showConfirm(
 		text: String,
-		maxWidth: Float = 300f,
+		minWidth: Float = 200f,
 		no: (() -> Unit )? = null,
 		yes: (() -> Unit)? = null
 	) = createWindow(object : Window() {
@@ -273,18 +273,22 @@ object WindowManager {
 		override val closeable = false
 
 		override fun onCreate() {
-			table.addLabel(text, wrap = true).maxWidth(maxWidth).growX().row()
+			table.addLabel(text, wrap = true).minWidth(minWidth).growX().row()
 
 			table.addTable {
-				right().defaults().uniformX()
-				textButton("@no") {
+				hsplitter(padBottom = 0f).colspan(3).row()
+
+				textButton("@no", Styles.cleart) {
 					no?.invoke()
 					destroy()
-				}
-				textButton("@yes") {
+				}.uniformX().growX()
+
+				vsplitter(padLeft = 0f, padRight = 0f)
+
+				textButton("@yes", Styles.cleart) {
 					yes?.invoke()
 					destroy()
-				}
+				}.uniformX().growX()
 			}.growX()
 		}
 	})

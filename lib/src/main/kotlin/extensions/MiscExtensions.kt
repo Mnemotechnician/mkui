@@ -1,4 +1,4 @@
-package extensions
+package com.github.mnemotechnician.mkui.extensions
 
 import mindustry.ctype.UnlockableContent
 
