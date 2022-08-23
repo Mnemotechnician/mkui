@@ -32,7 +32,7 @@ inline fun <reified T: Element> Group.childOrNull(index: Int): T? {
 inline fun <reified T: Element> Group.child(index: Int): T = childOrNull<T>(index) ?: throw IllegalArgumentException()
 
 
-/**
+	/**
  * Reduces the size of the whole group to (0, 0) and invalidates hierarchy,
  * effectively reducing the size of this group to the minimum.
  *

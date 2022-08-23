@@ -73,7 +73,7 @@ inline fun Table.addLabels(
 }
 
 /** Adds a constant image to the table and returns the created cell */
-fun Table.addImage(drawable: Drawable, scaling: Scaling = Scaling.stretch): Cell<Image> {
+fun Table.addImage(drawable: Drawable?, scaling: Scaling = Scaling.stretch): Cell<Image> {
 	val i = Image(drawable)
 	i.setScaling(scaling)
 	return add(i)
@@ -87,8 +87,8 @@ fun Table.addImage(drawable: TextureRegion, scaling: Scaling = Scaling.stretch):
 }
 
 /** Adds a dynamic image to the table and returns the created cell */
-inline fun Table.addImage(crossinline provider: () -> Drawable, scaling: Scaling = Scaling.stretch): Cell<Image> {
-	return add(Image(provider()).also {
+inline fun Table.addImage(crossinline provider: () -> Drawable?, scaling: Scaling = Scaling.stretch): Cell<Image> {
+	return add(Image().also {
 		it.setScaling(scaling)
 		it.update { it.drawable = provider() }
 	})
@@ -134,12 +134,20 @@ fun Table.vsplitter(color: Color = Color.white, padLeft: Float = 5f, padRight: F
 }
 
 /**
- * Adds a simple [Element] that returns the providen size as its preferred size.
+ * Adds a simple [Element] that occupies the providen size.
  */
 fun Table.addSpace(
+	width: Float = 1f,
+	height: Float = 1f
+) = add(Element()).size(width, height)
+
+/*
+ * Adds an [Element] thag returns the providen values as its preferred size.
+ */
+fun Table.addPrefSpace(
 	spaceWidth: Float = 1f,
 	spaceHeight: Float = 1f
-) = object : Element() {
+): Cell<Element> = add(object : Element() {
 	override fun getPrefWidth() = spaceWidth
 	override fun getPrefHeight() = spaceHeight
-}
+})

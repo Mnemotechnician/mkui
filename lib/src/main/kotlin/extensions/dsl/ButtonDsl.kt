@@ -4,10 +4,15 @@ import arc.graphics.g2d.TextureRegion
 import arc.scene.style.Drawable
 import arc.scene.ui.*
 import arc.scene.ui.layout.*
+import arc.util.Align
 import arc.util.Scaling
+import com.github.mnemotechnician.mkui.extensions.elements.content
 import com.github.mnemotechnician.mkui.extensions.groups.child
+import com.github.mnemotechnician.mkui.ui.element.MenuButton
 import com.github.mnemotechnician.mkui.ui.element.ToggleButton
+import mindustry.gen.Groups.label
 import mindustry.ui.Styles
+import kotlin.text.Typography.ellipsis
 
 /** Adds a custom button constructed by a lambda and returns the created cell */
 inline fun Table.customButton(
@@ -41,7 +46,7 @@ inline fun Table.textButton(
 	wrap: Boolean = false,
 	crossinline onclick: TextButton.() -> Unit = {}
 ): Cell<TextButton> {
-	return add(TextButton(provider(), style).also {
+	return add(TextButton("", style).also {
 		it.clicked { onclick(it) }
 		it.label.setWrap(wrap)
 		it.update { it.setText(provider()) }
@@ -50,7 +55,7 @@ inline fun Table.textButton(
 
 /** Adds an image button with an optional onclick listener, returns the created cell */
 inline fun Table.imageButton(
-	image: Drawable,
+	image: Drawable?,
 	style: ImageButton.ImageButtonStyle = Styles.defaulti,
 	crossinline onclick: ImageButton.() -> Unit = {}
 ): Cell<ImageButton> {
@@ -62,7 +67,7 @@ inline fun Table.imageButton(
 
 /** Adds an image button with an optional onclick listener, returns the created cell */
 inline fun Table.imageButton(
-	image: TextureRegion,
+	image: TextureRegion?,
 	style: ImageButton.ImageButtonStyle = Styles.defaulti,
 	crossinline onclick: ImageButton.() -> Unit = {}
 ): Cell<ImageButton> {
@@ -73,11 +78,11 @@ inline fun Table.imageButton(
 
 /** Adds an image button with a dynamic image and an optional onclick listener, returns the created cell */
 inline fun Table.imageButton(
-	crossinline provider: () -> Drawable,
+	crossinline provider: () -> Drawable?,
 	style: ImageButton.ImageButtonStyle = Styles.defaulti,
 	crossinline onclick: ImageButton.() -> Unit = {}
 ): Cell<ImageButton> {
-	return add(ImageButton(provider(), style).also {
+	return add(ImageButton(style).also {
 		it.clicked { onclick(it) }
 		it.update { it.image.drawable = provider() }
 	})
@@ -141,16 +146,16 @@ inline fun Table.textToggle(
 
 /** Simmilar to toggleButton but adds a constant image */
 inline fun Table.imageToggle(
-	text: Drawable,
+	image: Drawable?,
 	toggleableStyle: Button.ButtonStyle = Styles.clearTogglei,
 	crossinline ontoggle: Button.(Boolean) -> Unit = {}
 ): Cell<ToggleButton> {
-	return toggleButton({ addImage(text) }, toggleableStyle, ontoggle)
+	return toggleButton({ addImage(image) }, toggleableStyle, ontoggle)
 }
 
 /** Simmilar to toggleButton but adds a dynamic image */
 inline fun Table.imageToggle(
-	crossinline image: (Boolean) -> Drawable,
+	crossinline image: (Boolean) -> Drawable?,
 	toggleableStyle: Button.ButtonStyle = Styles.clearTogglei,
 	crossinline ontoggle: Button.(Boolean) -> Unit = {}
 ): Cell<ToggleButton> {
@@ -164,10 +169,43 @@ inline fun Table.imageToggle(
  * The toggle uses [imageEnabled] or [imageDisabled] depending on whether it's toggled on or off.
  */
 inline fun Table.textToggle(
-	imageEnabled: Drawable,
-	imageDisabled: Drawable,
+	imageEnabled: Drawable?,
+	imageDisabled: Drawable?,
 	toggleableStyle: Button.ButtonStyle = Styles.togglet,
 	crossinline ontoggle: Button.(Boolean) -> Unit = {}
 ): Cell<ToggleButton> {
 	return imageToggle({ if (it) imageEnabled else imageDisabled}, toggleableStyle, ontoggle)
 }
+
+/** Adds a [MenuButton] to the table and returns the created cell. */
+fun Table.menuButton(
+	icon: Drawable?,
+	text: String,
+	style: TextButton.TextButtonStyle,
+	align: Int = Align.center,
+	wrap: Boolean = false,
+	ellipsis: String? = null
+) = add(MenuButton(icon, text, style).apply {
+	label.setAlignment(align)
+	label.setWrap(wrap)
+	label.setEllipsis(ellipsis)
+})
+
+/** Adds a dynamic [MenuButton] to the table and returns the created cell. */
+fun Table.menuButton(
+	icon: MenuButton.() -> Drawable?,
+	text: MenuButton.() -> String,
+	style: TextButton.TextButtonStyle,
+	align: Int = Align.center,
+	wrap: Boolean = false,
+	ellipsis: String? = null
+) = add(MenuButton(null, null, style).apply {
+	label.setAlignment(align)
+	label.setWrap(wrap)
+	label.setEllipsis(ellipsis)
+
+	update {
+		label.content = text()
+		this.icon.drawable = icon()
+	}
+})
