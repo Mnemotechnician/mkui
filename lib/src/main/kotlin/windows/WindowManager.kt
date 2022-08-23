@@ -238,4 +238,54 @@ object WindowManager {
 			}
 		})
 	}
+
+	/** Shows an info dialog and runs [onHide] when it's closed. */
+	fun showInfo(
+		text: String,
+		maxWidth: Float = 300f,
+		onHide: (() -> Unit)? = null
+	) = createWindow(object : Window() {
+		override val name = "@info"
+		override val closeable = true
+
+		override fun onCreate() {
+			table.addLabel(text, wrap = true).maxWidth(maxWidth).growX()
+		}
+
+		override fun onDestroy() {
+			onHide?.invoke()
+			super.onDestroy()
+		}
+
+		override fun onToggle(collapsed: Boolean) {
+			destroy() // skull emoji
+		}
+	})
+
+	/** Shows a confirmation dialog and runs [yes] or [no] when an option is selected. */
+	fun showInfo(
+		text: String,
+		maxWidth: Float = 300f,
+		no: (() -> Unit )? = null,
+		yes: (() -> Unit)? = null
+	) = createWindow(object : Window() {
+		override val name = "@confirm"
+		override val closeable = false
+
+		override fun onCreate() {
+			table.addLabel(text, wrap = true).maxWidth(maxWidth).growX().row()
+
+			table.addTable {
+				right().defaults().uniformX()
+				textButton("@no") {
+					no?.invoke()
+					destroy()
+				}
+				textButton("@yes") {
+					yes?.invoke()
+					destroy()
+				}
+			}.growX()
+		}
+	})
 }
