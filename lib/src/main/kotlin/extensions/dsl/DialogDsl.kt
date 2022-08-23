@@ -2,6 +2,7 @@ package com.github.mnemotechnician.mkui.extensions.dsl
 
 import arc.scene.ui.Dialog
 import arc.scene.ui.Dialog.DialogStyle
+import arc.scene.ui.layout.Table
 import mindustry.ui.Styles
 import mindustry.ui.dialogs.BaseDialog
 
@@ -11,7 +12,7 @@ import mindustry.ui.dialogs.BaseDialog
  * The created dialog can then be shown using the [Dialog.show] function.
  *
  * @param constructor creates an instance of [Dialog] using the providen title and style, by default it creates an [arc.scene.ui.Dialog].
- * @param configurator configures the created dialog, adding ui elements, etc.
+ * @param configurator configures the created dialog, adding ui elements, etc. Its receiver is the dialog's container.
  * @param addCloseButton whether a "close" button should be added to [Dialog.buttons].
  * @param closeOnBack whether the dialog should close when <esc> or <back> is pressed.
  */
@@ -21,12 +22,12 @@ inline fun createDialog(
 	addCloseButton: Boolean = false,
 	closeOnBack: Boolean = true,
 	constructor: (title: String, style: DialogStyle) -> Dialog = { t, s -> Dialog(t, s) },
-	configurator: Dialog.() -> Unit
+	configurator: Table.(Dialog) -> Unit
 ): Dialog {
 	return constructor(title, style).also {
 		if (addCloseButton) it.addCloseButton()
 		if (closeOnBack) it.closeOnBack()
-		it.configurator()
+		configurator(it.cont, it)
 	}
 }
 
@@ -39,7 +40,9 @@ inline fun createBaseDialog(
 	style: DialogStyle = Styles.defaultDialog,
 	addCloseButton: Boolean = false,
 	closeOnBack: Boolean = true,
-	crossinline configurator: BaseDialog.() -> Unit
+	crossinline configurator: Table.(BaseDialog) -> Unit
 ) = createDialog(
-	title, style, addCloseButton, closeOnBack, { t, s -> BaseDialog(t, s) }, { (this as BaseDialog).configurator() }
+	title, style, addCloseButton, closeOnBack, { t, s -> BaseDialog(t, s) }, {
+		(this as BaseDialog).let { configurator(it.cont, it) }
+	}
 ) as BaseDialog
