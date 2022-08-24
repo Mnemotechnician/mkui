@@ -76,13 +76,13 @@ inline fun Table.imageButton(
 	})
 }
 
-/** Adds an image button with a dynamic image and an optional onclick listener, returns the created cell */
+/** Adds an image button with a dynamic image and an optional onclick listener, returns the created cell. */
 inline fun Table.imageButton(
 	crossinline provider: () -> Drawable?,
 	style: ImageButton.ImageButtonStyle = Styles.defaulti,
 	crossinline onclick: ImageButton.() -> Unit = {}
 ): Cell<ImageButton> {
-	return add(ImageButton(style).also {
+	return add(DynamicImageButton(style).also {
 		it.clicked { onclick(it) }
 		it.update { it.image.drawable = provider() }
 	})
@@ -209,3 +209,9 @@ fun Table.menuButton(
 		this.icon.drawable = icon()
 	}
 })
+
+/** Workarpund: ImageButton tries to change the drawable before drawing, so this class is required to fix that. */
+@PublishedApi
+internal class DynamicImageButton(style: ImageButton.ImageButtonStyle) : ImageButton(style) {
+	override fun updateImage() {}
+}
