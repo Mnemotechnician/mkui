@@ -43,6 +43,6 @@ inline fun createBaseDialog(
 	crossinline configurator: Table.(BaseDialog) -> Unit
 ) = createDialog(
 	title, style, addCloseButton, closeOnBack, { t, s -> BaseDialog(t, s) }, {
-		(this as BaseDialog).let { configurator(it.cont, it) }
+		(it as BaseDialog).let { configurator(it.cont, it) }
 	}
 ) as BaseDialog
