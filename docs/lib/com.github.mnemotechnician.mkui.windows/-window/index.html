@@ -1,348 +1,380 @@
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>Window</title>
-<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
-<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../../styles/style.css" rel="Stylesheet"><link href="../../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../../styles/main.css" rel="Stylesheet"><link href="../../../styles/prism.css" rel="Stylesheet"><link href="../../../styles/logo-styles.css" rel="Stylesheet"><script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script><script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>  </head>
-  <body>
-    <div class="navigation-wrapper" id="navigation-wrapper">
-      <div id="leftToggler"><span class="icon-toggler"></span></div>
-      <div class="library-name"><a href="../../../index.html">lib</a></div>
-      <div></div>
-      <div class="pull-right d-flex"><button id="theme-toggle-button"><span id="theme-toggle"></span></button>
-        <div id="searchBar"></div>
-      </div>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+            <a href="../../../index.html">
+                    <span>lib</span>
+            </a>
     </div>
-    <div id="container">
-      <div id="leftColumn">
+    <div>
+    </div>
+    <div class="pull-right d-flex">
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
         <div id="sideMenu"></div>
-      </div>
-      <div id="main">
-        <div class="main-content" id="content" pageIds="lib::com.github.mnemotechnician.mkui.windows/Window///PointingToDeclaration//1440829338">
-          <div class="breadcrumbs"><a href="../../../index.html">lib</a>/<a href="../index.html">com.github.mnemotechnician.mkui.windows</a>/<a href="index.html">Window</a></div>
-          <div class="cover ">
-            <h1 class="cover"><span><span>Window</span></span></h1>
-            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="index.html">Window</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">A class that represents a floating on-screen window that the user can drag and interact with.</p><p class="paragraph">In most cases an instance of this class has to be passed to <a href="../-window-manager/index.html">WindowManager</a> before anything can be done with it.</p></div></div>
-          </div>
-          <div class="tabbedcontent">
-            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button></div>
-            <div class="tabs-section-body">
-              <h2 class="tabbedcontent">Constructors</h2>
-              <div class="table" data-togglable="Constructors"><a data-name="1537168628%2FConstructors%2F1440829338" anchor-label="Window" id="1537168628%2FConstructors%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue TabbedContent">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="-window.html"><span><span>Window</span></span></a></div>
+    </div>
+    <div id="main">
+<div class="main-content" id="content" pageIds="lib::com.github.mnemotechnician.mkui.windows/Window///PointingToDeclaration//1440829338">
+  <div class="breadcrumbs"><a href="../../../index.html">lib</a><span class="delimiter">/</span><a href="../index.html">com.github.mnemotechnician.mkui.windows</a><span class="delimiter">/</span><span class="current">Window</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Window</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="index.html">Window</a></div><p class="paragraph">A class that represents a floating on-screen window that the user can drag and interact with.</p><p class="paragraph">In most cases an instance of this class has to be passed to <a href="../-window-manager/index.html">WindowManager</a> before anything can be done with it.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Functions">Functions</button><button class="section-tab" data-togglable="Properties">Properties</button></div>
+    <div class="tabs-section-body">
+      <h2 class="tabbedcontent">Constructors</h2>
+      <div class="table" data-togglable="Constructors"><a data-name="1537168628%2FConstructors%2F1440829338" anchor-label="Window" id="1537168628%2FConstructors%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue TabbedContent">
+            <div class=""><span class="inline-flex">
+                <div><a href="-window.html"><span><span>Window</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1537168628%2FConstructors%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-window.html"><span class="token function">Window</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <h2 class="">Functions</h2>
-              <div class="table" data-togglable="Functions"><a data-name="-1893482965%2FFunctions%2F1440829338" anchor-label="addAction" id="-1893482965%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="add-action.html"><span>add</span><wbr></wbr><span><span>Action</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1893482965%2FFunctions%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="add-action.html"><span class="token function">addAction</span></a><span class="token punctuation">(</span>action<span class="token operator">: </span><span data-unresolved-link="arc.scene/Action///PointingToDeclaration/">Action</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Applies an action to the <strong>root table</strong>.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-1210666340%2FFunctions%2F1440829338" anchor-label="destroy" id="-1210666340%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="destroy.html"><span><span>destroy</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1210666340%2FFunctions%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="destroy.html"><span class="token function">destroy</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Destroys this window, removing it from the scene and triggering <a href="on-destroy.html">onDestroy</a>.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-1461525827%2FFunctions%2F1440829338" anchor-label="equals" id="-1461525827%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="equals.html"><span><span>equals</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1461525827%2FFunctions%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">operator override </span><span class="token keyword">fun </span><a href="equals.html"><span class="token function">equals</span></a><span class="token punctuation">(</span>other<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="195874185%2FFunctions%2F1440829338" anchor-label="hashCode" id="195874185%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="hash-code.html"><span>hash</span><wbr></wbr><span><span>Code</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="195874185%2FFunctions%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="hash-code.html"><span class="token function">hashCode</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="1751012841%2FFunctions%2F1440829338" anchor-label="onCreate" id="1751012841%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="on-create.html"><span>on</span><wbr></wbr><span><span>Create</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1751012841%2FFunctions%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-create.html"><span class="token function">onCreate</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Called when the window is being created.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-98204069%2FFunctions%2F1440829338" anchor-label="onDestroy" id="-98204069%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="on-destroy.html"><span>on</span><wbr></wbr><span><span>Destroy</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-98204069%2FFunctions%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-destroy.html"><span class="token function">onDestroy</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Called when the window is being destroyed. Usually this means that the user has closed the window.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="2032157361%2FFunctions%2F1440829338" anchor-label="onDrag" id="2032157361%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="on-drag.html"><span>on</span><wbr></wbr><span><span>Drag</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2032157361%2FFunctions%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-drag.html"><span class="token function">onDrag</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Called when the window is being dragged by the user.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="1634953647%2FFunctions%2F1440829338" anchor-label="onFullScreen" id="1634953647%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="on-full-screen.html"><span>on</span><wbr></wbr><span>Full</span><wbr></wbr><span><span>Screen</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1634953647%2FFunctions%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-full-screen.html"><span class="token function">onFullScreen</span></a><span class="token punctuation">(</span>fullscreen<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Called whenever the user switches between full screen and normal mode</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="1083024406%2FFunctions%2F1440829338" anchor-label="onToggle" id="1083024406%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="on-toggle.html"><span>on</span><wbr></wbr><span><span>Toggle</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1083024406%2FFunctions%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-toggle.html"><span class="token function">onToggle</span></a><span class="token punctuation">(</span>collapsed<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Called whenever this window is being toggled by the user</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-1240256836%2FFunctions%2F1440829338" anchor-label="onUpdate" id="-1240256836%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="on-update.html"><span>on</span><wbr></wbr><span><span>Update</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1240256836%2FFunctions%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-update.html"><span class="token function">onUpdate</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">This function is called on every tick after creating the table.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-1371778789%2FFunctions%2F1440829338" anchor-label="shrink" id="-1371778789%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="shrink.html"><span><span>shrink</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1371778789%2FFunctions%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="shrink.html"><span class="token function">shrink</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Shrinks the root table of this window, reducing it's size to the minimum preferred size.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="17708120%2FFunctions%2F1440829338" anchor-label="toString" id="17708120%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="to-string.html"><span>to</span><wbr></wbr><span><span>String</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="17708120%2FFunctions%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="to-string.html"><span class="token function">toString</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <h2 class="">Properties</h2>
-              <div class="table" data-togglable="Properties"><a data-name="762383364%2FProperties%2F1440829338" anchor-label="closeable" id="762383364%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="closeable.html">closeable</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="762383364%2FProperties%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><a data-name="762383364%2FProperties%2F1440829338" anchor-label="closeable" id="762383364%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="closeable.html">closeable</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="762383364%2FProperties%2F1440829338" anchor-label="closeable" id="762383364%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><p class="paragraph">Whether this window can be closed by the user. Should be overriden.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-2065791991%2FProperties%2F1440829338" anchor-label="fullScreen" id="-2065791991%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="full-screen.html">fullScreen</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2065791991%2FProperties%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><a data-name="-2065791991%2FProperties%2F1440829338" anchor-label="fullScreen" id="-2065791991%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="full-screen.html">fullScreen</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-2065791991%2FProperties%2F1440829338" anchor-label="fullScreen" id="-2065791991%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><p class="paragraph">Whether the window is in the full screen mode. Modifying this property triggers <a href="on-full-screen.html">onFullScreen</a>.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-2105557719%2FProperties%2F1440829338" anchor-label="isCollapsed" id="-2105557719%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="is-collapsed.html">isCollapsed</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2105557719%2FProperties%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><a data-name="-2105557719%2FProperties%2F1440829338" anchor-label="isCollapsed" id="-2105557719%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="is-collapsed.html">isCollapsed</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-2105557719%2FProperties%2F1440829338" anchor-label="isCollapsed" id="-2105557719%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><p class="paragraph">Whether this window is collapsed. Modifying this property triggers <a href="on-toggle.html">onToggle</a>.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="776163086%2FProperties%2F1440829338" anchor-label="isDragged" id="776163086%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="is-dragged.html">isDragged</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="776163086%2FProperties%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><a data-name="776163086%2FProperties%2F1440829338" anchor-label="isDragged" id="776163086%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="is-dragged.html">isDragged</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="776163086%2FProperties%2F1440829338" anchor-label="isDragged" id="776163086%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><p class="paragraph">Whether the window is being dragged by the user right now</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="1140521113%2FProperties%2F1440829338" anchor-label="name" id="1140521113%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="name.html">name</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1140521113%2FProperties%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><a data-name="1140521113%2FProperties%2F1440829338" anchor-label="name" id="1140521113%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="name.html">name</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="1140521113%2FProperties%2F1440829338" anchor-label="name" id="1140521113%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><p class="paragraph">Name of this window, displayed in the top bar. Should be overriden.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="133639141%2FProperties%2F1440829338" anchor-label="supportsFullScreen" id="133639141%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="supports-full-screen.html">supportsFullScreen</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="133639141%2FProperties%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><a data-name="133639141%2FProperties%2F1440829338" anchor-label="supportsFullScreen" id="133639141%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">val </span><a href="supports-full-screen.html">supportsFullScreen</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="133639141%2FProperties%2F1440829338" anchor-label="supportsFullScreen" id="133639141%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><p class="paragraph">Whether this window supports full screen mode. Can be overriden. Currently broken, should not be used.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-1155211384%2FProperties%2F1440829338" anchor-label="table" id="-1155211384%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="table.html">table</a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1155211384%2FProperties%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><a data-name="-1155211384%2FProperties%2F1440829338" anchor-label="table" id="-1155211384%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">lateinit </span><span class="token keyword">var </span><a href="table.html">table</a><span class="token operator">: </span><span data-unresolved-link="arc.scene.ui.layout/Table///PointingToDeclaration/">Table</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><a data-name="-1155211384%2FProperties%2F1440829338" anchor-label="table" id="-1155211384%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><p class="paragraph">The table this window is assigned to. Initialized when the window is created.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="-window.html"><span class="token function">Window</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+      </div>
+      <h2 class="">Functions</h2>
+      <div class="table" data-togglable="Functions"><a data-name="-1893482965%2FFunctions%2F1440829338" anchor-label="addAction" id="-1893482965%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="add-action.html"><span>add</span><wbr></wbr><span><span>Action</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1893482965%2FFunctions%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="add-action.html"><span class="token function">addAction</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">action<span class="token operator">: </span><span data-unresolved-link="arc.scene/Action///PointingToDeclaration/">Action</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Applies an action to the <strong>root table</strong>.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1210666340%2FFunctions%2F1440829338" anchor-label="destroy" id="-1210666340%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="destroy.html"><span><span>destroy</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1210666340%2FFunctions%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="destroy.html"><span class="token function">destroy</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Destroys this window, removing it from the scene and triggering <a href="on-destroy.html">onDestroy</a>.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1461525827%2FFunctions%2F1440829338" anchor-label="equals" id="-1461525827%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="equals.html"><span><span>equals</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1461525827%2FFunctions%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">operator override </span><span class="token keyword">fun </span><a href="equals.html"><span class="token function">equals</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">other<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="195874185%2FFunctions%2F1440829338" anchor-label="hashCode" id="195874185%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="hash-code.html"><span>hash</span><wbr></wbr><span><span>Code</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="195874185%2FFunctions%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="hash-code.html"><span class="token function">hashCode</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1751012841%2FFunctions%2F1440829338" anchor-label="onCreate" id="1751012841%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="on-create.html"><span>on</span><wbr></wbr><span><span>Create</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1751012841%2FFunctions%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-create.html"><span class="token function">onCreate</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Called when the window is being created.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-98204069%2FFunctions%2F1440829338" anchor-label="onDestroy" id="-98204069%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="on-destroy.html"><span>on</span><wbr></wbr><span><span>Destroy</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-98204069%2FFunctions%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-destroy.html"><span class="token function">onDestroy</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Called when the window is being destroyed. Usually this means that the user has closed the window.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="2032157361%2FFunctions%2F1440829338" anchor-label="onDrag" id="2032157361%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="on-drag.html"><span>on</span><wbr></wbr><span><span>Drag</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2032157361%2FFunctions%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-drag.html"><span class="token function">onDrag</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Called when the window is being dragged by the user.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1634953647%2FFunctions%2F1440829338" anchor-label="onFullScreen" id="1634953647%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="on-full-screen.html"><span>on</span><wbr></wbr><span>Full</span><wbr></wbr><span><span>Screen</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1634953647%2FFunctions%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-full-screen.html"><span class="token function">onFullScreen</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">fullscreen<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Called whenever the user switches between full screen and normal mode</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1083024406%2FFunctions%2F1440829338" anchor-label="onToggle" id="1083024406%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="on-toggle.html"><span>on</span><wbr></wbr><span><span>Toggle</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1083024406%2FFunctions%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-toggle.html"><span class="token function">onToggle</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">collapsed<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Called whenever this window is being toggled by the user</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1240256836%2FFunctions%2F1440829338" anchor-label="onUpdate" id="-1240256836%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="on-update.html"><span>on</span><wbr></wbr><span><span>Update</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1240256836%2FFunctions%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="on-update.html"><span class="token function">onUpdate</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">This function is called on every tick after creating the table.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1371778789%2FFunctions%2F1440829338" anchor-label="shrink" id="-1371778789%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="shrink.html"><span><span>shrink</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1371778789%2FFunctions%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="shrink.html"><span class="token function">shrink</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Shrinks the root table of this window, reducing it's size to the minimum preferred size.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="17708120%2FFunctions%2F1440829338" anchor-label="toString" id="17708120%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="to-string.html"><span>to</span><wbr></wbr><span><span>String</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="17708120%2FFunctions%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">override </span><span class="token keyword">fun </span><a href="to-string.html"><span class="token function">toString</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="">Properties</h2>
+      <div class="table" data-togglable="Properties"><a data-name="762383364%2FProperties%2F1440829338" anchor-label="closeable" id="762383364%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="closeable.html"><span><span>closeable</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="762383364%2FProperties%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><a data-name="762383364%2FProperties%2F1440829338" anchor-label="closeable" id="762383364%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="closeable.html">closeable</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><a data-name="762383364%2FProperties%2F1440829338" anchor-label="closeable" id="762383364%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><p class="paragraph">Whether this window can be closed by the user. Should be overriden.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-2065791991%2FProperties%2F1440829338" anchor-label="fullScreen" id="-2065791991%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="full-screen.html"><span>full</span><wbr></wbr><span><span>Screen</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2065791991%2FProperties%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><a data-name="-2065791991%2FProperties%2F1440829338" anchor-label="fullScreen" id="-2065791991%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="full-screen.html">fullScreen</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span></div><div class="brief "><a data-name="-2065791991%2FProperties%2F1440829338" anchor-label="fullScreen" id="-2065791991%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><p class="paragraph">Whether the window is in the full screen mode. Modifying this property triggers <a href="on-full-screen.html">onFullScreen</a>.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-2105557719%2FProperties%2F1440829338" anchor-label="isCollapsed" id="-2105557719%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="is-collapsed.html"><span>is</span><wbr></wbr><span><span>Collapsed</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2105557719%2FProperties%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><a data-name="-2105557719%2FProperties%2F1440829338" anchor-label="isCollapsed" id="-2105557719%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="is-collapsed.html">isCollapsed</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span></div><div class="brief "><a data-name="-2105557719%2FProperties%2F1440829338" anchor-label="isCollapsed" id="-2105557719%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><p class="paragraph">Whether this window is collapsed. Modifying this property triggers <a href="on-toggle.html">onToggle</a>.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="776163086%2FProperties%2F1440829338" anchor-label="isDragged" id="776163086%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="is-dragged.html"><span>is</span><wbr></wbr><span><span>Dragged</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="776163086%2FProperties%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><a data-name="776163086%2FProperties%2F1440829338" anchor-label="isDragged" id="776163086%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="is-dragged.html">isDragged</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator"> = </span><span class="token boolean">false</span></div><div class="brief "><a data-name="776163086%2FProperties%2F1440829338" anchor-label="isDragged" id="776163086%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><p class="paragraph">Whether the window is being dragged by the user right now</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1140521113%2FProperties%2F1440829338" anchor-label="name" id="1140521113%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="name.html"><span><span>name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1140521113%2FProperties%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><a data-name="1140521113%2FProperties%2F1440829338" anchor-label="name" id="1140521113%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="name.html">name</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><a data-name="1140521113%2FProperties%2F1440829338" anchor-label="name" id="1140521113%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><p class="paragraph">Name of this window, displayed in the top bar. Should be overriden.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="133639141%2FProperties%2F1440829338" anchor-label="supportsFullScreen" id="133639141%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="supports-full-screen.html"><span>supports</span><wbr></wbr><span>Full</span><wbr></wbr><span><span>Screen</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="133639141%2FProperties%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><a data-name="133639141%2FProperties%2F1440829338" anchor-label="supportsFullScreen" id="133639141%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">val </span><a href="supports-full-screen.html">supportsFullScreen</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><a data-name="133639141%2FProperties%2F1440829338" anchor-label="supportsFullScreen" id="133639141%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><p class="paragraph">Whether this window supports full screen mode. Can be overriden. Currently broken, should not be used.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1155211384%2FProperties%2F1440829338" anchor-label="table" id="-1155211384%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="table.html"><span><span>table</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1155211384%2FProperties%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted" data-togglable="Properties"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><a data-name="-1155211384%2FProperties%2F1440829338" anchor-label="table" id="-1155211384%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><div class="symbol monospace"><span class="token keyword">lateinit </span><span class="token keyword">var </span><a href="table.html">table</a><span class="token operator">: </span><span data-unresolved-link="arc.scene.ui.layout/Table///PointingToDeclaration/">Table</span></div><div class="brief "><a data-name="-1155211384%2FProperties%2F1440829338" anchor-label="table" id="-1155211384%2FProperties%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a><p class="paragraph">The table this window is assigned to. Initialized when the window is created.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </body>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
 </html>
-

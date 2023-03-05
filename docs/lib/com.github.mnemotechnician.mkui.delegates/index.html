@@ -1,165 +1,197 @@
+<!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>com.github.mnemotechnician.mkui.delegates</title>
-<link href="../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
-const savedDarkMode = storage ? JSON.parse(storage) : false
-if(savedDarkMode === true){
-    document.getElementsByTagName("html")[0].classList.add("theme-dark")
-}</script>
-<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async="async"></script><link href="../../styles/style.css" rel="Stylesheet"><link href="../../styles/jetbrains-mono.css" rel="Stylesheet"><link href="../../styles/main.css" rel="Stylesheet"><link href="../../styles/prism.css" rel="Stylesheet"><link href="../../styles/logo-styles.css" rel="Stylesheet"><script type="text/javascript" src="../../scripts/clipboard.js" async="async"></script><script type="text/javascript" src="../../scripts/navigation-loader.js" async="async"></script><script type="text/javascript" src="../../scripts/platform-content-handler.js" async="async"></script><script type="text/javascript" src="../../scripts/main.js" defer="defer"></script><script type="text/javascript" src="../../scripts/prism.js" async="async"></script>  </head>
-  <body>
-    <div class="navigation-wrapper" id="navigation-wrapper">
-      <div id="leftToggler"><span class="icon-toggler"></span></div>
-      <div class="library-name"><a href="../../index.html">lib</a></div>
-      <div></div>
-      <div class="pull-right d-flex"><button id="theme-toggle-button"><span id="theme-toggle"></span></button>
-        <div id="searchBar"></div>
-      </div>
+    <link href="../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../";</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+            <a href="../../index.html">
+                    <span>lib</span>
+            </a>
     </div>
-    <div id="container">
-      <div id="leftColumn">
+    <div>
+    </div>
+    <div class="pull-right d-flex">
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
         <div id="sideMenu"></div>
-      </div>
-      <div id="main">
-        <div class="main-content" id="content" pageIds="lib::com.github.mnemotechnician.mkui.delegates////PointingToDeclaration//1440829338">
-          <div class="breadcrumbs"><a href="../../index.html">lib</a>/<a href="index.html">com.github.mnemotechnician.mkui.delegates</a></div>
-          <div class="cover ">
-            <h1 class="cover"><span><span>Package</span></span> <span>com.</span><wbr></wbr><span>github.</span><wbr></wbr><span>mnemotechnician.</span><wbr></wbr><span>mkui.</span><wbr></wbr><span>delegates</span></h1>
-          </div>
-          <div class="tabbedcontent">
-            <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button><button class="section-tab" data-togglable="Functions">Functions</button></div>
-            <div class="tabs-section-body">
-              <h2 class="">Types</h2>
-              <div class="table" data-togglable="Types"><a data-name="-416986161%2FClasslikes%2F1440829338" anchor-label="BundleDelegate" id="-416986161%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="-bundle-delegate/index.html"><span>Bundle</span><wbr></wbr><span><span>Delegate</span></span></a></div>
+    </div>
+    <div id="main">
+<div class="main-content" id="content" pageIds="lib::com.github.mnemotechnician.mkui.delegates////PointingToDeclaration//1440829338">
+  <div class="breadcrumbs"><a href="../../index.html">lib</a><span class="delimiter">/</span><span class="current">com.github.mnemotechnician.mkui.delegates</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Types">Types</button><button class="section-tab" data-togglable="Functions">Functions</button></div>
+    <div class="tabs-section-body">
+      <h2 class="">Types</h2>
+      <div class="table" data-togglable="Types"><a data-name="-416986161%2FClasslikes%2F1440829338" anchor-label="BundleDelegate" id="-416986161%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-bundle-delegate/index.html"><span>Bundle</span><wbr></wbr><span><span>Delegate</span></span></a></div>
 <span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-416986161%2FClasslikes%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-bundle-delegate/index.html">BundleDelegate</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-bundle-delegate/index.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">(</span>prefix<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span>substitutions<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-bundle-delegate/index.html">T</a><span class="token operator">?</span><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Delegates to an I18n bundle entry and allows substitutions.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-565061850%2FClasslikes%2F1440829338" anchor-label="DynamicBundleDelegate" id="-565061850%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="-dynamic-bundle-delegate/index.html"><span>Dynamic</span><wbr></wbr><span>Bundle</span><wbr></wbr><span><span>Delegate</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-565061850%2FClasslikes%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-dynamic-bundle-delegate/index.html">DynamicBundleDelegate</a><span class="token punctuation">(</span>prefix<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span>functions<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span class="token keyword">out </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token punctuation">)</span> : <a href="-bundle-delegate/index.html">BundleDelegate</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Similar to <a href="-bundle-delegate/index.html">BundleDelegate</a> but substitutions are performed dynamically. The output is cached and only reformatted if the outputs of <a href="-dynamic-bundle-delegate/functions.html">functions</a> have changed.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="1007949370%2FClasslikes%2F1440829338" anchor-label="LazyDynamicBundleDelegate" id="1007949370%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="-lazy-dynamic-bundle-delegate/index.html"><span>Lazy</span><wbr></wbr><span>Dynamic</span><wbr></wbr><span>Bundle</span><wbr></wbr><span><span>Delegate</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1007949370%2FClasslikes%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-lazy-dynamic-bundle-delegate/index.html">LazyDynamicBundleDelegate</a><span class="token punctuation">(</span>lazyPrefix<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">, </span>functions<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span class="token keyword">out </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator">&gt;</span><span class="token punctuation">)</span> : <a href="-dynamic-bundle-delegate/index.html">DynamicBundleDelegate</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Similar to <a href="-dynamic-bundle-delegate/index.html">DynamicBundleDelegate</a> but the prefix is computed lazily. If <a href="-lazy-dynamic-bundle-delegate/lazy-prefix.html">lazyPrefix</a> returns null, a placeholder value is returned, and <a href="-lazy-dynamic-bundle-delegate/lazy-prefix.html">lazyPrefix</a> will be called again on next access.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-267191594%2FClasslikes%2F1440829338" anchor-label="LazyNameSettingDelegate" id="-267191594%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="-lazy-name-setting-delegate/index.html"><span>Lazy</span><wbr></wbr><span>Name</span><wbr></wbr><span>Setting</span><wbr></wbr><span><span>Delegate</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-267191594%2FClasslikes%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-lazy-name-setting-delegate/index.html">LazyNameSettingDelegate</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-lazy-name-setting-delegate/index.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">(</span>lazyPrefix<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">, </span>default<span class="token operator">: </span><a href="-lazy-name-setting-delegate/index.html">T</a><span class="token punctuation">)</span> : <a href="-setting-delegate/index.html">SettingDelegate</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-lazy-name-setting-delegate/index.html">T</a><span class="token operator">&gt; </span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Same as <a href="-setting-delegate/index.html">SettingDelegate</a>, but the name is computed lazily (during the first access). If <a href="-lazy-name-setting-delegate/lazy-prefix.html">lazyPrefix</a> returns null, the default value is returned, and <a href="-lazy-name-setting-delegate/lazy-prefix.html">lazyPrefix</a> will be called again on next access.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="1230906519%2FClasslikes%2F1440829338" anchor-label="SettingDelegate" id="1230906519%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="-setting-delegate/index.html"><span>Setting</span><wbr></wbr><span><span>Delegate</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1230906519%2FClasslikes%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-setting-delegate/index.html">SettingDelegate</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-setting-delegate/index.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">(</span>prefix<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span>default<span class="token operator">: </span><a href="-setting-delegate/index.html">T</a><span class="token punctuation">)</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Delegates to a setting.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <h2 class="">Functions</h2>
-              <div class="table" data-togglable="Functions"><a data-name="-1203175211%2FFunctions%2F1440829338" anchor-label="bundle" id="-1203175211%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="bundle.html"><span><span>bundle</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1203175211%2FFunctions%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="bundle.html"><span class="token function">bundle</span></a><span class="token punctuation">(</span>prefix<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">&quot;&quot;</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-bundle-delegate/index.html">BundleDelegate</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html">Nothing</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Creates a bundle delegate with no substitutions.</p></div><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="bundle.html"><span class="token function">bundle</span></a><span class="token punctuation">(</span>prefix<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">&quot;&quot;</span><span class="token punctuation">, </span><span class="token keyword">vararg </span>substitutions<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-bundle-delegate/index.html">BundleDelegate</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Creates a read-only property delegate that represents the value of the underlying bundle entry.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="1518265716%2FFunctions%2F1440829338" anchor-label="dynamicBundle" id="1518265716%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="dynamic-bundle.html"><span>dynamic</span><wbr></wbr><span><span>Bundle</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1518265716%2FFunctions%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="dynamic-bundle.html"><span class="token function">dynamicBundle</span></a><span class="token punctuation">(</span>lazyPrefix<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">, </span><span class="token keyword">vararg </span>functions<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-lazy-dynamic-bundle-delegate/index.html">LazyDynamicBundleDelegate</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Creates a property delegates that delegates to a mindustry bundle entry.</p></div><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="dynamic-bundle.html"><span class="token function">dynamicBundle</span></a><span class="token punctuation">(</span>prefix<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">&quot;&quot;</span><span class="token punctuation">, </span><span class="token keyword">vararg </span>functions<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-dynamic-bundle-delegate/index.html">DynamicBundleDelegate</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Creates a read-only property delegate that delegates to a mindustry bundle entry.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-<a data-name="-1878502484%2FFunctions%2F1440829338" anchor-label="setting" id="-1878502484%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
-                <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
-                  <div class="main-subrow keyValue ">
-                    <div class=""><span class="inline-flex">
-                        <div><a href="setting.html"><span><span>setting</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1878502484%2FFunctions%2F1440829338"></span>
-                          <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
-                        </span></span></div>
-                    <div>
-                      <div class="title">
-                        <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="setting.html">T</a><span class="token operator">&gt; </span><a href="setting.html"><span class="token function">setting</span></a><span class="token punctuation">(</span>default<span class="token operator">: </span><a href="setting.html">T</a><span class="token punctuation">, </span><span class="token keyword">noinline </span>lazyPrefix<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-setting-delegate/index.html">SettingDelegate</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="setting.html">T</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Creates a property delegates that delegates to a mindustry setting.</p></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="setting.html">T</a><span class="token operator">&gt; </span><a href="setting.html"><span class="token function">setting</span></a><span class="token punctuation">(</span>default<span class="token operator">: </span><a href="setting.html">T</a><span class="token punctuation">, </span>prefix<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">&quot;&quot;</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-setting-delegate/index.html">SettingDelegate</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="setting.html">T</a><span class="token operator">&gt;</span><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><div class="brief "><p class="paragraph">Creates a property delegate that represents the value of the corresponding mindustry setting.</p></div></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-bundle-delegate/index.html">BundleDelegate</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-bundle-delegate/index.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">var </span>prefix<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>substitutions<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-bundle-delegate/index.html">T</a><span class="token operator">?</span><span class="token operator">&gt;</span><span class="token operator">?</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Delegates to an I18n bundle entry and allows substitutions.</p></div></div></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="footer"><span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2022 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span></div>
+<a data-name="-565061850%2FClasslikes%2F1440829338" anchor-label="DynamicBundleDelegate" id="-565061850%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-dynamic-bundle-delegate/index.html"><span>Dynamic</span><wbr></wbr><span>Bundle</span><wbr></wbr><span><span>Delegate</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-565061850%2FClasslikes%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-dynamic-bundle-delegate/index.html">DynamicBundleDelegate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">prefix<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>functions<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span class="token keyword">out </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator">&gt;</span><span class="token operator">?</span></span></span><span class="token punctuation">)</span> : <a href="-bundle-delegate/index.html">BundleDelegate</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Similar to <a href="-bundle-delegate/index.html">BundleDelegate</a> but substitutions are performed dynamically. The output is cached and only reformatted if the outputs of <a href="-dynamic-bundle-delegate/functions.html">functions</a> have changed.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1007949370%2FClasslikes%2F1440829338" anchor-label="LazyDynamicBundleDelegate" id="1007949370%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-lazy-dynamic-bundle-delegate/index.html"><span>Lazy</span><wbr></wbr><span>Dynamic</span><wbr></wbr><span>Bundle</span><wbr></wbr><span><span>Delegate</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1007949370%2FClasslikes%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-lazy-dynamic-bundle-delegate/index.html">LazyDynamicBundleDelegate</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>lazyPrefix<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>functions<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html">Array</a><span class="token operator">&lt;</span><span class="token keyword">out </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span> : <a href="-dynamic-bundle-delegate/index.html">DynamicBundleDelegate</a></div><div class="brief "><p class="paragraph">Similar to <a href="-dynamic-bundle-delegate/index.html">DynamicBundleDelegate</a> but the prefix is computed lazily. If <a href="-lazy-dynamic-bundle-delegate/lazy-prefix.html">lazyPrefix</a> returns null, a placeholder value is returned, and <a href="-lazy-dynamic-bundle-delegate/lazy-prefix.html">lazyPrefix</a> will be called again on next access.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-267191594%2FClasslikes%2F1440829338" anchor-label="LazyNameSettingDelegate" id="-267191594%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-lazy-name-setting-delegate/index.html"><span>Lazy</span><wbr></wbr><span>Name</span><wbr></wbr><span>Setting</span><wbr></wbr><span><span>Delegate</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-267191594%2FClasslikes%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-lazy-name-setting-delegate/index.html">LazyNameSettingDelegate</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-lazy-name-setting-delegate/index.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>lazyPrefix<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter ">default<span class="token operator">: </span><a href="-lazy-name-setting-delegate/index.html">T</a></span></span><span class="token punctuation">)</span> : <a href="-setting-delegate/index.html">SettingDelegate</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-lazy-name-setting-delegate/index.html">T</a><span class="token operator">&gt; </span></div><div class="brief "><p class="paragraph">Same as <a href="-setting-delegate/index.html">SettingDelegate</a>, but the name is computed lazily (during the first access). If <a href="-lazy-name-setting-delegate/lazy-prefix.html">lazyPrefix</a> returns null, the default value is returned, and <a href="-lazy-name-setting-delegate/lazy-prefix.html">lazyPrefix</a> will be called again on next access.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1230906519%2FClasslikes%2F1440829338" anchor-label="SettingDelegate" id="1230906519%2FClasslikes%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="-setting-delegate/index.html"><span>Setting</span><wbr></wbr><span><span>Delegate</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1230906519%2FClasslikes%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">class </span><a href="-setting-delegate/index.html">SettingDelegate</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="-setting-delegate/index.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">var </span>prefix<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>default<span class="token operator">: </span><a href="-setting-delegate/index.html">T</a></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Delegates to a setting.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 class="">Functions</h2>
+      <div class="table" data-togglable="Functions"><a data-name="-1203175211%2FFunctions%2F1440829338" anchor-label="bundle" id="-1203175211%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="bundle.html"><span><span>bundle</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1203175211%2FFunctions%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="bundle.html"><span class="token function">bundle</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">prefix<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">&quot;&quot;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-bundle-delegate/index.html">BundleDelegate</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-nothing/index.html">Nothing</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Creates a bundle delegate with no substitutions.</p></div><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="bundle.html"><span class="token function">bundle</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">prefix<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">&quot;&quot;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>substitutions<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-bundle-delegate/index.html">BundleDelegate</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Creates a read-only property delegate that represents the value of the underlying bundle entry.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="1518265716%2FFunctions%2F1440829338" anchor-label="dynamicBundle" id="1518265716%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="dynamic-bundle.html"><span>dynamic</span><wbr></wbr><span><span>Bundle</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1518265716%2FFunctions%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="dynamic-bundle.html"><span class="token function">dynamicBundle</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">lazyPrefix<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>functions<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-lazy-dynamic-bundle-delegate/index.html">LazyDynamicBundleDelegate</a></div><div class="brief "><p class="paragraph">Creates a property delegates that delegates to a mindustry bundle entry.</p></div><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="dynamic-bundle.html"><span class="token function">dynamicBundle</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">prefix<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">&quot;&quot;</span><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">vararg </span>functions<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html">Any</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-dynamic-bundle-delegate/index.html">DynamicBundleDelegate</a></div><div class="brief "><p class="paragraph">Creates a read-only property delegate that delegates to a mindustry bundle entry.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+<a data-name="-1878502484%2FFunctions%2F1440829338" anchor-label="setting" id="-1878502484%2FFunctions%2F1440829338" data-filterable-set=":lib:dokkaHtml/main"></a>
+        <div class="table-row" data-filterable-current=":lib:dokkaHtml/main" data-filterable-set=":lib:dokkaHtml/main">
+          <div class="main-subrow keyValue ">
+            <div class=""><span class="inline-flex">
+                <div><a href="setting.html"><span><span>setting</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1878502484%2FFunctions%2F1440829338"></span>
+                  <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                </span></span></div>
+            <div>
+              <div class="title">
+                <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":lib:dokkaHtml/main"><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="setting.html">T</a><span class="token operator">&gt; </span><a href="setting.html"><span class="token function">setting</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">default<span class="token operator">: </span><a href="setting.html">T</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">noinline </span>lazyPrefix<span class="token operator">: </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-setting-delegate/index.html">SettingDelegate</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="setting.html">T</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Creates a property delegates that delegates to a mindustry setting.</p></div><div class="symbol monospace"><span class="token keyword">inline </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="setting.html">T</a><span class="token operator">&gt; </span><a href="setting.html"><span class="token function">setting</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">default<span class="token operator">: </span><a href="setting.html">T</a><span class="token punctuation">, </span></span><span class="parameter ">prefix<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span><span class="token string">&quot;&quot;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="-setting-delegate/index.html">SettingDelegate</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="setting.html">T</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Creates a property delegate that represents the value of the corresponding mindustry setting.</p></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </body>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
 </html>
-
