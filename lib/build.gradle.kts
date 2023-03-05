@@ -1,6 +1,8 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
-	kotlin("jvm") version "1.6.10"
-	id("org.jetbrains.dokka") version "1.6.10"
+	kotlin("jvm") version "1.8.0"
+	id("org.jetbrains.dokka") version "1.7.20"
 
 	`java-library` //todo: why is this added
 	`maven-publish`
@@ -14,7 +16,6 @@ repositories {
 val mindustryVersion = "v135"
 
 dependencies {
-	compileOnly(kotlin("stdlib-jdk8"))
 	compileOnly("com.github.Anuken.Arc:arc-core:$mindustryVersion")
 	compileOnly("com.github.Anuken.Mindustry:core:$mindustryVersion")
 
@@ -32,7 +33,7 @@ publishing {
 		create<MavenPublication>("maven") {
 			groupId = "com.github.mnemotechnician"
 			artifactId = "mkui"
-			version = "v1.2"
+			version = "v1.2.1"
 
 			from(components["java"])
 		}
@@ -41,4 +42,18 @@ publishing {
 
 tasks.test {
 	useJUnitPlatform()
+}
+
+tasks.withType<JavaCompile> {
+	sourceCompatibility = "1.8"
+	targetCompatibility = "1.8"
+}
+
+tasks.withType<KotlinCompile> {
+	kotlinOptions {
+		jvmTarget = "1.8"
+		freeCompilerArgs += arrayOf(
+			"-Xcontext-receivers"
+		)
+	}
 }

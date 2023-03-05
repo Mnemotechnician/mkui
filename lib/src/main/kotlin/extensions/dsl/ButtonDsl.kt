@@ -31,11 +31,15 @@ inline fun Table.textButton(
 	text: String,
 	style: TextButton.TextButtonStyle = Styles.defaultt,
 	wrap: Boolean = false,
+	align: Int? = null,
+	ellipsis: String? = null,
 	crossinline onclick: TextButton.() -> Unit = {}
 ): Cell<TextButton> {
 	return add(TextButton(text, style).also {
 		it.clicked { onclick(it) }
 		it.label.setWrap(wrap)
+		it.label.setEllipsis(ellipsis)
+		align?.let { align -> it.label.setAlignment(align) }
 	})
 }
 
@@ -44,11 +48,15 @@ inline fun Table.textButton(
 	crossinline provider: () -> String,
 	style: TextButton.TextButtonStyle = Styles.defaultt,
 	wrap: Boolean = false,
+	align: Int? = null,
+	ellipsis: String? = null,
 	crossinline onclick: TextButton.() -> Unit = {}
 ): Cell<TextButton> {
 	return add(TextButton("", style).also {
 		it.clicked { onclick(it) }
 		it.label.setWrap(wrap)
+		it.label.setEllipsis(ellipsis)
+		align?.let { align -> it.label.setAlignment(align) }
 		it.update { it.setText(provider()) }
 	})
 }
@@ -109,10 +117,15 @@ inline fun Table.textToggle(
 	text: String,
 	toggleableStyle: Button.ButtonStyle = Styles.togglet,
 	wrap: Boolean = false,
+	align: Int? = null,
+	ellipsis: String? = null,
 	crossinline ontoggle: Button.(Boolean) -> Unit = {}
 ): Cell<ToggleButton> {
 	return toggleButton({ addLabel(text) }, toggleableStyle, ontoggle).also {
-		it.get().child<Label>(0).setWrap(wrap)
+		val label = it.get().child<Label>(0)
+		label.setWrap(wrap)
+		label.setEllipsis(ellipsis)
+		align?.let { align -> label.setAlignment(align) }
 	}
 }
 
@@ -121,12 +134,17 @@ inline fun Table.textToggle(
 	crossinline text: (Boolean) -> String,
 	toggleableStyle: Button.ButtonStyle = Styles.togglet,
 	wrap: Boolean = false,
+	align: Int? = null,
+	ellipsis: String? = null,
 	crossinline ontoggle: Button.(Boolean) -> Unit = {}
 ): Cell<ToggleButton> {
 	return toggleButton({
 		addLabel({ text(isChecked) })
 	}, toggleableStyle, ontoggle).also {
-		it.get().child<Label>(0).setWrap(wrap)
+		val label = it.get().child<Label>(0)
+		label.setWrap(wrap)
+		label.setEllipsis(ellipsis)
+		align?.let { align -> label.setAlignment(align) }
 	}
 }
 
@@ -139,9 +157,11 @@ inline fun Table.textToggle(
 	textDisabled: String,
 	toggleableStyle: Button.ButtonStyle = Styles.togglet,
 	wrap: Boolean = false,
+	align: Int? = null,
+	ellipsis: String? = null,
 	crossinline ontoggle: Button.(Boolean) -> Unit = {}
 ): Cell<ToggleButton> {
-	return textToggle({ if (it) textEnabled else textDisabled}, toggleableStyle, wrap, ontoggle)
+	return textToggle({ if (it) textEnabled else textDisabled }, toggleableStyle, wrap, align, ellipsis, ontoggle)
 }
 
 /** Simmilar to toggleButton but adds a constant image */
@@ -168,7 +188,7 @@ inline fun Table.imageToggle(
  * Adds an image toggle button and returns the created cell.
  * The toggle uses [imageEnabled] or [imageDisabled] depending on whether it's toggled on or off.
  */
-inline fun Table.textToggle(
+inline fun Table.imageToggle(
 	imageEnabled: Drawable?,
 	imageDisabled: Drawable?,
 	toggleableStyle: Button.ButtonStyle = Styles.togglet,

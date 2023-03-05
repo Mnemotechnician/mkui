@@ -8,6 +8,18 @@ import arc.scene.ui.layout.Table
 import arc.scene.ui.layout.WidgetGroup
 import com.github.mnemotechnician.mkui.extensions.elements.shrink
 
+/** 
+ * Adds this element to the group in the current context. 
+ */
+context(Group)
+operator fun Element.unaryPlus() = this@Group.addChild(this)
+
+/** 
+ * Adds this element to the table in the current context. 
+ */
+context(Table)
+operator fun Element.unaryPlus() = this@Table.add(this)
+
 /**
  * Returns this group with the specified element add to it.
  */
@@ -31,14 +43,16 @@ inline fun <reified T: Element> Group.childOrNull(index: Int): T? {
  */
 inline fun <reified T: Element> Group.child(index: Int): T = childOrNull<T>(index) ?: throw IllegalArgumentException()
 
-
-	/**
+/**
  * Reduces the size of the whole group to (0, 0) and invalidates hierarchy,
  * effectively reducing the size of this group to the minimum.
  *
  * This method recursively shrinks all children of the group except for [Label]s.
  * That can cause custom [WidgetGroup]s to break if their elements are
  * arranged manually (e.g. via [Element.setSize]).
+ *
+ * If this method causes your group to stop filling its cell,
+ * you should consider calling [deepInvalidate] afterwards.
  *
  * @param invalidateParents whether to invalidate hierarchy. Has no special effect if [shrinkParents] is true.
  * @param shrinkParents whether to shrink all parents except the scene root. Use with caution.
@@ -63,6 +77,17 @@ fun Group.deepShrink(shrinkParents: Boolean = false, invalidateParents: Boolean 
 		}
 	} else if (invalidateParents) {
 		invalidateHierarchy()
+	}
+}
+
+/** 
+ * Invalidates every element in the hierarchy.
+ * Usually used in combination with [deepShrink].
+ */
+fun Group.deepInvalidate() {
+	invalidate()
+	children.forEach {
+		if (it is Group) it.deepInvalidate()
 	}
 }
 

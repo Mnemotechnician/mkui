@@ -53,12 +53,12 @@ inline fun Table.addLabel(
  * The parameter [block] can be used to modify the created labels, e.g. apply color or padding.
  */
 inline fun Table.addLabels(
+	vararg elems: Any?,
 	style: Label.LabelStyle = Styles.defaultLabel,
 	wrap: Boolean = false,
 	ellipsis: String? = null,
 	align: Int = Align.center,
-	block: (Cell<Label>) -> Unit = {},
-	vararg elems: Any?
+	block: (Cell<Label>) -> Unit = {}
 ) {
 	elems.forEach {
 		when (it) {
@@ -142,7 +142,7 @@ fun Table.addSpace(
 ) = add(Element()).size(width, height)
 
 /*
- * Adds an [Element] thag returns the providen values as its preferred size.
+ * Adds an [Element] that returns the providen values as its preferred size.
  */
 fun Table.addPrefSpace(
 	spaceWidth: Float = 1f,
