@@ -24,20 +24,8 @@ dependencies {
 	testImplementation("com.github.Anuken.Mindustry:core:$mindustryVersion")
 }
 
-tasks.withType<Jar> {
+tasks.jar {
 	archiveFileName.set("MKUI.jar")
-}
-
-publishing {
-	publications {
-		create<MavenPublication>("maven") {
-			groupId = "com.github.mnemotechnician"
-			artifactId = "mkui"
-			version = "v1.2.1"
-
-			from(components["java"])
-		}
-	}
 }
 
 tasks.test {
@@ -55,5 +43,29 @@ tasks.withType<KotlinCompile> {
 		freeCompilerArgs += arrayOf(
 			"-Xcontext-receivers"
 		)
+	}
+}
+
+val javadocJar by tasks.creating(Jar::class) {
+	from(tasks.dokkaJavadoc.get().outputs)
+	archiveClassifier.set("javadoc")
+}
+
+val sourceJar by tasks.creating(Jar::class) {
+	from(sourceSets["main"].allSource)
+	archiveClassifier.set("sources")
+}
+
+publishing {
+	publications {
+		create<MavenPublication>("maven") {
+			groupId = "com.github.mnemotechnician"
+			artifactId = "mkui"
+			version = "v1.2.2"
+
+			from(components["java"])
+			artifact(javadocJar)
+			artifact(sourceJar)
+		}
 	}
 }
