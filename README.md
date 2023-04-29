@@ -1,25 +1,23 @@
-# MaKe UI - A mindustry ui library.
-A ui library for mindustry mods written in kotlin.
-
-Provides some useful stuff, such as inline ui construction functions, utility functions, new ui classes, etc.
+# MaKe UI - mindustry ui library.
+MK UI is a a library that provides many useful ui-related features for other mindustry mods.
+This includes:
+- DSL UI builders
+- Dialog construction functions
+- New extension functions and properties for some ui elements
+- New delegates that allow you to easily interact with the settings/translation bundle
+- New UI elements
 
 You can view the documentation here: [mnemotechnician.github.io/mkui](https://mnemotechnician.github.io/mkui/)
 
-# Update: breaking change
-MKUI has is no longer an experimental library.
-Starting from MKUI 1.0, there are several major changes:
-- The package structure was changed significantly.
-- The versioning system has been changed. Its version will no longer be just a meaningless integer number.
-
 # Note
-Most of features provided by this library are supposed to be used in kotlin mods, as they have little to no usage in java (it lacks many features providen by kotlin)
+Most of the features providen by this library are made exclusively for kotlin mods.
 
-If you (somewhy) want to use this library in a java mod, you will have to include the whole kotlin stdlib as an implementation dependency.
+This library shouldn't be used by java mods as it requires the kotlin stdlib as a runtime dependency.
 
 # Adding this dependency
 In your `build.gradle` file:
 * add `maven { url("https://jitpack.io") }` to the `repositories {}` block 
-(it should already be here if you're using the official mod template)
+(it should already be here if you're using a mod template)
 * add `implementation "com.github.mnemotechnician:MKUI:TAG"` (replace `TAG` with the the latest tag in this repo) to the `dependencies {}` block
 
 Note: you can go to the [releases tab](https://github.com/mnemotechnician/mkui/releases) and use the name of the latest release as the tag. 
@@ -42,16 +40,19 @@ dependencies {
 //... other code
 ```
 
-## in case you're using kotlin dls:
-Ignore this paragraph if you're using the official kotlin mod template
+## Adding this dependency with kotlin gradle dsl
+The steps are the same, but you must:
+
 * use `maven("https://jitpack.io")` in the first step
-* use `implementation("com.github.mnemotechnician:MKUI:TAG")` in the second step
+* use `implementation("com.github.mnemotechnician", "mkui", "TAG")` in the second step
 
 # Features
 
-## Simplier and more readable tree-styled ui construction
-For example, with this short and easy code you can create a BaseDialog with a "hello world" label
-and a button that shows an info dialog when clicked.
+## DSL UI builders
+The domain-specific-language provided by this library allows you
+to easily and conveniently create complex and functional UI.
+For example, the below code fragment creates a "hello world"
+dialog with a single button that shows the text "yay" when clicked.
 
 ```kotlin
 import com.github.mnemotechnician.mkui.extensions.dsl.*
@@ -66,11 +67,31 @@ createBaseDialog(addCloseButton = true) {
 ```
 
 ## New ui classes
-* Window and WindowManager
-* TablePager
-* More coming in future
+* Window + WindowManager (self-explanatory)
+* TablePager (allows you to display content in tabs)
+* ToggleButton
+* MenuButton
 
-## Inline functions instead of java lambdas
-While having no significant performance impact (due to how inefficient element allocation is),
-this approach has many advantages, such as enabling your code to return from a whole tree of
-nested inline functions, reference anything outside the lambdas, etc.
+## Delegates
+There are two kinds of delegates MKUI provides: setting delegate and bundle delegate.
+
+The former allows you to delegate a property to a setting, e.g.:
+```kotlin
+val myInterestingSetting by setting(0, "my-prefix")
+```
+This delegates to a setting with the name "my-prefix.my-interesting-setting".
+Zero is the default value which is used if the setting is not found or its type is not `Int`.
+
+Another example:
+```kotlin
+val anotherBoringSetting by setting(true, "my-prefix")
+```
+This one delegates to "my-prefix.my-boring-setting", has a boolean type and true as the default value.
+
+---------------------
+
+The latter allows you to delegate a property to a bundle, e.g.:
+```kotlin
+val myBundleEntry by bundle("my-prefix")
+```
+This delegates to a bundle with the name "my-prefix.my-bundle-entry".
