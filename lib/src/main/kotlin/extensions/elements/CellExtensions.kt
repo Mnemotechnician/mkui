@@ -2,6 +2,7 @@ package com.github.mnemotechnician.mkui.extensions.elements
 
 import arc.graphics.g2d.Font
 import arc.scene.Element
+import arc.scene.actions.Actions.action
 import arc.scene.ui.*
 import arc.scene.ui.layout.Cell
 import arc.scene.ui.layout.Table
@@ -69,4 +70,34 @@ fun <T : TextField> Cell<T>.setFont(font: Font) = also {
 /** Creates a copy of the wrapped button's label's style and changes its font. */
 fun <T : TextButton> Cell<T>.font(font: Font) = also {
 	get().setFont(font)
+}
+
+/** Adds a new update listener that invokes after the wrapped element's own update listener finishes. Allows chaining listeners. */
+inline fun <T : Element> Cell<T>.updateLast(crossinline action: (T) -> Unit) {
+	get().apply {
+		val oldUpdate = updateField.get(this) as Runnable?
+		if (oldUpdate != null) {
+			update {
+				oldUpdate.run()
+				action(this)
+			}
+		} else {
+			update { action(this) }
+		}
+	}
+}
+
+/** Adds a new update listener that invokes before the wrapped element's update listener finishes. Allows chaining listeners. */
+inline fun <T : Element> Cell<T>.updateFirst(crossinline action: (T) -> Unit) {
+	get().apply {
+		val oldUpdate = updateField.get(this) as Runnable?
+		if (oldUpdate != null) {
+			update {
+				action(this)
+				oldUpdate.run()
+			}
+		} else {
+			update { action(this) }
+		}
+	}
 }

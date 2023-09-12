@@ -8,6 +8,10 @@ import arc.scene.ui.*
 import arc.scene.ui.layout.*
 import arc.util.Scaling
 import mindustry.gen.Groups.label
+import java.awt.SystemColor.text
+
+@PublishedApi
+internal var updateField = Element::class.java.getField("update")
 
 /** Text of the label */
 inline var Label.content: CharSequence
@@ -102,4 +106,30 @@ fun TextField.setFont(font: Font) {
 /** Creates a copy of this button's label's style and changes its font. */
 fun TextButton.setFont(font: Font) {
 	label.setFont(font)
+}
+
+/** Adds a new update listener that invokes after this element's own update listener finishes. Allows chaining listeners. */
+inline fun <T : Element> T.updateLast(crossinline action: (T) -> Unit) {
+	val oldUpdate = updateField.get(this) as Runnable?
+	if (oldUpdate != null) {
+		update {
+			oldUpdate.run()
+			action(this)
+		}
+	} else {
+		update { action(this) }
+	}
+}
+
+/** Adds a new update listener that invokes before this element's update listener finishes. Allows chaining listeners. */
+inline fun <T : Element> T.updateFirst(crossinline action: (T) -> Unit) {
+	val oldUpdate = updateField.get(this) as Runnable?
+	if (oldUpdate != null) {
+		update {
+			action(this)
+			oldUpdate.run()
+		}
+	} else {
+		update { action(this) }
+	}
 }
