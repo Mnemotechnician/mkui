@@ -29,49 +29,6 @@ inline var TextField.hint: String?
 	get() = messageText
 	set(hint) { messageText = hint }
 
-/** 
- * Changes the font size of the wrapped label or text button and returns the cell 
- * @throws UnsupportedOperationException if the element is neither a Label nor a TextButton
- */
-fun <T : Element> Cell<T>.scaleFont(scale: Float) = this.also { cell ->
-	when (val it = cell.get()) {
-		is Label -> it.setFontScale(scale)
-		is TextButton -> it.label?.setFontScale(scale)
-		else -> throw UnsupportedOperationException("this class is not supported")
-	}
-}
-
-/** 
- * Changes Scaling of the wrapped image and returns the cell
- *
- * @throws UnsupportedOperationException if the element is neither an Image nor an ImageButton
- */
-fun <T : Element> Cell<T>.scaleImage(scaling: Scaling) = this.also { cell ->
-	when (val it = cell.get()) {
-		is Image -> it.setScaling(scaling)
-		is ImageButton -> it.image?.setScaling(scaling)
-		else -> throw UnsupportedOperationException("this class is not supported")
-	}
-}
-
-/** Creates a copy of the wrapped label's style and changes its font. */
-fun <T : Label> Cell<T>.setFont(font: Font) = also {
-	get().setFont(font)
-}
-
-/** Creates a copy of the wrapped field's style and changes its font. */
-fun <T : TextField> Cell<T>.setFont(font: Font) = also {
-	get().style = TextField.TextFieldStyle(get().style).also {
-		it.font = font
-		it.messageFont = font
-	}
-}
-
-/** Creates a copy of the wrapped button's label's style and changes its font. */
-fun <T : TextButton> Cell<T>.font(font: Font) = also {
-	get().setFont(font)
-}
-
 
 /**
  * Reduces the size of the element to (0, 0) and invalidates it,

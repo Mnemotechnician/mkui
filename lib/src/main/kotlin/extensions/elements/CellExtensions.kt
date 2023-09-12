@@ -1,24 +1,12 @@
 package com.github.mnemotechnician.mkui.extensions.elements
 
+import arc.graphics.g2d.Font
 import arc.scene.Element
+import arc.scene.ui.*
 import arc.scene.ui.layout.Cell
 import arc.scene.ui.layout.Table
+import arc.util.Scaling
 import com.github.mnemotechnician.mkui.extensions.groups.rowPer
-
-// private val cellColumnField = Cell::class.java.getDeclaredField("column").also { it.isAccessible = true }
-// private val cellRowField = Cell::class.java.getDeclaredField("column").also { it.isAccessible = true }
-// private val endRowField = Cell::class.java.getDeclaredField("endRow").also { it.isAccessible = true }
-//
-// var Cell<*>.column
-// 	get() = cellColumnField.getInt(this)
-// 	set(value) { cellColumnField.setInt(this, value) }
-// var Cell<*>.row
-// 	get() = cellRowField.getInt(this)
-// 	set(value) { cellRowField.setInt(this, value) }
-// /** Whether this cell concludes its row. If true, the next cell is placed on a new row. */
-// var Cell<*>.endRow: Boolean
-// 	get() = endRowField.getBoolean(this)
-// 	set(value) { endRowField.setBoolean(this, value) }
 
 /** Casts the element to the specified class or returns null if it's not an instance of this class. */
 inline fun <reified T: Element> Element.asOrNull() = this as? T
@@ -40,49 +28,45 @@ fun <T : Element> Cell<T>.rowPer(number: Int) = apply {
 	table.rowPer(number)
 }
 
-// /**
-//  * Moves the cell of the table by [n] positions and returns it.
-//  * If [n] is positive, the cell is moved forward, otherwise backwards.
-//  *
-//  * The position change can cause the element to move to a different row.
-//  *
-//  * @param upperRow if true and the cell before the new position concludes the row,
-//  * the row end is moved to allow the moved cell to occupy the end of the upper row,
-//  * otherwise it will occupy the beginning of the lower row.
-//  */
-// fun <T : Element> Cell<T>.moveCell(n: Int, upperRow: Boolean = true) = apply {
-// 	if (n == 0) return@apply
-//
-// 	val cells = table.cells
-// 	val index = cells.indexOf(this)
-// 	val otherIndex = index + n
+/**
+ * Changes the font size of the wrapped label or text button and returns the cell
+ * @throws UnsupportedOperationException if the element is neither a Label nor a TextButton
+ */
+fun <T : Element> Cell<T>.scaleFont(scale: Float) = this.also { cell ->
+	when (val it = cell.get()) {
+		is Label -> it.setFontScale(scale)
+		is TextButton -> it.label?.setFontScale(scale)
+		else -> throw UnsupportedOperationException("this class is not supported")
+	}
+}
 
-// 	if (index >= 0 && otherIndex >= 0 && index < cells.size && otherIndex <= cells.size) {
-// 		cells.remove(index)
-// 		cells.insert(otherIndex, this)
-// 		// if one of the cells ends its row, swap the endRow values reflectively
-// 		val other = cells[index]
-// 		if (endRow != other.endRow) {
-// 			val otherEndsRow = other.endRow
-// 			val otherColumn = other.column
-// 			val otherRow = other.row
+/**
+ * Changes Scaling of the wrapped image and returns the cell
+ *
+ * @throws UnsupportedOperationException if the element is neither an Image nor an ImageButton
+ */
+fun <T : Element> Cell<T>.scaleImage(scaling: Scaling) = this.also { cell ->
+	when (val it = cell.get()) {
+		is Image -> it.setScaling(scaling)
+		is ImageButton -> it.image?.setScaling(scaling)
+		else -> throw UnsupportedOperationException("this class is not supported")
+	}
+}
 
-// 			other.endRow = endRow
-// 			endRow = otherEndsRow
-// 			column = otherColumn
-// 			row = otherRow
+/** Creates a copy of the wrapped label's style and changes its font. */
+fun <T : Label> Cell<T>.setFont(font: Font) = also {
+	get().setFont(font)
+}
 
-// 			table.invalidate()
-// 		}
-// 	}
+/** Creates a copy of the wrapped field's style and changes its font. */
+fun <T : TextField> Cell<T>.setFont(font: Font) = also {
+	get().style = TextField.TextFieldStyle(get().style).also {
+		it.font = font
+		it.messageFont = font
+	}
+}
 
-// 	// this will not work
-// 	if (otherIndex >= 1 && upperRow) {
-// 		val prev = cells[otherIndex - 1]
-// 		if (prev.endRow) {
-// 			prev.endRow = false
-// 			endRow = true
-// 			column = other.column + 1
-// 		}
-// 	}
-// }
+/** Creates a copy of the wrapped button's label's style and changes its font. */
+fun <T : TextButton> Cell<T>.font(font: Font) = also {
+	get().setFont(font)
+}
