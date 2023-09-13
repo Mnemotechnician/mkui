@@ -55,12 +55,14 @@ fun <T : Element> Cell<T>.scaleImage(scaling: Scaling) = this.also { cell ->
 }
 
 /** Creates a copy of the wrapped label's style and changes its font. */
-fun <T : Label> Cell<T>.setFont(font: Font) = also {
+@JvmName("setFontLabel")
+fun <T : Label> Cell<T>.font(font: Font) = also {
 	get().setFont(font)
 }
 
 /** Creates a copy of the wrapped field's style and changes its font. */
-fun <T : TextField> Cell<T>.setFont(font: Font) = also {
+@JvmName("setFontField")
+fun <T : TextField> Cell<T>.font(font: Font) = also {
 	get().style = TextField.TextFieldStyle(get().style).also {
 		it.font = font
 		it.messageFont = font
@@ -68,6 +70,7 @@ fun <T : TextField> Cell<T>.setFont(font: Font) = also {
 }
 
 /** Creates a copy of the wrapped button's label's style and changes its font. */
+@JvmName("setFontButton")
 fun <T : TextButton> Cell<T>.font(font: Font) = also {
 	get().setFont(font)
 }
