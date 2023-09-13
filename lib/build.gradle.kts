@@ -9,7 +9,7 @@ buildscript {
 		maven("https://www.jitpack.io")
 	}
 	dependencies {
-		classpath("com.github.Anuken.Arc:arc-core:v136")
+		classpath("com.github.Anuken.Arc:arc-core:v146")
 	}
 }
 
@@ -26,7 +26,7 @@ repositories {
 	maven("https://www.jitpack.io")
 }
 
-val mindustryVersion = "v136"
+val mindustryVersion = "v146"
 
 dependencies {
 	compileOnly("com.github.Anuken.Arc:arc-core:$mindustryVersion")
@@ -74,7 +74,7 @@ publishing {
 		create<MavenPublication>("maven") {
 			groupId = "com.github.mnemotechnician"
 			artifactId = "mkui"
-			version = "v1.2.2"
+			version = "v1.3.0"
 
 			from(components["java"])
 			artifact(javadocJar)
