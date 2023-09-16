@@ -11,7 +11,7 @@ import mindustry.gen.Groups.label
 import java.awt.SystemColor.text
 
 @PublishedApi
-internal var updateField = Element::class.java.getField("update").also {
+internal var updateField = Element::class.java.getDeclaredField("update").also {
 	it.isAccessible = true
 }
 
