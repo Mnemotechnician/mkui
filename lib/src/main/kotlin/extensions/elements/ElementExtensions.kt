@@ -11,7 +11,9 @@ import mindustry.gen.Groups.label
 import java.awt.SystemColor.text
 
 @PublishedApi
-internal var updateField = Element::class.java.getField("update")
+internal var updateField = Element::class.java.getField("update").also {
+	it.isAccessible = true
+}
 
 /** Text of the label */
 inline var Label.content: CharSequence
