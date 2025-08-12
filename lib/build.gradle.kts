@@ -23,10 +23,11 @@ plugins {
 
 repositories {
 	mavenCentral()
+	maven("https://raw.githubusercontent.com/Zelaux/MindustryRepo/master/repository")
 	maven("https://www.jitpack.io")
 }
 
-val mindustryVersion = "v146"
+val mindustryVersion = "v149"
 
 dependencies {
 	compileOnly("com.github.Anuken.Arc:arc-core:$mindustryVersion")
